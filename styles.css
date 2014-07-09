@@ -1,0 +1,24 @@
+
+.article-container {
+	margin: 0px auto;
+	width: 650px;
+}
+
+.article-title {
+	font-size: 250%;
+	text-align: center;
+}
+
+.article-subtitle {
+	font-size: 200%;
+	text-align: center
+}
+
+.chapter-title {
+	font-weight: bold;
+	font-size: 160%;
+}
+
+.monospace {
+	font-family: Consolas, "Courier New", Courier, monospace;
+}
