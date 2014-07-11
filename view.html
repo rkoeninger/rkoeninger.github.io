@@ -1,7 +1,7 @@
 <html>
     <head>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-        <script src="markdown.min.js"></script>
+        <script src="marked.js"></script>
         <script>
             (function($) {
                 $.queryString = (function(a) {
@@ -46,7 +46,7 @@
                     dataType: "text",
                     url: articleUrl,
                     success: function(articleMarkdown) {
-                        articleDiv.html(markdown.toHTML(articleMarkdown));
+                        articleDiv.html(marked(articleMarkdown));
                     },
                     error: function(jqXHR, textStatus, errorThrown) {
                         articleDiv.html("failed to load article content<br />" + textStatus + "<br />" + errorThrown);
