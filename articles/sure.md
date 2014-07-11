@@ -1,6 +1,6 @@
-# Dr. Surelove<A>
+# `Dr. Surelove<A>`
 
-## ...or about how I learned to stop worrying and live with null references in C#</p>
+## ...or about how I learned to stop worrying and live with null references in C#
 
 ---
 
@@ -59,9 +59,9 @@ public struct Sure<A>
 }
 ```
 
-So, supposedly, you can put Sure<Whatever>, and be sure you won't have a null reference to a Whatever.
+So, supposedly, you can put `Sure<Whatever>`, and be sure you won't have a null reference to a `Whatever`.
 
-And when you see that the method or class you're working in takes a Sure<String>, you know you don't have to worry about whether that String will be null or not. Whoever provides that data can have the responsibility of making sure it's not null. Instead of everyone, everywhere in the program potentially having to worry about it.
+And when you see that the method or class you're working in takes a `Sure<String>`, you know you don't have to worry about whether that string will be null or not. Whoever provides that data can have the responsibility of making sure it's not null. Instead of everyone, everywhere in the program potentially having to worry about it.
 
 ```csharp
 public void NoWorries(Sure<String> sure)
@@ -72,21 +72,21 @@ public void NoWorries(Sure<String> sure)
 
 ### Why?!
 
-So this all seemed wonderful and I sunk time adding a Sure<A> class to my zed-sharp project and all, only to eventually notice that this code compiles:
+So this all seemed wonderful and I sunk time adding a `Sure<A>` class to my [zed-sharp](http://github.com/rkoeninger/zed-sharp) project and all, only to eventually notice that this code compiles:
 
 ```csharp
 var ss = new Sure<String>();
 ```
 
-And not only does it work, but it returns a Sure<String> with a null value!
+And not only does it work, but it returns a `Sure<String>` with a null value!
 
 **NOOOoooooOOO00000ooooO!!!1111`!!q!!!@!**
 
 As it turns out, in C#, all struct types have a built-in zero-parameter constructor that returns an instance of that struct type with all its fields assigned a default value for their type.
 
-For String, it's null.
+For `String`, it's null.
 
-The first thought that came to mind was: Just override the zero-parameter constructor to throw an exception, and then we can again be sure we'll never have a Sure without a null Value.
+The first thought that came to mind was: Just override the zero-parameter constructor to throw an exception, and then we can again be sure we'll never have a `Sure` with a null `Value`.
 
 So I tried this:
 
@@ -112,7 +112,7 @@ Even if one could use the parameterless constructor above, it still wouldn't com
 default(Sure<String>).Value == null
 ```
 
-For class types, default() returns null, and for struct types, default() returns an instance with all members initialized to their default(), which is null/0/false/all-members-default.
+For class types, `default()` returns null, and for struct types, `default()` returns an instance with all members initialized to their `default()`, which is null/0/false/all-members-default.
 
 ### The Nightmare Continues
 
