@@ -1,6 +1,6 @@
-# `Dr. Surelove<A>`
+# <div style="; text-align: center;">`Dr. Surelove<A>`</div>
 
-## ...or about how I learned to stop worrying and live with null references in C#
+## <div style="; text-align: center;">...or about how I learned to stop worrying and live with null references in C#</div>
 
 ---
 
