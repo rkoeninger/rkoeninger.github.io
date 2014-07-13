@@ -1,8 +1,8 @@
 <!--title=Dr. Surelove<A>-->
 
-# <div style="; text-align: center;">`Dr. Surelove<A>`</div>
+# `Dr. Surelove<A>`
 
-## <div style="; text-align: center;">...or how I still have to live with null references in C# and am more worried than ever</div>
+## ...or how I still have to live with null references in C# and am more worried than ever
 
 ---
 
