@@ -72,6 +72,8 @@ public void NoWorries(Sure<String> sure)
 }
 ```
 
+---
+
 ### Why?!
 
 So this all seemed wonderful and I sunk time adding a `Sure<A>` class to my [zed-sharp](http://github.com/rkoeninger/zed-sharp) project and all, only to eventually notice that this code compiles:
@@ -115,6 +117,8 @@ default(Sure<String>).Value == null
 ```
 
 For class types, `default()` returns null, and for struct types, `default()` returns an instance with all members initialized to their `default()`, which is null/0/false/all-members-default.
+
+---
 
 ### The Nightmare Continues
 
