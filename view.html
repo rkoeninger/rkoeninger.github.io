@@ -34,10 +34,8 @@
                 var articleDiv = $("#article");
                 var articleId = $.queryString["articleId"];
 
-                if (! articleId) {
-                    articleDiv.html("article id needs to be specified in query string");
-                    return;
-                }
+                if (! articleId)
+                    articleId = "default";
 
                 var articleUrl = "./articles/" + articleId;
 
@@ -50,6 +48,11 @@
                     url: articleUrl,
                     success: function(articleMarkdown) {
                         articleDiv.html(marked(articleMarkdown));
+                        var titleMatches = articleMarkdown.match(/<!--title=(.*)-->/);
+
+                        if (titleMatches)
+                            document.title = titleMatches[1];
+
                         hljs.initHighlighting();
                     },
                     error: function(jqXHR, textStatus, errorThrown) {
