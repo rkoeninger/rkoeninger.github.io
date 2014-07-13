@@ -24,16 +24,14 @@ Page titles are specified in the markdown using "hot comments" in the markdown.
 
 ---
 
+### Disqus
+
+I can't run a database or server-side comment engine off of GitHub Pages. I don't want to have to host my own separate comment server or anything, so just drop Disqus in there.
+
+---
+
 ### highlight.js
 
 Needed to make the syntax look cool.
 
 I appreciated that it comes with the same color scheme that I use in Sublime Text.
-
----
-
-### jQuery/AJAX
-
-Needed to pull down the markdown file.
-
-I did start to question just how much jQuery actually helps.
