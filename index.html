@@ -1,14 +1,71 @@
 <html>
-	<head>
-		<title>rkoeninger</title>
-		<link rel="icon" type="image/png" href="/favicon.png" />
-	</head>
-	<body>
-		<h3>rkoeninger</h3>
-		<ul>
-			<li><a href="talesOfWin.html">Tales of Win</a></li>
-			<li><a href="talesOfWoe.html">Tales of Woe</a></li>
-			<li><a href="talesOfWonder.html">Tales of Wonder</a></li>
-		</ul>
-	</body>
+    <head>
+        <link rel="icon" type="image/png" href="/favicon.png" />
+        <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/styles/monokai.min.css">
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/highlight.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="marked.js"></script>
+        <script>
+            (function($) {
+                $.queryString = (function(a) {
+                    if (a == "")
+                        return {};
+
+                    var b = {};
+
+                    for (var i = 0; i < a.length; ++i) {
+                        var p=a[i].split('=');
+
+                        if (p.length != 2)
+                            continue;
+
+                        b[p[0]] = decodeURIComponent(p[1].replace(/\+/g, " "));
+                    }
+
+                    return b;
+                })(window.location.search.substr(1).split('&'))
+            })(jQuery);
+
+            String.prototype.endsWith = function(suffix) {
+                return this.indexOf(suffix, this.length - suffix.length) !== -1;
+            };
+
+            $(function() {
+                var articleDiv = $("#article");
+                var articleId = $.queryString["articleId"];
+
+                if (! articleId)
+                    articleId = "default";
+
+                var articleUrl = "./articles/" + articleId;
+
+                if (! articleUrl.endsWith(".md"))
+                    articleUrl += ".md";
+
+                var request = {
+                    type: "GET",
+                    dataType: "text",
+                    url: articleUrl,
+                    success: function(articleMarkdown) {
+                        articleDiv.html(marked(articleMarkdown));
+                        var titleMatches = articleMarkdown.match(/<!--title=(.*)-->/);
+
+                        if (titleMatches)
+                            document.title = titleMatches[1];
+
+                        hljs.initHighlighting();
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        articleDiv.html("failed to load article content<br />" + textStatus + "<br />" + errorThrown);
+                    }
+                };
+
+                $.ajax(request);
+            });
+        </script>
+    </head>
+    <body>
+        <div id="article" style="; margin: 0px auto; width: 650px;">
+        </div>
+    </body>
 </html>
