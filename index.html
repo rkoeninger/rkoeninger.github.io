@@ -6,6 +6,10 @@
             h1, h2 {
                 text-align: center;
             }
+            div.menuItem {
+                display: inline-block;
+                font-size: 150%;
+            }
         </style>
         <script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/highlight.min.js"></script>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -71,6 +75,14 @@
     </head>
     <body>
         <div style="; margin: 0px auto; width: 650px;">
+            <div class="menuItem"><a href="/index.html">Home</a></div>
+            &nbsp;
+            <div class="menuItem"><a href="/index.html?articleId=talesOfWin">Tales of Win</a></div>
+            &nbsp;
+            <div class="menuItem"><a href="/index.html?articleId=talesOfWoe">Tales of Woe</a></div>
+            &nbsp;
+            <div class="menuItem"><a href="/index.html?articleId=talesOfWonder">Tales of Wonder</a></div>
+            <hr />
             <div id="article"></div>
             <div id="disqus_thread"></div>
             <script src="//rkoeningergithubio.disqus.com/embed.js"></script>
