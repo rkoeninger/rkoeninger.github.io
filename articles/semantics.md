@@ -1,6 +1,6 @@
 <!--title=Arguing Semantics-->
 
-# Arguing Semamtics
+# Arguing Semantics
 
 ## The important limitations of a type system are not computational
 
