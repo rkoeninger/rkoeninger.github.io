@@ -64,8 +64,8 @@ def addOne(x)
     x + 1
 end
 ```
-```fsharp
-let addOne x = x + 1
+```haskell
+addOne x = x + 1
 ```
 
 Each of these functions is intended to do the same thing, but only in some of them will the machine be able to infer things about that intention. In the Python and Ruby examples, the machine cannot (or, at least, it does not by design) infer that `x` should be of a numeric type. In the Java example, the intended type of `x` is made in explicitly clear. In the F# example, the type of `x` is not made explicitly clear, but the language is designed in such a way that the type can be reliably inferred. So, in languages with a type system, the machine will be able to know things about the program.
