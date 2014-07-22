@@ -532,7 +532,7 @@ var hljs = new function() {
     }
 
     var languageLabel = document.createElementNS('http://www.w3.org/1999/xhtml', 'span');
-    languageLabel.innerHTML = language;
+    languageLabel.innerHTML = languageLabelHTML(language);
     languageLabel.className = 'hljs-keyword hljs';
     block.parentNode.insertBefore(languageLabel, block);
   }
@@ -543,6 +543,18 @@ var hljs = new function() {
     useBR: false,
     languages: undefined
   };
+
+  function languageLabelHTML(language) {
+    switch (language) {
+      case 'haskell':
+        var img = document.createElementNS('http://www.w3.org/1999/xhtml', 'img');
+        img.src = 'http://www.yellosoft.us/public/images/haskell.png';
+        img.style.maxWidth = '32px';
+        img.style.maxHeight = '32px';
+        return img.outerHTML;
+    }
+    return language;
+  }
 
   /*
   Updates highlight.js global options with values passed in the form of an object
