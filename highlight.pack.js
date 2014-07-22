@@ -533,7 +533,7 @@ var hljs = new function() {
 
     var languageLabel = document.createElementNS('http://www.w3.org/1999/xhtml', 'span');
     languageLabel.innerHTML = languageLabelHTML(language);
-    languageLabel.className = 'hljs-keyword hljs';
+    languageLabel.className = 'hljs hljs-keyword hljs-lang-label';
     block.parentNode.insertBefore(languageLabel, block);
   }
 
@@ -544,14 +544,44 @@ var hljs = new function() {
     languages: undefined
   };
 
+  var langLabels = {
+    csharp: {
+      name: 'C#',
+      icon: 'http://wscont1.apps.microsoft.com/winstore/1x/95563bc7-04d3-4d3f-9907-dfa5f6cb7fbd/Icon.268673.png'
+    },
+    haskell: {
+      name: 'Haskell',
+      icon: 'http://www.yellosoft.us/public/images/haskell.png'
+    },
+    java: {
+      name: 'Java',
+      icon: 'http://www.softcrayons.com/img/javabig.png'
+    },
+    python: {
+      name: 'Python',
+      icon: 'http://codetodev.files.wordpress.com/2014/06/python-logo.png'
+    },
+    ruby: {
+      name: 'Ruby',
+      icon: 'http://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Ruby_logo.png/240px-Ruby_logo.png'
+    },
+    scala: {
+      name: 'Scala',
+      icon: 'http://www.scalac.io/img/scala_logo.png'
+    }
+  };
+
   function languageLabelHTML(language) {
-    switch (language) {
-      case 'haskell':
+    var lang = langLabels[language];
+    if (lang) {
+      var icon = lang.icon;
+      if (icon) {
         var img = document.createElementNS('http://www.w3.org/1999/xhtml', 'img');
-        img.src = 'http://www.yellosoft.us/public/images/haskell.png';
-        img.style.maxWidth = '32px';
-        img.style.maxHeight = '32px';
+        img.src = icon;
+        img.title = lang.name || language;
         return img.outerHTML;
+      }
+      return lang.name;
     }
     return language;
   }
