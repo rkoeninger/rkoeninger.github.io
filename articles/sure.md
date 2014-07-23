@@ -1,5 +1,3 @@
-<!--title=Dr. Surelove<A>-->
-
 # `Dr. Surelove<A>`
 
 ## ...or how I still have to live with null references in C# and am more worried than ever
@@ -135,3 +133,5 @@ type Ref a = Pointer a | Null
 Why do that? Why make using the language so complicated? This is normal to most people, I think, but from a more distanced perspective, it's just bizarre.
 
 I guess we can just make like Scala and idiomatically avoid null by way of the `Maybe<A>` type. And if someone forgets to initialize a reference or sets it to null, throw them in the pit of despair.
+
+!!!disqus

@@ -64,6 +64,16 @@
                     dataType: "text",
                     url: articleUrl,
                     success: function (articleMarkdown) {
+
+                        if (articleMarkdown.indexOf('!!!disqus') > -1) {
+                            var divTag = document.createElement('div');
+                            divTag.id = 'disqus_thread';
+                            var scriptTag = document.createElement('script');
+                            scriptTag.src = '//rkoeningergithubio.disqus.com/embed.js';
+                            var disqus = divTag.outerHTML + scriptTag.outerHTML;
+                            articleMarkdown = articleMarkdown.replace('!!!disqus', disqus);
+                        }
+
                         articleDiv.html(marked(articleMarkdown));
                         var titleMatches = articleMarkdown.match(/\x23\x20(.*)\x0D?\x0A/); // pull title from first h1 (#) element
 
@@ -92,8 +102,6 @@
             <div class="menuItem"><a href="/index.html?articleId=talesOfWonder">Tales of Wonder</a></div>
             <hr />
             <div id="article"></div>
-            <div id="disqus_thread"></div>
-            <script src="//rkoeningergithubio.disqus.com/embed.js"></script>
         </div>
     </body>
 </html>

@@ -1,5 +1,3 @@
-<!--title=This Site-->
-
 # This Site
 
 ## My First Tale of Win: You're Looking at It!
@@ -35,3 +33,5 @@ I can't run a database or server-side comment engine off of GitHub Pages. I don'
 Needed to make the syntax look cool.
 
 I appreciated that it comes with the same color scheme that I use in Sublime Text.
+
+!!!disqus

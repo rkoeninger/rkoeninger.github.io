@@ -1,5 +1,3 @@
-<!--title=Arguing Semantics-->
-
 # Arguing Semantics
 
 ## The important limitations of a type system are not computational
@@ -81,3 +79,5 @@ This is not a technological limitation. It is an issue inherent in how human bei
 I want a type system that can express what I *mean*. What I'm *intending* to communicate.
 
 Unfortunately, what goes in our minds ultimately makes no sense.
+
+!!!disqus
