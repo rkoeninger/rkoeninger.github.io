@@ -47,20 +47,6 @@
                 return this.indexOf(suffix, this.length - suffix.length) !== -1;
             };
 
-            function loadMarkdown(articleMarkdown) {
-                articleDiv.html(marked(articleMarkdown));
-                var titleMatches = articleMarkdown.match(/\x23\x20(.*)\x0D?\x0A/); // pull title from first h1 (#) element
-
-                if (titleMatches)
-                    document.title = $(marked(titleMatches[1]))[0].textContent; // strip markdown formatting
-
-                hljs.initHighlighting();
-            }
-
-            function errorLoading(jqXHR, textStatus, errorThrown) {
-                articleDiv.html("failed to load article content<br />" + textStatus + "<br />" + errorThrown);
-            }
-
             $(function() {
                 var articleDiv = $("#article");
                 var articleId = $.queryString["articleId"];
@@ -77,8 +63,18 @@
                     type: "GET",
                     dataType: "text",
                     url: articleUrl,
-                    success: loadMarkdown,
-                    error: errorLoading
+                    success: function (articleMarkdown) {
+                        articleDiv.html(marked(articleMarkdown));
+                        var titleMatches = articleMarkdown.match(/\x23\x20(.*)\x0D?\x0A/); // pull title from first h1 (#) element
+
+                        if (titleMatches)
+                            document.title = $(marked(titleMatches[1]))[0].textContent; // strip markdown formatting
+
+                        hljs.initHighlighting();
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        articleDiv.html("failed to load article content<br />" + textStatus + "<br />" + errorThrown);
+                    }
                 };
 
                 $.ajax(request);
