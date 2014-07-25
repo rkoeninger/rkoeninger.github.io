@@ -51,8 +51,7 @@
                 return this.indexOf(suffix, this.length - suffix.length) !== -1;
             };
 
-            $(function() {
-                var articleDiv = $("article#article0");
+            function getArticleUrl() {
                 var articleId = $.queryString["articleId"];
 
                 if (! articleId)
@@ -63,22 +62,32 @@
                 if (! articleUrl.endsWith(".md"))
                     articleUrl += ".md";
 
+                return articleUrl;
+            }
+
+            function insertDisqus(markdown) {
+                if (markdown.indexOf('!!!disqus') > -1) {
+                    var divTag = document.createElement('div');
+                    divTag.id = 'disqus_thread';
+                    var scriptTag = document.createElement('script');
+                    scriptTag.src = '//rkoeningergithubio.disqus.com/embed.js';
+                    var disqus = divTag.outerHTML + scriptTag.outerHTML;
+                    return markdown.replace('!!!disqus', disqus);
+                }
+
+                return markdown;
+            }
+
+            $(function() {
+                var articleDiv = $("article#article0");
+
                 var request = {
                     type: "GET",
                     dataType: "text",
-                    url: articleUrl,
+                    url: getArticleUrl(),
                     success: function (articleMarkdown) {
 
-                        if (articleMarkdown.indexOf('!!!disqus') > -1) {
-                            var divTag = document.createElement('div');
-                            divTag.id = 'disqus_thread';
-                            var scriptTag = document.createElement('script');
-                            scriptTag.src = '//rkoeningergithubio.disqus.com/embed.js';
-                            var disqus = divTag.outerHTML + scriptTag.outerHTML;
-                            articleMarkdown = articleMarkdown.replace('!!!disqus', disqus);
-                        }
-
-                        articleDiv.html(marked(articleMarkdown));
+                        articleDiv.html(marked(insertDisqus(articleMarkdown)));
                         var titleMatches = articleMarkdown.match(/\x23\x20(.*)\x0D?\x0A/); // pull title from first h1 (#) element
 
                         if (titleMatches)
