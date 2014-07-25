@@ -1,4 +1,4 @@
-# Rob's Tales of Woah and Woe
+# Fear of a Blue Screen
 
   * [Development of this site](/index.html?articleId=thisSite)
   * [Getting tired of NullReferenceExceptions in C#](/index.html?articleId=sure)
