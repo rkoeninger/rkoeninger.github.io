@@ -531,9 +531,9 @@ var hljs = new function() {
       };
     }
 
-    var languageLabel = document.createElementNS('http://www.w3.org/1999/xhtml', 'span');
+    var languageLabel = document.createElementNS('http://www.w3.org/1999/xhtml', 'code');
     languageLabel.innerHTML = languageLabelHTML(language);
-    languageLabel.className = 'hljs hljs-keyword hljs-lang-label';
+    languageLabel.className = 'hljs hljs-lang-label';
     block.parentNode.insertBefore(languageLabel, block);
   }
 
@@ -579,6 +579,11 @@ var hljs = new function() {
         var img = document.createElementNS('http://www.w3.org/1999/xhtml', 'img');
         img.src = icon;
         img.title = lang.name || language;
+        if (lang.name) {
+          var span = document.createElementNS('http://www.w3.org/1999/xhtml', 'span');
+          span.innerHTML = '&nbsp;' + lang.name;
+          return img.outerHTML + span.outerHTML;
+        }
         return img.outerHTML;
       }
       return lang.name;
