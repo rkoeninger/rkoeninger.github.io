@@ -4,6 +4,7 @@
   * [Getting tired of NullReferenceExceptions in C#](/index.html?articleId=sure)
   * [Arguing Semantics](/index.html?articleId=semantics)
   * [FP and OOP approaches to I/O](/index.html?articleId=io)
+  * [Natural Subtraction](/index.html?articleId=naturals)
   * [Software List](/index.html?articleId=software)
 
 [GitHub Repositories](http://github.com/rkoeninger?tab=repositories)
