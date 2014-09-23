@@ -1,39 +1,51 @@
 # Natural Subtraction
 
-## Ops That Are Desirable Actually Fairly Often
+## Arithmetic Operation I Found In My Couch
 
 ---
 
 ### Natural Number
 
-The set of natural numbers can be defined in a couple of ways:
+So a natural number is just an unsigned int.
 
-  * `[x | x <- integers, x >= 0]` - "The set of non-negative integers"
-  * `data Nat = 0 | Succ Nat` - "Zero or any value that is one greater than a natural"
+There. That was easy.
 
-So how do the common arithmetic operators apply to naturals?
+---
 
-### Keep in Mind:
+### "Closed"
 
-"Closed over X's" refers to the fact that is you add two X's, you will get an X.
+---
 
 ### Integer Division
 
-In order to get a division-esque operation that is closed over integers, it is necessary to toss the remainder of the operation. So `1 / 2` is actually `0`. Weird, but somethimes when used with `mod`, a desirable effect.
+When `x` is and `int` and `y` is an `int` and `let z = x / y`, `z` wouldn't normally be guaranteed to be an integer. So in integer division, the remainder is dropped off so it will always return an int.
 
-### Natural Addition, Multiplication, Division and Modulus
+My attempt to re-write this article is failing miserably.
 
-These are all essentially the same. The integer versions of these operations are already closed over naturals.
+---
 
 ### Natural Subtraction
 
-This is the interesting one.
+Could go two ways:
 
-Of course, `3 - 5 = -2`. All well and good for integer substraction, but what about a subtraction-esque operation that is closed over naturals?
+```haskell
+natSub x y = abs (x - y)
+```
 
-I can think of two ways of handling `x nat- y` where `y > x`:
+```haskell
+natSub x y = if y >= x then 0 else x - y
+```
 
-  * Truncate the negative sign. This would mean that `3 nat- 5` would be `2`.
-  * Define `x nat- y = max 0 (x int- y)`. So `3 nat- 5` is now `0`
+I don't think the first is likely to be useful very often, though. The second seems to be a desirable operation on occasion.
 
-The later is the more common use case, I think. In many situations, when someone has 10 apples, and we try to take away 12 apples, they don't end up with -2 apples, they have 0. The -2 can be used as a way of indicating that they have a debt of 2 apples, but that's frequently not what we want, and if we're tracking balances, then we'd use integers anyway.
+---
+
+### A More-General Pattern?
+
+So to keep division closed over integers, we have to redefine it. Then we have to redefine subtraction to keep it closed over naturals.
+
+Is there a more general pattern here?
+
+Notice also that division and subtraction are like the reverse of the other two operations: addition and multiplication. Addition and multiplication stay closed over all number sets.
+
+We can say that when `x * y = z`, that `x` and `y` being integers implies that `z` is an integer. But we can't say that when `a / b = c` and `a` and `b` are integers, that `c` must be an integer.
