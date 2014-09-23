@@ -5,6 +5,7 @@
   * [Arguing Semantics](/index.html?articleId=semantics)
   * [FP and OOP approaches to I/O](/index.html?articleId=io)
   * [Natural Subtraction](/index.html?articleId=naturals)
+  * [Approaches to Configuration](/index.html?articleId=config)
   * [Software List](/index.html?articleId=software)
 
 [GitHub Repositories](http://github.com/rkoeninger?tab=repositories)
