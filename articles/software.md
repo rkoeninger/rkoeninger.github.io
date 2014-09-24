@@ -14,13 +14,22 @@
   * [GitHub](https://windows.github.com/)
   * [Sublime Text](http://www.sublimetext.com/)
   * [Light Table](http://www.lighttable.com/)
+  * [HxD Hex Editor](http://mh-nexus.de/en/hxd/)
   * [AstroGrep](http://astrogrep.sourceforge.net/)
   * [Console2](http://sourceforge.net/projects/console/)
   * [Paint.NET](http://www.getpaint.net/)
   * [Fiddler](http://www.telerik.com/fiddler)
   * [WinMerge](http://winmerge.org/)
   * [Chocolatey](https://chocolatey.org/)
+  * [AnyToISO](http://www.crystalidea.com/anytoiso)
+  * [PowerISO](http://www.poweriso.com/)
   * [VLC Player](http://www.videolan.org/vlc/index.html)
+  * [foobar200](http://www.foobar2000.org/)
+  * [CutePDF](http://www.cutepdf.com/)
+  * [Foxit Reader](http://www.foxitsoftware.com/Secure_PDF_Reader/)
+  * [TeamViewer](http://www.teamviewer.com/en/index.aspx)
+  * [Skype](http://www.skype.com/)
+  * [Microsoft Security Essentials](http://windows.microsoft.com/en-us/windows/security-essentials-download)
 
 ### Chrome Plugins
 
