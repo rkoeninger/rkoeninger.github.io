@@ -124,13 +124,17 @@ For a while, I thought this was a really solid idea. It would require people to 
 
 The other thing that's really annoying about all this is the C# designers took the time to implement a type system for the language. And then they defeat the purpose in large part but giving almost every type an additional null value with vague semantics (does it mean the value is not applicable, or we just don't know it or what?) that also behaves very differently from every other value in that it blows up your program when you least suspect it.
 
-Instead of just having references to values be of type A, it's like they are all implicitly of type `Ref<A>` where:
+Instead of just having references to values be of type A, it's like they are all implicitly of type `Ref<A>` and all methods are `Func<A, Ref<B>>` instead of `Func<A, B>`, but you don't have `A`'s, you have `Ref<A>`'s, like this:
 
 ```haskell
 type Ref a = Pointer a | Null
+
+invoke :: (a -> Ref b) -> Ref a -> Ref b
+invoke f (Pointer x) = f x
+invoke _ Null = error "NullPointerException"
 ```
 
-Why do that? Why make using the language so complicated? This is normal to most people, I think, but from a more distanced perspective, it's just bizarre.
+From the perspective of another Why do that? Why make using the language so complicated? This is normal to most people, I think, but from a more distanced perspective, it's just bizarre.
 
 I guess we can just make like Scala and idiomatically avoid null by way of the `Maybe<A>` type. And if someone forgets to initialize a reference or sets it to null, throw them in the pit of despair.
 
