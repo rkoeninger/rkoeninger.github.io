@@ -1,5 +1,11 @@
-# Fear of a Blue Screen
-
+<div style=";display: none; "># Fear of a Blue Screen</div>
+<div class="title-logo">
+    FEAR<br />
+    OF A<br />
+    BLUE<br />
+    SCREEN
+</div>
+<br>
   * [Development of this site](/index.html?articleId=thisSite)
   * [Sorts and Searches](/index.html?articleId=sortsAndSearches)
   * [Getting tired of NullReferenceExceptions in C#](/index.html?articleId=sure)

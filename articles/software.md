@@ -29,6 +29,7 @@
   * [Foxit Reader](http://www.foxitsoftware.com/Secure_PDF_Reader/)
   * [TeamViewer](http://www.teamviewer.com/en/index.aspx)
   * [Skype](http://www.skype.com/)
+  * [KeePass](http://keepass.info/)
   * [Microsoft Security Essentials](http://windows.microsoft.com/en-us/windows/security-essentials-download)
 
 ### Chrome Plugins

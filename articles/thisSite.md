@@ -26,6 +26,8 @@ Page titles are specified in the markdown using "hot comments" in the markdown.
 
 I can't run a database or server-side comment engine off of GitHub Pages. I don't want to have to host my own separate comment server or anything, so just drop Disqus in there.
 
+There's an arbitrary marker string that indicates where the Disqus widget should be placed. The HTML for the Disqus widget is inserted before the Markdown is baked.
+
 ---
 
 ### highlight.js
@@ -34,4 +36,4 @@ Needed to make the syntax look cool.
 
 I appreciated that it comes with the same color scheme that I use in Sublime Text.
 
-!!!disqus
+<disqus>

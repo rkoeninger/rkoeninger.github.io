@@ -1,21 +1,35 @@
 <html>
     <head>
-        <link rel="icon" type="image/png" href="/favicon.png" />
+        <link rel="icon" type="image/png" href="images/favicon.png" />
         <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/styles/monokai.min.css">
         <style>
-            @media only screen and (min-width : 1224px) { /* desktop/laptop */
+            div.title-logo {
+            	margin: 0px auto;
+			    text-align: center;
+			    font-size: 72px;
+			    font-family: 'Franklin Gothic Heavy', sans-serif;
+			    font-weight: bold;
+			    line-height: 75%;
+			    color: #0000ff;
+			    transform: perspective(7px) rotateX(1deg);
+			    margin-bottom: 48px;
+			}
+            h1, h2 {
+                text-align: center;
+            }
+            article {
+                font-family: 'Source Serif Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            }
+            @media only screen and (min-width: 641px) { /* desktop/laptop */
                 nav {
                     float: left;
                     display: inline-block;
+                    position: fixed;
                 }
                 article {
-                    font-family: 'Source Serif Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
                     font-size: 18px;
                     margin: 0px auto;
                     width: 650px;
-                }
-                h1, h2 {
-                    text-align: center;
                 }
                 code {
                     font-size: 14px;
@@ -31,20 +45,24 @@
                     max-height: 24px;
                     vertical-align: middle;
                 }
+                img.left {
+                	float: left;
+                	position: fixed;
+                	max-width: 25%;
+                	max-height: 100%;
+                	margin: 0px auto;
+                }
             }
-            @media only screen and (min-device-width : 320px) and (max-device-width : 480px) { /* phone/tablet */
+            @media only screen and (max-width: 640px) { /* phone/tablet */
+            	body {
+            		background: #ffeeee; /* for testing purposes */
+            	}
                 nav {
                     margin: 0px auto;
                     text-align: center;
                 }
                 nav a {
                     font-size: 150%;
-                }
-                article {
-                    font-family: 'Source Serif Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-                }
-                h1, h2 {
-                    text-align: center;
                 }
                 code.hljs {
                     font-size: 200%;
@@ -60,12 +78,17 @@
                     max-height: 48px;
                     vertical-align: middle;
                 }
+		        img.left {
+		        	display: none;
+		        }
             }
         </style>
         <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.3/highlight.min.js"></script>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script src="marked.js"></script>
         <script>
+        	//<![CDATA[
+        	/* Create a queryString dictionary out of the request URL. */
             (function($) {
                 $.queryString = (function(a) {
                     if (a == "")
@@ -104,14 +127,16 @@
                 return articleUrl;
             }
 
+            var disqusMarker = '<disqus>';
+
             function insertDisqus(markdown) {
-                if (markdown.indexOf('!!!disqus') > -1) {
+                if (markdown.indexOf(disqusMarker) > -1) {
                     var divTag = document.createElement('div');
                     divTag.id = 'disqus_thread';
                     var scriptTag = document.createElement('script');
                     scriptTag.src = '//rkoeningergithubio.disqus.com/embed.js';
-                    var disqus = divTag.outerHTML + scriptTag.outerHTML;
-                    return markdown.replace('!!!disqus', disqus);
+                    var disqusHTML = divTag.outerHTML + scriptTag.outerHTML;
+                    return markdown.replace(disqusMarker, disqusHTML);
                 }
 
                 return markdown;
@@ -148,12 +173,14 @@
 
                 $.ajax(request);
             });
+			//]]>
         </script>
     </head>
     <body>
         <nav>
             <a href="/index.html">Home</a>
         </nav>
+        <img class="left" src="/images/robby.png" />
         <article id="article0" />
     </body>
 </html>

@@ -13,3 +13,5 @@
 ---
 
 ### IO by Dependency Injection
+
+<disqus>

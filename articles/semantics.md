@@ -80,4 +80,4 @@ I want a type system that can express what I *mean*. What I'm *intending* to com
 
 Unfortunately, what goes in our minds ultimately makes no sense.
 
-!!!disqus
+<disqus>

@@ -40,3 +40,4 @@ I recall it took a long time for my classmates and I to understand what `static`
 
 ### Unlearning All The Lies
 
+<disqus>

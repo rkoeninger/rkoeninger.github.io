@@ -49,3 +49,5 @@ Is there a more general pattern here?
 Notice also that division and subtraction are like the reverse of the other two operations: addition and multiplication. Addition and multiplication stay closed over all number sets.
 
 We can say that when `x * y = z`, that `x` and `y` being integers implies that `z` is an integer. But we can't say that when `a / b = c` and `a` and `b` are integers, that `c` must be an integer.
+
+<disqus>
