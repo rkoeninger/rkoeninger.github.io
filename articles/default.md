@@ -15,6 +15,7 @@
   * [Natural Subtraction](/index.html?articleId=naturals)
   * [Approaches to Configuration](/index.html?articleId=config)
   * [Functors and Type Variance](/index.html?articleId=functorsTypeVariance)
+  * [Suits and Faces](/index.html?articleId=suitsAndFaces)
   * [Software List](/index.html?articleId=software)
 
 [GitHub Repositories](http://github.com/rkoeninger?tab=repositories)
