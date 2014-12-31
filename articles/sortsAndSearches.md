@@ -6,24 +6,55 @@
 
 ### First Thing's First
 
-In school, the first algorithms you learn early are sorts: Insertion, Selection, Merge, Quick. But there are only two common algorithms for searching a list: Linear and Binary. One's alot faster than the other.
- 
-linearSearch : O(n)
-Items      | Reps
-10         | 5
-100        | 50
-1000       | 500
-1000000    | 500000
-1000000000 | 500000000
- 
-binarySearch : O(log n)
-Items      | Reps
-10         | 3
-100        | 7
-1000       | 10
-1000000    | 20
-1000000000 | 30
- 
+In school, the first algorithms they teach you are are searches and sorts. While there are several sorting algorithms - insertion sort, selection sort, merge sort, quick sort, there are only two common searching algorithms: linear and binary.
+
+*Linear Search* - Go down the list, checking each item until the target item is found. Example:
+
+```ruby
+def linear_search(list, val)
+  for i in 0..list.length
+    return i if list[i] == val
+  end
+  nil
+end
+```
+
+The linear search runs in `O(n)` time, meaning the average time it takes to run is propotional to the length of the list.
+
+| List Length | Average Algorithm Time |
+|-------------|------------------------|
+| 10          | 5                      |
+| 100         | 50                     |
+| 1000        | 500                    |
+| 100000      | 50000                  |
+| 100000000   | 50000000               |
+
+*Binary Search* - Considering the whole list, compare the item in the middle of the list. If the middle item is greater than the target item, then repeat this process considering only the first half of the list. If the middle item is lesser than the target item, then repeat this process considering only the second half of the list. Example:
+
+```ruby
+def binary_search(list, val, low = 0, high = (list.length - 1))
+  return nil if high < low
+  mid = (low + high) / 2
+  case
+    when list[mid] > val then binary_search(list, val, low, mid - 1)
+    when list[mid] < val then binary_search(list, val, mid + 1, high)
+    else mid
+  end
+end
+```
+
+The binary search runs in `O(log n)` time, meaning it's average run time is proportional to the _logarithm_ of the length of the list.
+
+| List Length | Average Algorithm Time |
+|-------------|------------------------|
+| 10          | 3                      |
+| 100         | 7                      |
+| 1000        | 10                     |
+| 100000      | 20                     |
+| 100000000   | 30                     |
+
+You might notice that one is much faster than the other.
+
 It would seem that the use of one entirely follows from the use of the other.
  
 What makes searching a whole lot easier? Having a sorted collection.
