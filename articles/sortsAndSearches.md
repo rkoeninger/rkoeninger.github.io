@@ -21,13 +21,13 @@ end
 
 The linear search runs in `O(n)` time, meaning the average time it takes to run is propotional to the length of the list.
 
-| List Length | Average Algorithm Time |
-|-------------|------------------------|
-| 10          | 5                      |
-| 100         | 50                     |
-| 1000        | 500                    |
-| 100000      | 50000                  |
-| 100000000   | 50000000               |
+| List Length   | Average Algorithm Time |
+|--------------:|-----------------------:|
+|            10 |                      5 |
+|           100 |                     50 |
+|         1,000 |                    500 |
+|     1,000,000 |                500,000 |
+| 1,000,000,000 |            500,000,000 |
 
 *Binary Search* - Considering the whole list, compare the item in the middle of the list. If the middle item is greater than the target item, then repeat this process considering only the first half of the list. If the middle item is lesser than the target item, then repeat this process considering only the second half of the list. Example:
 
@@ -45,13 +45,13 @@ end
 
 The binary search runs in `O(log n)` time, meaning it's average run time is proportional to the _logarithm_ of the length of the list.
 
-| List Length | Average Algorithm Time |
-|-------------|------------------------|
-| 10          | 3                      |
-| 100         | 7                      |
-| 1000        | 10                     |
-| 100000      | 20                     |
-| 100000000   | 30                     |
+| List Length   | Average Algorithm Time |
+|--------------:|-----------------------:|
+|            10 |                      3 |
+|           100 |                      7 |
+|         1,000 |                     10 |
+|     1,000,000 |                     20 |
+| 1,000,000,000 |                     30 |
 
 You might notice that one is much faster than the other.
 
