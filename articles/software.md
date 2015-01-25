@@ -31,6 +31,7 @@
   * [Skype](http://www.skype.com/)
   * [KeePass](http://keepass.info/)
   * [Microsoft Security Essentials](http://windows.microsoft.com/en-us/windows/security-essentials-download)
+  * [RedGate SQL Search](http://www.red-gate.com/products/sql-development/sql-search/)
 
 ### Chrome Plugins
 
