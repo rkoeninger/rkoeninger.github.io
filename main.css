@@ -1,5 +1,5 @@
-div.title-logo {
-	margin: 0px auto;
+.title-logo {
+	margin: 0 auto;
     text-align: center;
     font-size: 5em;
     font-family: 'Franklin Gothic Heavy', sans-serif;
@@ -7,7 +7,7 @@ div.title-logo {
     line-height: 75%;
     color: #0000ff;
     transform: perspective(7px) rotateX(1deg);
-    -webkit-transform-origin: 50% 54%;
+    transform-origin: 50% 54%;
     margin-bottom: 0.6em;
 }
 img.left {
@@ -45,7 +45,6 @@ code {
 @media only screen and (min-width: 1224px) {
     nav {
         float: left;
-        display: inline-block;
         position: fixed;
     }
     nav a {
@@ -54,7 +53,7 @@ code {
     }
     article {
         font-size: 18px;
-        margin: 0px auto;
+        margin: 0 auto;
         width: 650px;
     }
     code {
@@ -65,20 +64,20 @@ code {
     	position: fixed;
     	max-width: 25%;
     	max-height: 100%;
-    	margin: 0px auto;
+    	margin: 0 auto;
     }
 }
 
 /* phone/tablet */
 @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
     nav {
-        margin: 0px auto;
+        margin: 0 auto;
         text-align: center;
     }
     nav a {
         font-size: 1.5em;
     }
-    code.hljs {
+    .hljs {
         font-size: 2em;
     }
     img.left {
