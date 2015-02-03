@@ -1,53 +1,63 @@
-function queryString(key) {
-    var qsParts = window.location.search.substr(1).split("&");
-
-    if (! (qsParts || key))
-        return "";
-
-    for (var i = 0; i < qsParts.length; ++i) {
-        var p = qsParts[i].split("=");
-
-        if (p.length !== 2)
-            continue;
-
-        if (p[0] === key)
-            return decodeURIComponent(p[1].replace(/\+/g, " "));
-    }
-
-    return "";
-}
-
-function endsWith(str, suffix) {
-    return str.indexOf(suffix, str.length - suffix.length) !== -1;
-}
-
-function getArticleUrl() {
-    var articleId = queryString("articleId");
-
-    if (! articleId)
-        articleId = "default";
-
-    var articleUrl = "./articles/" + articleId;
-
-    if (! endsWith(articleUrl, ".md"))
-        articleUrl += ".md";
-
-    return articleUrl;
-}
+/*jslint browser: true, regexp: true*/
+/*global marked, hljs*/
 
 var disqusMarker = "<disqus>";
 
-function insertDisqus(markdown) {
-    if (markdown.indexOf(disqusMarker) > -1) {
-        var divTag = document.createElement("div");
-        divTag.id = "disqus_thread";
-        var scriptTag = document.createElement("script");
-        scriptTag.src = "//rkoeningergithubio.disqus.com/embed.js";
-        var disqusHTML = divTag.outerHTML + scriptTag.outerHTML;
-        return markdown.replace(disqusMarker, disqusHTML);
-    }
+function queryString(key) {
+  var qsParts, argAndVal, i;
 
-    return markdown;
+  qsParts = window.location.search.substr(1).split("&");
+
+  if (!(qsParts || key)) {
+    return "";
+  }
+
+  for (i = 0; i < qsParts.length; ++i) {
+    argAndVal = qsParts[i].split("=");
+
+    if (argAndVal.length === 2 && argAndVal[0] === key) {
+      return decodeURIComponent(argAndVal[1].replace(/\+/g, " "));
+    }
+  }
+
+  return "";
+}
+
+function endsWith(str, suffix) {
+  return str.indexOf(suffix, str.length - suffix.length) !== -1;
+}
+
+function getArticleUrl() {
+  var articleId, articleUrl;
+
+  articleId = queryString("articleId");
+
+  if (!articleId) {
+    articleId = "default";
+  }
+
+  articleUrl = "./articles/" + articleId;
+
+  if (!endsWith(articleUrl, ".md")) {
+    articleUrl += ".md";
+  }
+
+  return articleUrl;
+}
+
+function insertDisqus(markdown) {
+  var divTag, scriptTag, disqusHTML;
+
+  if (markdown.indexOf(disqusMarker) > -1) {
+    divTag = document.createElement("div");
+    divTag.id = "disqus_thread";
+    scriptTag = document.createElement("script");
+    scriptTag.src = "//rkoeningergithubio.disqus.com/embed.js";
+    disqusHTML = divTag.outerHTML + scriptTag.outerHTML;
+    return markdown.replace(disqusMarker, disqusHTML);
+  }
+
+  return markdown;
 }
 
 /* On page load, get the value of the "articleId" argument in the query string
@@ -59,29 +69,34 @@ function insertDisqus(markdown) {
  * 
  * Substitute article HTML into the body of the page.
  */
-$(function() {
-    var articleDiv = $("article#article0");
+$(function () {
+  var articleDiv, request;
 
-    var request = {
-        type: "GET",
-        dataType: "text",
-        url: getArticleUrl(),
-        success: function (articleMarkdown) {
-            articleDiv.html(marked(insertDisqus(articleMarkdown)));
+  articleDiv = $("article#article0");
 
-            // pull title from first h1 (#) element
-            var titleMatches = articleMarkdown.match(/\x23\x20(.*)\x0D?\x0A/);
+  request = {
+    type: "GET",
+    dataType: "text",
+    url: getArticleUrl(),
+    success: function (articleMarkdown) {
+      var titleMatches;
 
-            if (titleMatches)
-                // strip markdown formatting
-                document.title = $(marked(titleMatches[1]))[0].textContent;
+      articleDiv.html(marked(insertDisqus(articleMarkdown)));
 
-            hljs.initHighlighting();
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-            articleDiv.html("failed to load article content<br />" + textStatus + "<br />" + errorThrown);
-        }
-    };
+      // find (#) elements in markdown
+      titleMatches = articleMarkdown.match(/\x23\x20(.*)\x0D?\x0A/);
 
-    $.ajax(request);
+      if (titleMatches) {
+        // strip markdown formatting from (#) element and make it the title
+        document.title = $(marked(titleMatches[1]))[0].textContent;
+      }
+
+      hljs.initHighlighting();
+    },
+    error: function (jqXHR, textStatus, errorThrown) {
+      articleDiv.html("failed to load article content<br />" + textStatus + "<br />" + errorThrown);
+    }
+  };
+
+  $.ajax(request);
 });
