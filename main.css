@@ -40,11 +40,17 @@ dl dd {
 code {
     background-color: #e7e7e7;
 }
-@media only screen and (min-width: 1224px) { /* desktop/laptop */
+
+/* desktop/laptop */
+@media only screen and (min-width: 1224px) {
     nav {
         float: left;
         display: inline-block;
         position: fixed;
+    }
+    nav a {
+        margin-left: 0.1em;
+        margin-right: 0.1em;
     }
     article {
         font-size: 18px;
@@ -54,17 +60,6 @@ code {
     code {
         font-size: 14px;
     }
-    code.hljs-lang-label {
-        display: inline-block;
-    }
-    code.hljs-lang-label span {
-        display: none;
-    }
-    code.hljs-lang-label img {
-        max-width: 24px;
-        max-height: 24px;
-        vertical-align: middle;
-    }
     img.left {
     	float: left;
     	position: fixed;
@@ -73,30 +68,18 @@ code {
     	margin: 0px auto;
     }
 }
-@media only screen and (min-device-width : 320px) and (max-device-width : 480px) { /* phone/tablet */
-	body {
-		background: #ffeeee; /* for testing purposes */
-	}
+
+/* phone/tablet */
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
     nav {
         margin: 0px auto;
         text-align: center;
     }
     nav a {
-        font-size: 150%;
+        font-size: 1.5em;
     }
     code.hljs {
-        font-size: 200%;
-    }
-    code.hljs-lang-label {
-        display: inline-block;
-    }
-    code.hljs-lang-label span {
-        vertical-align: middle;
-    }
-    code.hljs-lang-label img {
-        max-width: 48px;
-        max-height: 48px;
-        vertical-align: middle;
+        font-size: 2em;
     }
     img.left {
     	display: none;
