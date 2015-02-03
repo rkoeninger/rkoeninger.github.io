@@ -8,7 +8,10 @@
 
 In school, the first algorithms they teach you are are searches and sorts. While there are several sorting algorithms - insertion sort, selection sort, merge sort, quick sort, there are only two common searching algorithms: linear and binary.
 
-*Linear Search* - Go down the list, checking each item until the target item is found. Example:
+<dl>
+  <dt>Linear Search</dt>
+  <dd>Go down the list, checking each item until the target item is found.</dd>
+</dl>
 
 ```ruby
 def linear_search(list, val)
@@ -29,7 +32,10 @@ The linear search runs in `O(n)` time, meaning the average time it takes to run 
 |     1,000,000 |                500,000 |
 | 1,000,000,000 |            500,000,000 |
 
-*Binary Search* - Considering the whole list, compare the item in the middle of the list. If the middle item is greater than the target item, then repeat this process considering only the first half of the list. If the middle item is lesser than the target item, then repeat this process considering only the second half of the list. Example:
+<dl>
+  <dt>Binary Search</dt>
+  <dd>Considering the whole list, compare the item in the middle of the list. If the middle item is greater than the target item, then repeat this process considering only the first half of the list. If the middle item is lesser than the target item, then repeat this process considering only the second half of the list.</dd>
+</dl>
 
 ```ruby
 def binary_search(list, val, low = 0, high = (list.length - 1))
