@@ -1,3 +1,8 @@
+/* On page load, get the value of the "articleId" argument in the query string
+ * and pull the contents of the markdown file by that name in "/articles/"
+ * abd use it to populate the page content.
+ */
+
 /*jslint browser: true, regexp: true*/
 /*global marked, hljs*/
 
@@ -60,15 +65,6 @@ function insertDisqus(markdown) {
   return markdown;
 }
 
-/* On page load, get the value of the "articleId" argument in the query string
- * (defaults to "default" if not present).
- * 
- * Pull the contents of the markdown file by that name under "/articles/".
- * 
- * Bake the markdown into HTML and replace the disqus marker with the disqus thread.
- * 
- * Substitute article HTML into the body of the page.
- */
 $(function () {
   var articleDiv, request;
 
