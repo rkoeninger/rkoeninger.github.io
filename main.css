@@ -1,6 +1,8 @@
 @font-face {
     font-family: 'Franklin Gothic Heavy';
-    src: url('/fonts/FranklinGothicHeavy.ttf') format('truetype');
+    src: url('/fonts/FranklinGothicHeavy.eot?#iefix')                  format('embedded-opentype'),
+         url('/fonts/FranklinGothicHeavy.svg#svgFranklinGothic-Heavy') format('svg'),
+         url('/fonts/FranklinGothicHeavy.ttf')                         format('truetype');
 }
 .title-logo {
     margin: 0 auto;
@@ -65,11 +67,11 @@ code {
         font-size: 14px;
     }
     img.left {
-    	float: left;
-    	position: fixed;
-    	max-width: 25%;
-    	max-height: 100%;
-    	margin: 0 auto;
+        float: left;
+        position: fixed;
+        max-width: 25%;
+        max-height: 100%;
+        margin: 0 auto;
     }
 }
 
@@ -86,6 +88,6 @@ code {
         font-size: 2em;
     }
     img.left {
-    	display: none;
+        display: none;
     }
 }
