@@ -1,9 +1,14 @@
+@font-face {
+    font-family: 'Franklin Gothic Heavy';
+    src: url('/fonts/FranklinGothicHeavy.ttf') format('truetype');
+}
 .title-logo {
-	margin: 0 auto;
+    margin: 0 auto;
     text-align: center;
     font-size: 5em;
     font-family: 'Franklin Gothic Heavy', sans-serif;
     font-weight: bold;
+    text-shadow: 2px 2px 4px #000077;
     line-height: 75%;
     color: #0000ff;
     transform: perspective(7px) rotateX(1deg);
