@@ -1,9 +1,9 @@
 <div style=";display: none; "># Fear of a Blue Screen</div>
 <div class="title-logo">
-    FEAR<br />
-    OF A<br />
-    BLUE<br />
-    SCREEN
+  Fear<br />
+  of a<br />
+  Blue<br />
+  Screen
 </div>
 <br>
   * [Development of this site](/index.html?articleId=thisSite)

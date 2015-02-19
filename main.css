@@ -7,6 +7,7 @@
 .title-logo {
     margin: 0 auto;
     text-align: center;
+    text-transform: uppercase;
     font-size: 5em;
     font-family: 'Franklin Gothic Heavy', sans-serif;
     font-weight: bold;
@@ -16,6 +17,10 @@
     transform: perspective(7px) rotateX(1deg);
     transform-origin: 50% 54%;
     margin-bottom: 0.6em;
+}
+img {
+    margin-left: auto;
+    margin-right: auto;
 }
 img.left {
     pointer-events: none;
@@ -76,7 +81,7 @@ code {
 }
 
 /* phone/tablet */
-@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+@media only screen and (max-width : 1223px) {
     nav {
         margin: 0 auto;
         text-align: center;
@@ -89,5 +94,18 @@ code {
     }
     img.left {
         display: none;
+    }
+    ul {
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 0;
+        list-style-type: none;
+    }
+    li {
+        background-color: #ccccff;
+        margin-top: 2px;
+        margin-bottom: 2px;
+        font-size: 200%;
     }
 }
