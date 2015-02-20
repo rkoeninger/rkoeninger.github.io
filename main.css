@@ -31,8 +31,11 @@ h1, h2 {
 article {
     font-family: 'Libre Baskerville', sans-serif;
 }
+table {
+    margin: 4px auto;
+}
 table, th, td {
-    border: 1px solid black;
+    border: 2px solid black;
     border-collapse: collapse;
 }
 td, th {
@@ -54,7 +57,7 @@ code {
 }
 
 /* desktop/laptop */
-@media only screen and (min-width: 1224px) {
+@media only screen and (min-width: 1000px) {
     nav {
         float: left;
         position: fixed;
@@ -81,7 +84,7 @@ code {
 }
 
 /* phone/tablet */
-@media only screen and (max-width : 1223px) {
+@media only screen and (max-width : 999px) {
     nav {
         margin: 0 auto;
         text-align: center;
@@ -89,8 +92,8 @@ code {
     nav a {
         font-size: 1.5em;
     }
-    .hljs {
-        font-size: 2em;
+    code {
+        font-size: 1rem;
     }
     img.left {
         display: none;
@@ -107,5 +110,8 @@ code {
         margin-top: 2px;
         margin-bottom: 2px;
         font-size: 200%;
+    }
+    table {
+        font-size: 1rem;
     }
 }
