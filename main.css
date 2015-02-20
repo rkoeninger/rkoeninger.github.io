@@ -39,7 +39,7 @@ table, th, td {
     border-collapse: collapse;
 }
 td, th {
-	padding: 0.2em;
+    padding: 0.2em;
 }
 dl {
     background-color: #e7e7e7;
@@ -85,15 +85,12 @@ code {
 
 /* phone/tablet */
 @media only screen and (max-width : 999px) {
+    body {
+        font-size: 20px;
+    }
     nav {
         margin: 0 auto;
         text-align: center;
-    }
-    nav a {
-        font-size: 1.5em;
-    }
-    code {
-        font-size: 1rem;
     }
     img.left {
         display: none;
@@ -112,6 +109,6 @@ code {
         font-size: 200%;
     }
     table {
-        font-size: 1rem;
+        font-size: 1.5em;
     }
 }
