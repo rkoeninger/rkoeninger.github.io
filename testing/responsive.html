@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head><!--link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="enquire.js">
+    </script>
+    <script>
+      function groupElements(elements) {
+        var batches = [];
+        var currentBatch = [];
+        var e;
+        for (var i = 0; i < elements.length; ++i) {
+          e = elements[i];
+          if (e.nodeName === 'H3' && currentBatch.length > 0) {
+            batches.push(currentBatch);
+            currentBatch = [];
+          } else if (startsWith(e.nodeName, 'H')) {
+            // skip
+          } else {
+            e.parentNode.removeChild(e);
+            currentBatch.push(e);
+          }
+        }
+        if (currentBatch.length > 0) {
+          batches.push(currentBatch);
+        }
+        return batches;
+      }
+      function insertAfter(newNode, referenceNode) {
+        referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
+      }
+      function startsWith(str, prefix){
+        return str.indexOf(prefix) === 0;
+      }
+      function onecolmode() {
+        var articleElements = $('article *');
+        var groups = groupElements(articleElements);
+        var sections = $('article h3');
+        console.log(groups.length === sections.length);
+        for (var i = 0; i < sections.length; ++i) {
+          var groupDiv = document.createElement('div');
+          groupDiv.className = 'groupcol';
+          insertAfter(groupDiv, sections[i])
+          var centerDiv = document.createElement('div');
+          centerDiv.className = 'centercol';
+          groupDiv.appendChild(centerDiv);
+          for (var j = 0; j < groups[i].length; ++j) {
+            var e = groups[i][j];
+            centerDiv.appendChild(e);
+          }
+        }
+      }
+      function twocolmode() {
+        var articleElements = $('article *');
+        var groups = groupElements(articleElements);
+        var sections = $('article h3');
+        console.log(groups.length === sections.length);
+        for (var i = 0; i < sections.length; ++i) {
+          var groupDiv = document.createElement('div');
+          groupDiv.className = 'groupcol';
+          insertAfter(groupDiv, sections[i])
+          var leftDiv = document.createElement('div');
+          leftDiv.className = 'leftcol';
+          var rightDiv = document.createElement('div');
+          rightDiv.className = 'rightcol';
+          groupDiv.appendChild(leftDiv);
+          groupDiv.appendChild(rightDiv);
+          for (var j = 0; j < groups[i].length; ++j) {
+            var e = groups[i][j];
+            if (e.nodeName === 'P') {
+              leftDiv.appendChild(e);
+            } else {
+              rightDiv.appendChild(e);
+            }
+          }
+        }
+      }
+      function threecolmode() {
+        var articleElements = $('article *');
+        var groups = groupElements(articleElements);
+        var sections = $('article h3');
+        console.log(groups.length === sections.length);
+        for (var i = 0; i < sections.length; ++i) {
+          var groupDiv = document.createElement('div');
+          groupDiv.className = 'groupcol';
+          insertAfter(groupDiv, sections[i])
+          var leftDiv = document.createElement('div');
+          leftDiv.className = 'leftcol';
+          var centerDiv = document.createElement('div');
+          centerDiv.className = 'centercol';
+          var rightDiv = document.createElement('div');
+          rightDiv.className = 'rightcol';
+          groupDiv.appendChild(leftDiv);
+          groupDiv.appendChild(centerDiv);
+          groupDiv.appendChild(rightDiv);
+          for (var j = 0; j < groups[i].length; ++j) {
+            var e = groups[i][j];
+            if (e.nodeName === 'P') {
+              centerDiv.appendChild(e);
+            } else if (e.nodeName === 'PRE') {
+              rightDiv.appendChild(e);
+            } else {
+              leftDiv.appendChild(e);
+            }
+          }
+        }
+      }
+      function ungroup() {
+        var divs = $('div.groupcol');
+        for (var i = 0; i < divs.length; ++i) {
+          var div = divs[i];
+          var childGroup = [];
+          for (var k = 0; k < div.children.length; ++k) {
+            var innerDiv = div.children[k];
+            for (var m = 0; m < innerDiv.children.length; ++m) {
+              var child = innerDiv.children[m];
+              childGroup.push(child);
+            }
+            while (innerDiv.lastChild) {
+              innerDiv.removeChild(innerDiv.lastChild);
+            }
+          }
+          childGroup.sort(function (x, y) {
+            return (y.getAttribute('data-order') || 0)
+                -  (x.getAttribute('data-order') || 0);
+          });
+          for (var n = 0; n < childGroup.length; ++n) {
+            insertAfter(childGroup[n], div);
+          }
+          div.parentNode.removeChild(div);
+        }
+      }
+      function numberElements() {
+        var elems = $('article *');
+        var x = 0;
+        for (var i = 0; i < elems.length; ++i) {
+          var e = elems[i];
+          if (! startsWith(e.nodeName, 'H')) {
+            e.setAttribute('data-order', x);
+            x = x + 1;
+          } else {
+            x = 0;
+          }
+        }
+      }
+      $(function () {
+        numberElements();
+        enquire.register("(min-width: 0) and (max-width: 1000px)", {
+          match: function() {
+            ungroup();
+            onecolmode();
+          }
+        }, true);
+        enquire.register("(min-width: 1001px) and (max-width: 1450px)", {
+          match: function() {
+            ungroup();
+            twocolmode();
+          }
+        });
+        enquire.register("(min-width: 1451px)", {
+          match: function() {
+            ungroup();
+            threecolmode();
+          }
+        });
+      });
+    </script>
+    <style>
+      article {
+        width: 100%;
+        position: relative;
+        font-size: 20px;
+        font-family: sans-serif;
+      }
+      p, pre, img {
+        margin: 0.5em auto;
+      }
+      pre {
+        background-color: #ddddff;
+        margin: 4px;
+        font-size: 16px;
+        font-family: monospace;
+      }
+      td {
+        border: 1px red solid;
+      }
+      .groupcol {
+        display: table;
+      }
+      .centercol {
+        display: table-cell;
+        vertical-align: top;
+      }
+      .leftcol {
+        display: table-cell;
+        vertical-align: top;
+      }
+      .rightcol {
+        display: table-cell;
+        vertical-align: top;
+      }
+      div {
+        padding: 8px;
+      }
+      @media (max-width: 1000px) {
+        .centercol {
+          width: 100%;
+        }
+      }
+      @media (min-width: 1001px) and (max-width: 1450px) {
+        .leftcol, .rightcol {
+          width: 50%;
+        }
+      }
+      @media (min-width: 1451px) {
+        .centercol {
+          width: 40%;
+        }
+        .leftcol, .rightcol {
+          width: 30%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <article>
+      <h1>title</h1>
+      <h2>sub-title</h2>
+      <hr>
+      <h3>section 1</h3>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum aliquam ut nunc at laoreet. Nullam dapibus sem et dui rutrum congue quis sit amet odio. Quisque bibendum posuere lectus, vitae volutpat magna efficitur ac. Curabitur consectetur metus non mollis semper. Integer congue malesuada mauris id egestas. Maecenas non ante vestibulum, eleifend eros non, dignissim nunc. Duis a quam ac neque fermentum fermentum. Etiam volutpat est sit amet enim ultricies pretium. Donec diam augue, mollis ut tincidunt ut, porttitor ut urna. Suspendisse in cursus tortor. Donec velit magna, mattis ac mauris quis, cursus cursus quam. Vivamus cursus viverra purus, eu tristique ipsum faucibus a.
+      </p>
+      <pre>
+        public static void main(String[] args) {
+          System.out.println("Hello, World!");
+        }
+      </pre>
+      <p>
+        Nunc non neque quis mi porttitor venenatis et ac ex. Sed viverra vestibulum fermentum. Sed varius vitae justo vitae egestas. Integer aliquam sed nulla vitae laoreet. Cras nec ultricies lorem, quis tincidunt augue. Praesent imperdiet nisl nec dapibus rutrum. Phasellus ante diam, aliquet vitae rutrum at, malesuada eget sem. Pellentesque at mi a lorem hendrerit ultricies vel quis nisi. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
+      </p>
+      <p>
+        Sed nec iaculis leo. Vestibulum placerat magna et tempor dictum. Nulla pellentesque nisi nulla, non rutrum est posuere a. Ut dignissim, libero ut aliquet vestibulum, tellus neque iaculis justo, quis ultrices est velit accumsan felis. Mauris id fringilla ligula, sed imperdiet ipsum. Aliquam ornare, mauris non pellentesque pulvinar, nisl est cursus felis, sed condimentum neque tortor in metus. Mauris semper sem odio, in pretium purus gravida sit amet.
+      </p>
+      <img src="../Downloads/multi_column_layout_trimmed.png" />
+      <hr>
+      <h3>section 2</h3>
+      <p>
+        Sed nec iaculis leo. Vestibulum placerat magna et tempor dictum. Nulla pellentesque nisi nulla, non rutrum est posuere a. Ut dignissim, libero ut aliquet vestibulum, tellus neque iaculis justo, quis ultrices est velit accumsan felis. Mauris id fringilla ligula, sed imperdiet ipsum. Aliquam ornare, mauris non pellentesque pulvinar, nisl est cursus felis, sed condimentum neque tortor in metus. Mauris semper sem odio, in pretium purus gravida sit amet.
+      </p>
+      <pre>
+        public static void main(String[] args) {
+          System.out.println("Hello, World!");
+        }
+      </pre>
+      <hr>
+      <h3>section 3</h3>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum aliquam ut nunc at laoreet. Nullam dapibus sem et dui rutrum congue quis sit amet odio. Quisque bibendum posuere lectus, vitae volutpat magna efficitur ac. Curabitur consectetur metus non mollis semper. Integer congue malesuada mauris id egestas. Maecenas non ante vestibulum, eleifend eros non, dignissim nunc. Duis a quam ac neque fermentum fermentum. Etiam volutpat est sit amet enim ultricies pretium. Donec diam augue, mollis ut tincidunt ut, porttitor ut urna. Suspendisse in cursus tortor. Donec velit magna, mattis ac mauris quis, cursus cursus quam. Vivamus cursus viverra purus, eu tristique ipsum faucibus a.
+      </p>
+      <pre>
+        public static void main(String[] args) {
+          System.out.println("Hello, World!");
+        }
+      </pre>
+      <table>
+        <tr>
+          <td>23402304</td>
+          <td>werfwerfwerf</td>
+          <td>234234324</td>
+        </tr>
+        <tr>
+          <td>23402304</td>
+          <td>werfwerfwerf</td>
+          <td>234234324</td>
+        </tr>
+        <tr>
+          <td>23402304</td>
+          <td>werfwerfwerf</td>
+          <td>234234324</td>
+        </tr>
+        <tr>
+          <td>23402304</td>
+          <td>werfwerfwerf</td>
+          <td>234234324</td>
+        </tr>
+      </table>
+      <p>
+        Nunc non neque quis mi porttitor venenatis et ac ex. Sed viverra vestibulum fermentum. Sed varius vitae justo vitae egestas. Integer aliquam sed nulla vitae laoreet. Cras nec ultricies lorem, quis tincidunt augue. Praesent imperdiet nisl nec dapibus rutrum. Phasellus ante diam, aliquet vitae rutrum at, malesuada eget sem. Pellentesque at mi a lorem hendrerit ultricies vel quis nisi. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
+      </p>
+      <hr>
+      <h3>section 4</h3>
+      <img src="../Downloads/multi_column_layout_trimmed.png" />
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum aliquam ut nunc at laoreet. Nullam dapibus sem et dui rutrum congue quis sit amet odio. Quisque bibendum posuere lectus, vitae volutpat magna efficitur ac. Curabitur consectetur metus non mollis semper. Integer congue malesuada mauris id egestas. Maecenas non ante vestibulum, eleifend eros non, dignissim nunc. Duis a quam ac neque fermentum fermentum. Etiam volutpat est sit amet enim ultricies pretium. Donec diam augue, mollis ut tincidunt ut, porttitor ut urna. Suspendisse in cursus tortor. Donec velit magna, mattis ac mauris quis, cursus cursus quam. Vivamus cursus viverra purus, eu tristique ipsum faucibus a.
+      </p>
+      <p>
+        Sed nec iaculis leo. Vestibulum placerat magna et tempor dictum. Nulla pellentesque nisi nulla, non rutrum est posuere a. Ut dignissim, libero ut aliquet vestibulum, tellus neque iaculis justo, quis ultrices est velit accumsan felis. Mauris id fringilla ligula, sed imperdiet ipsum. Aliquam ornare, mauris non pellentesque pulvinar, nisl est cursus felis, sed condimentum neque tortor in metus. Mauris semper sem odio, in pretium purus gravida sit amet.
+      </p>
+    </section>
+  </body>
+</html>
