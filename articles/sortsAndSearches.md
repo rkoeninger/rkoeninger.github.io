@@ -40,7 +40,7 @@ The linear search runs in `O(n)` time, meaning the average time it takes to run 
 ```ruby
 def binary_search(list, val, low = 0, high = (list.length - 1))
   return nil if high < low
-  mid = (low + high) / 2
+  mid = low + (low - high) / 2
   case
     when list[mid] > val then binary_search(list, val, low, mid - 1)
     when list[mid] < val then binary_search(list, val, mid + 1, high)
@@ -48,6 +48,8 @@ def binary_search(list, val, low = 0, high = (list.length - 1))
   end
 end
 ```
+
+<small>[Line 3 corrected per finding by Joshua Bloch](http://googleresearch.blogspot.no/2006/06/extra-extra-read-all-about-it-nearly.html)</small>
 
 The binary search runs in `O(log n)` time, meaning it's average run time is proportional to the _logarithm_ of the length of the list.
 
