@@ -1,8 +1,8 @@
 <div style=";display: none; "># Fear of a Blue Screen</div>
 <div class="title-logo">
-  Fear<br />
-  of a<br />
-  Blue<br />
+  Fear<br>
+  of a<br>
+  Blue<br>
   Screen
 </div>
 <br>
@@ -19,3 +19,4 @@
   * [Software List](/index.html?articleId=software)
 
 [GitHub Repositories](http://github.com/rkoeninger?tab=repositories)
+[Linkedin](www.linkedin.com/in/robertkoeninger)
