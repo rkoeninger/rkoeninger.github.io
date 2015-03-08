@@ -1,0 +1,52 @@
+<html>
+	<head>
+		<style>
+			*, *:after, *:before {
+				position: relative;
+				box-sizing: border-box;
+			}
+			.container {
+				display: table; 
+				width: 100%;
+			}
+			.container .left, .container .center, .container .right {
+			    display: table-cell;
+			    width: 33.33%;
+			    height: 200px;
+			    text-align: center;
+			    vertical-align: middle;
+			}
+			.container .right {
+			    background: #1abc9c;
+			}
+			.container .center {
+			    background: #2ecc71;
+			}
+			.container .left {
+			    background: #3498db;
+			}
+			@media only screen and (max-width: 1000px) {
+			    .container .left { display: table-row; }
+			    .container .center { display: table-row; }
+			    .container .right { display: table-row; }
+			}
+			@media only screen and (min-width: 1001px) and (max-width: 1450px) {
+				.container .left { display: table-cell; }
+				.container .center { display: table-cell; }
+				.container .right { display: table-cell; }
+			}
+			@media only screen and (min-width: 1451px) {
+				.container .left { display: table-cell; }
+				.container .center { display: table-cell; }
+				.container .right { display: table-cell; }
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+		    <div class="left">aside</div>
+		    <div class="center">article</div>
+		    <div class="right">section</div>
+		</div>
+	</body>
+</html>

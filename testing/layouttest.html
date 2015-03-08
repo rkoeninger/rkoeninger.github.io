@@ -1,0 +1,322 @@
+<html>
+	<head>
+        <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/styles/solarized_dark.min.css">
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.3/highlight.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="http://rkoeninger.github.io/testing/enquire.js">
+    </script>
+    <script>
+      function groupElements(elements) {
+        var batches = [];
+        var currentBatch = [];
+        var e;
+        for (var i = 0; i < elements.length; ++i) {
+          e = elements[i];
+          if (e.nodeName === 'H3' && currentBatch.length > 0) {
+            batches.push(currentBatch);
+            currentBatch = [];
+          } else if (startsWith(e.nodeName, 'H')) {
+            // skip
+          } else {
+            e.parentNode.removeChild(e);
+            currentBatch.push(e);
+          }
+        }
+        if (currentBatch.length > 0) {
+          batches.push(currentBatch);
+        }
+        return batches;
+      }
+      function insertAfter(newNode, referenceNode) {
+        referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
+      }
+      function startsWith(str, prefix){
+        return str.indexOf(prefix) === 0;
+      }
+      function onecolmode() {
+        var articleElements = $('article *');
+        var groups = groupElements(articleElements);
+        var sections = $('article h3');
+        console.log(groups.length === sections.length);
+        for (var i = 0; i < sections.length; ++i) {
+          var groupDiv = document.createElement('div');
+          groupDiv.className = 'groupcol';
+          insertAfter(groupDiv, sections[i])
+          var centerDiv = document.createElement('div');
+          centerDiv.className = 'centercol';
+          groupDiv.appendChild(centerDiv);
+          for (var j = 0; j < groups[i].length; ++j) {
+            var e = groups[i][j];
+            centerDiv.appendChild(e);
+          }
+        }
+      }
+      function twocolmode() {
+        var articleElements = $('article *');
+        var groups = groupElements(articleElements);
+        var sections = $('article h3');
+        console.log(groups.length === sections.length);
+        for (var i = 0; i < sections.length; ++i) {
+          var groupDiv = document.createElement('div');
+          groupDiv.className = 'groupcol';
+          insertAfter(groupDiv, sections[i])
+          var leftDiv = document.createElement('div');
+          leftDiv.className = 'leftcol';
+          var rightDiv = document.createElement('div');
+          rightDiv.className = 'rightcol';
+          groupDiv.appendChild(leftDiv);
+          groupDiv.appendChild(rightDiv);
+          for (var j = 0; j < groups[i].length; ++j) {
+            var e = groups[i][j];
+            if (e.nodeName === 'P') {
+              leftDiv.appendChild(e);
+            } else {
+              rightDiv.appendChild(e);
+            }
+          }
+        }
+      }
+      function threecolmode() {
+        var articleElements = $('article *');
+        var groups = groupElements(articleElements);
+        var sections = $('article h3');
+        console.log(groups.length === sections.length);
+        for (var i = 0; i < sections.length; ++i) {
+          var groupDiv = document.createElement('div');
+          groupDiv.className = 'groupcol';
+          insertAfter(groupDiv, sections[i])
+          var leftDiv = document.createElement('div');
+          leftDiv.className = 'leftcol';
+          var centerDiv = document.createElement('div');
+          centerDiv.className = 'centercol';
+          var rightDiv = document.createElement('div');
+          rightDiv.className = 'rightcol';
+          groupDiv.appendChild(leftDiv);
+          groupDiv.appendChild(centerDiv);
+          groupDiv.appendChild(rightDiv);
+          for (var j = 0; j < groups[i].length; ++j) {
+            var e = groups[i][j];
+            if (e.nodeName === 'P') {
+              centerDiv.appendChild(e);
+            } else if (e.nodeName === 'PRE') {
+              rightDiv.appendChild(e);
+            } else {
+              leftDiv.appendChild(e);
+            }
+          }
+        }
+      }
+      function ungroup() {
+        var divs = $('div.groupcol');
+        for (var i = 0; i < divs.length; ++i) {
+          var div = divs[i];
+          var childGroup = [];
+          for (var k = 0; k < div.children.length; ++k) {
+            var innerDiv = div.children[k];
+            for (var m = 0; m < innerDiv.children.length; ++m) {
+              var child = innerDiv.children[m];
+              childGroup.push(child);
+            }
+            while (innerDiv.lastChild) {
+              innerDiv.removeChild(innerDiv.lastChild);
+            }
+          }
+          childGroup.sort(function (x, y) {
+            return (y.getAttribute('data-order') || 0)
+                -  (x.getAttribute('data-order') || 0);
+          });
+          for (var n = 0; n < childGroup.length; ++n) {
+            insertAfter(childGroup[n], div);
+          }
+          div.parentNode.removeChild(div);
+        }
+      }
+      function numberElements() {
+        var elems = $('article *');
+        var x = 0;
+        for (var i = 0; i < elems.length; ++i) {
+          var e = elems[i];
+          if (! startsWith(e.nodeName, 'H')) {
+            e.setAttribute('data-order', x);
+            x = x + 1;
+          } else {
+            x = 0;
+          }
+        }
+      }
+      $(function () {
+        numberElements();
+        enquire.register("(min-width: 0) and (max-width: 1000px)", {
+          match: function() {
+            ungroup();
+            onecolmode();
+          }
+        }, true);
+        enquire.register("(min-width: 1001px) and (max-width: 1450px)", {
+          match: function() {
+            ungroup();
+            twocolmode();
+          }
+        });
+        enquire.register("(min-width: 1451px)", {
+          match: function() {
+            ungroup();
+            twocolmode();
+          }
+        });
+      });
+      $(function(){
+    	hljs.initHighlighting();
+      });
+    </script>
+    <style>
+      article {
+        width: 100%;
+        position: relative;
+        font-size: 20px;
+        font-family: sans-serif;
+      }
+      h1, h2 {
+      	text-align: center;
+      }
+      p, pre, img {
+        margin: 0.5em auto;
+      }
+      pre {
+        background-color: #ddddff;
+        margin: 4px;
+        font-size: 16px;
+        font-family: monospace;
+      }
+      td {
+        border: 1px red solid;
+      }
+      code {
+      	overflow: scroll;
+      }
+      .groupcol {
+        display: table;
+      }
+      .centercol {
+        display: table-cell;
+        vertical-align: top;
+      }
+      .leftcol {
+        display: table-cell;
+        vertical-align: top;
+      }
+      .rightcol {
+        display: table-cell;
+        vertical-align: top;
+      }
+      div {
+        padding: 8px;
+      }
+      @media (max-width: 1000px) {
+        .centercol {
+          width: 100%;
+        }
+      }
+      @media (min-width: 1001px) and (max-width: 1450px) {
+        .leftcol, .rightcol {
+          width: 50%;
+        }
+      }
+      @media (min-width: 1451px) {
+        .centercol {
+          width: 40%;
+        }
+        .leftcol, .rightcol {
+          width: 30%;
+        }
+      }
+    </style>
+	</head>
+	<body>
+		<article>
+			<h1>Article Title</h1>
+			<h2>Slightly More Descriptive Sub-Title</h2>
+			<hr>
+			<h3>Introductory Section</h3>
+			<p>One day, I decided I had seen enough NullReferenceExceptions for one lifetime and sought to abolish them from all of my future code.</p>
+			<p>C#, in addition to classes, has structs. Structs differ from classes in a few ways, but the difference that was important to me was that references to structs cannot be null.</p>
+			<p>So code like this would be illegal:</p>
+			<pre><code class="hljs lang-csharp cs">DateTime dt = null;</code></pre>
+			<p>So I thought: wouldn't it be great if String were a struct instead of a class? Then we wouldn't have to worry about null references to Strings. A string can be either null or empty or non-empty and frequently, null and empty would have the same meaning, thus the need for: String.IsNullOrEmpty.</p>
+			<p>And you wouldn't have to worry about keeping track of whether a given String has been checked for non-null-ness or not. You could be sure that the reference has a value.</p>
+			<p>We could make something like:</p>
+			<pre><code class="hljs csharp lang-csharp cs">public struct SureString
+{
+    public SureString(char[] array, int start, int stop)
+    {
+        // validate arguments
+        // save arguments
+    }
+
+    // all the string functions...
+
+    public override String ToString()
+    {
+        return new String(Array, Start, Stop);
+    }
+}</code></pre>
+			<p>But I don't want to have to re-make every class just so it can be non-null in some cases. So let's do something more generic:</p>
+			<pre><code class="hljs csharp lang-csharp cs">public struct Sure A
+{
+    public Sure(A value)
+    {
+        if (value == null)
+            throw new ArgumentNullException();
+
+        Value = value;
+    }
+
+    public A Value { get; private set; }
+
+    public static implicit operator A(Sure A sure)
+}</code></pre>
+			<p>So, supposedly, you can put Sure Whatever, and be sure you won't have a null reference to a Whatever.</p>
+			<p>And when you see that the method or class you're working in takes a Sure String, you know you don't have to worry about whether that string will be null or not. Whoever provides that data can have the responsibility of making sure it's not null. Instead of everyone, everywhere in the program potentially having to worry about it.</p>
+			<pre><code class="hljs csharp lang-csharp cs">public void NoWorries(Sure String sure)
+{
+    // Do whatever with sure.Value, it won't be null
+}</code></pre>
+			<hr>
+			<h3>Why?!</h3>
+			<p>So this all seemed wonderful and I sunk time adding a Sure A class to my zed-sharp project and all, only to eventually notice that this code compiles:</p>
+			<pre><code class="hljs csharp lang-csharp cs">var ss = new Sure String();</code></pre>
+			<p>And not only does it work, but it returns a Sure String with a null value!</p>
+			<p>NOOOoooooOOO00000ooooO!!!1111`!!q!!!@!</p>
+			<p>As it turns out, in C#, all struct types have a built-in zero-parameter constructor that returns an instance of that struct type with all its fields assigned a default value for their type.</p>
+			<p>For String, it's null.</p>
+			<p>The first thought that came to mind was: Just override the zero-parameter constructor to throw an exception, and then we can again be sure we'll never have a Sure with a null Value.</p>
+			<p>So I tried this:</p>
+			<pre><code class="hljs csharp lang-csharp cs">public struct Sure A
+{
+    public Sure()
+    {
+        throw new ApplicationException("Don't do that!");
+    }
+
+    // everything else stays the same
+}</code></pre>
+			<p>But of course: Structs cannot contain parameterless constructors.</p>
+			<p>So there's this facility built into the language that ruins my life and there's no way to override it.</p>
+			<p>Even if one could use the parameterless constructor above, it still wouldn't completely fix the problem, considering:</p>
+			<pre><code class="hljs csharp lang-csharp cs">default(Sure String).Value == null</code></pre>
+			<p>For class types, default() returns null, and for struct types, default() returns an instance with all members initialized to their default(), which is null/0/false/all-members-default.</p>
+			<hr>
+			<h3>The Nightmare Continues</h3>
+			<p>For a while, I thought this was a really solid idea. It would require people to go through their programs and type Sure and .Value all over the place, but if they were being plagued by NullReferenceExceptions, as in every C# applcation I've ever seen, it could be worth it. But alas...</p>
+			<p>The other thing that's really annoying about all this is the C# designers took the time to implement a type system for the language. And then they defeat the purpose in large part but giving almost every type an additional null value with vague semantics (does it mean the value is not applicable, or we just don't know it or what?) that also behaves very differently from every other value in that it blows up your program when you least suspect it.</p>
+			<p>Instead of just having references to values be of type A, it's like they are all implicitly of type Ref A and all methods are Func A, Ref B instead of Func A, B, but you don't have A's, you have Ref A's, like this:</p>
+			<pre><code class="hljs csharp lang-csharp cs">type Ref a = Pointer a | Null
+
+invoke :: (a -> Ref b) -> Ref a -> Ref b
+invoke f (Pointer x) = f x
+invoke _ Null = error "NullPointerException"</code></pre>
+			<p>From the perspective of another Why do that? Why make using the language so complicated? This is normal to most people, I think, but from a more distanced perspective, it's just bizarre.</p>
+			<p>I guess we can just make like Scala and idiomatically avoid null by way of the Maybe A type. And if someone forgets to initialize a reference or sets it to null, throw them in the pit of despair.</p>
+		</article>
+	</body>
+</html>
