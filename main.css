@@ -111,4 +111,7 @@ code {
     table {
         font-size: 1.5em;
     }
+    .disqus_thread {
+        display: none;
+    }
 }

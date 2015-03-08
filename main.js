@@ -56,6 +56,7 @@ function insertDisqus(markdown) {
   if (markdown.indexOf(disqusMarker) > -1) {
     divTag = document.createElement("div");
     divTag.id = "disqus_thread";
+    divTag.className += "disqus_thread";
     scriptTag = document.createElement("script");
     scriptTag.src = "//rkoeningergithubio.disqus.com/embed.js";
     disqusHTML = divTag.outerHTML + scriptTag.outerHTML;
