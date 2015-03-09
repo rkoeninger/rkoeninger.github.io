@@ -1,6 +1,6 @@
-# `Dr. Surelove<A>`
+# C#: Don't Call Me Shirley
 
-## ...or how I still have to live with null references in C# and am more worried than ever
+## Can we mitigate the billion-dollar mistake to a million-dollar mistake?
 
 ---
 

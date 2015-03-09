@@ -68,3 +68,5 @@ It would seem that the use of one entirely follows from the use of the other.
 What makes searching a whole lot easier? Having a sorted collection.
 Why sort? So you can search.
 Why else would you sort?
+
+<disqus>
