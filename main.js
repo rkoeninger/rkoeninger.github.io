@@ -41,13 +41,18 @@ function getArticleUrl() {
     articleId = "default";
   }
 
-  articleUrl = "./articles/" + articleId;
+  articleUrl = "/articles/" + articleId;
 
   if (!endsWith(articleUrl, ".md")) {
     articleUrl += ".md";
   }
 
   return articleUrl;
+}
+
+function setMarkdownLink() {
+  var markdownLink = $("nav a#markdown-link");
+  markdownLink.attr("href", getArticleUrl());
 }
 
 function insertDisqus(markdown) {
@@ -68,6 +73,8 @@ function insertDisqus(markdown) {
 
 $(function () {
   var articleDiv, request;
+
+  setMarkdownLink();
 
   articleDiv = $("article#article0");
 

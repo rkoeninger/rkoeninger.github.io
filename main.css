@@ -22,8 +22,11 @@ img {
     margin-left: auto;
     margin-right: auto;
 }
-img.left {
-    pointer-events: none;
+.inline-image {
+	height: 1em;
+	margin-left: 0.2em;
+	margin-right: 0.2em;
+	margin-top: -0.2em;
 }
 h1, h2 {
     text-align: center;
@@ -32,10 +35,10 @@ article {
     font-family: 'Libre Baskerville', sans-serif;
 }
 table {
-    margin: 4px auto;
+    margin: 0.6em auto;
 }
 table, th, td {
-    border: 2px solid black;
+    border: 0.2em solid black;
     border-collapse: collapse;
 }
 td, th {
@@ -44,6 +47,7 @@ td, th {
 dl {
     background-color: #e7e7e7;
     padding: 0.3em;
+    margin: 0.6em;
 }
 dl dt {
     font-weight: bold;
@@ -51,9 +55,6 @@ dl dt {
 }
 dl dd {
     font-style: oblique;
-}
-code {
-    background-color: #e7e7e7;
 }
 
 /* desktop/laptop */
@@ -63,7 +64,7 @@ code {
         position: fixed;
     }
     nav a {
-        margin-left: 0.1em;
+        margin-left: 2em;
         margin-right: 0.1em;
     }
     article {
