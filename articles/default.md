@@ -19,4 +19,4 @@
   * [Software List](/index.html?articleId=software)
 
 [GitHub Repositories](http://github.com/rkoeninger?tab=repositories)
-[Linkedin](www.linkedin.com/in/robertkoeninger)
+[Linkedin](http://www.linkedin.com/in/robertkoeninger)
