@@ -19,25 +19,25 @@
     margin-bottom: 0.6em;
 }
 h1, h2, h3, h4, h5, h6 {
-	color: #444477;
+    color: #444477;
     font-family: 'Arvo', serif;
 }
 article {
     font-family: 'PT Sans', sans-serif;
 }
 h1 {
-	text-shadow: 2px 2px 2px #ccccff;
-	margin-bottom: 1em;
+    text-shadow: 2px 2px 2px #ccccff;
+    margin-bottom: 1em;
 }
 h2 {
-	margin-top: 1em;
-	margin-bottom: 2em;
+    margin-top: 1em;
+    margin-bottom: 2em;
 }
 h3 {
-	border-bottom: 0.1em solid #ccccff;
-	padding-bottom: 0.2em;
-	margin-top: 1em;
-	margin-bottom: 1em;
+    border-bottom: 0.1em solid #ccccff;
+    padding-bottom: 0.2em;
+    margin-top: 1em;
+    margin-bottom: 1em;
 }
 img {
     margin-left: auto;
@@ -51,6 +51,9 @@ img {
 }
 h1, h2 {
     text-align: center;
+}
+pre {
+    background-color: #f8f8f8;
 }
 table {
     margin: 0.6em auto;
@@ -75,7 +78,7 @@ dl dd {
     font-style: oblique;
 }
 .disqus_thread {
-	margin-top: 2em;
+    margin-top: 2em;
     margin-bottom: 2em;
 }
 
