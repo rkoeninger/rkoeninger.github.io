@@ -84,7 +84,6 @@ dl dd {
     nav {
         float: left;
         position: fixed;
-        font-size: 18px;
     }
     nav a {
         margin-left: 2em;
@@ -114,6 +113,7 @@ dl dd {
     nav {
         margin: 0 auto;
         text-align: center;
+        font-size: 2em;
     }
     ul {
         text-align: center;
