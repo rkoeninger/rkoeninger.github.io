@@ -18,21 +18,24 @@
     transform-origin: 50% 54%;
     margin-bottom: 0.6em;
 }
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Arvo', serif;
+}
+article {
+    font-family: 'PT Sans', sans-serif;
+}
 img {
     margin-left: auto;
     margin-right: auto;
 }
 .inline-image {
-	height: 1em;
-	margin-left: 0.2em;
-	margin-right: 0.2em;
-	margin-top: -0.2em;
+    height: 1em;
+    margin-left: 0.2em;
+    margin-right: 0.2em;
+    margin-top: -0.2em;
 }
 h1, h2 {
     text-align: center;
-}
-article {
-    font-family: 'Libre Baskerville', sans-serif;
 }
 table {
     margin: 0.6em auto;
@@ -62,6 +65,7 @@ dl dd {
     nav {
         float: left;
         position: fixed;
+        font-size: 18px;
     }
     nav a {
         margin-left: 2em;
@@ -75,26 +79,22 @@ dl dd {
     code {
         font-size: 14px;
     }
-    img.left {
-        float: left;
-        position: fixed;
-        max-width: 25%;
-        max-height: 100%;
-        margin: 0 auto;
-    }
 }
 
 /* phone/tablet */
 @media only screen and (max-width : 999px) {
+    .title-logo {
+        font-size: 12vw;
+    }
+    article {
+        width: 100%;
+    }
     body {
         font-size: 20px;
     }
     nav {
         margin: 0 auto;
         text-align: center;
-    }
-    img.left {
-        display: none;
     }
     ul {
         text-align: center;
