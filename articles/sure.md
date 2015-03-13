@@ -2,8 +2,6 @@
 
 ## Can we mitigate the billion-dollar mistake to a million-dollar mistake?
 
----
-
 ### Where There Is a Will
 
 One day, I decided I had seen enough `NullReferenceException`s for one lifetime and sought to abolish them from all of my future code.
@@ -70,8 +68,6 @@ public void NoWorries(Sure<String> sure)
 }
 ```
 
----
-
 ### Why?!
 
 So this all seemed wonderful and I sunk time adding a `Sure<A>` class to my [zed-sharp](http://github.com/rkoeninger/zed-sharp) project and all, only to eventually notice that this code compiles:
@@ -115,8 +111,6 @@ default(Sure<String>).Value == null
 ```
 
 For class types, `default()` returns null, and for struct types, `default()` returns an instance with all members initialized to their `default()`, which is null/0/false/all-members-default.
-
----
 
 ### The Nightmare Continues
 

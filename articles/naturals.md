@@ -2,27 +2,19 @@
 
 ## Arithmetic Operation I Found In My Couch
 
----
-
 ### Natural Number
 
 So a natural number is just an unsigned int.
 
 There. That was easy.
 
----
-
 ### "Closed"
-
----
 
 ### Integer Division
 
 When `x` is and `int` and `y` is an `int` and `let z = x / y`, `z` wouldn't normally be guaranteed to be an integer. So in integer division, the remainder is dropped off so it will always return an int.
 
 My attempt to re-write this article is failing miserably.
-
----
 
 ### Natural Subtraction
 
@@ -37,8 +29,6 @@ natSub x y = if y >= x then 0 else x - y
 ```
 
 I don't think the first is likely to be useful very often, though. The second seems to be a desirable operation on occasion.
-
----
 
 ### A More-General Pattern?
 

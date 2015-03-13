@@ -2,8 +2,6 @@
 
 ## Stop It
 
----
-
 ### Common Understanding
 
 *But what if we need to change something?*
@@ -19,8 +17,6 @@ The world of the program has been split into a dichotomy: "code" and "configurat
 Code is compilied into an immutable executable ahead of time. It is environment (Dev machine, QA, Staging, Production) agnostic. Don't put anything here thay you might need to change post-deployment.
 
 Configuration is paired with a copy of the compiled code upon deploy and can be modified with a simple text editor. It is environment specific. Anything that you might need to change post-deployment is put here.
-
----
 
 ### Socrates Lives
 
@@ -50,8 +46,6 @@ That sounds more like non-AOT code.
 
 *So this non-AOT code thing can do what I need...*
 
----
-
 ### A Different Take On it
 
 Basically, the lesson is that depending on how far you want to take configuration, you might need to use a full programming language for your config files.
@@ -61,8 +55,6 @@ You might even need to compile the whole application on startup.
 Have fun with that.
 
 Should probably edit this some more.
-
----
 
 ### C# Example
 

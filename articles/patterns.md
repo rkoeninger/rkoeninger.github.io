@@ -2,8 +2,6 @@
 
 ## ...well, who cares about Iterables?
 
----
-
 ### Shine on you crazy Gilad
 
 A while ago, I remember seeing an interview of sorts with Gilad Bracha and Erik Meijer. Bracha has never seemed to be a fan of functional programming. He's made some good points about how evangelists are kidding themselves about the exagerated possibilites they suggest FP offers (as is the nature of evangelists).
@@ -25,8 +23,6 @@ Well, it buys you the ability to generalize functions over *all* Iterables so yo
 
 Also, the language can have specialized syntax for dealing with Iterables, like the `for-each` loop.
 
----
-
 ### You Must Learn to Love the Dreaded M-Word
 
 So let's get back to the original question, which now has a predictable response:
@@ -38,8 +34,6 @@ So let's get back to the original question, which now has a predictable response
 Well, it buys you the ability to generalize functions over *all* Monads so you don't have to implement a function for every monadic type. You can just implement a function that deals with an Monad and be done with it. Look at Haskell's `Control.Monad` module. Future monadic types can also just declare a Monad instance and inherit all of that functionality.
 
 Also, the language can have specialized syntax for dealing with Monads, like `do` notation.
-
----
 
 ### One Dev's Wisdom is Another Dev's Nonsense
 
@@ -78,8 +72,6 @@ I think that OOP and OO Patterns were a big step past what people were doing bef
 I also think that about these FP design patterns.
 
 It's so very temping to either write both off as passing fads, or to become an evangelist yourself and cast scorn on anyone who isn't familiar.
-
----
 
 ### What does it buy you?
 

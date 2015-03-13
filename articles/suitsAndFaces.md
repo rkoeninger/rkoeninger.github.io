@@ -2,8 +2,6 @@
 
 ## How Far Does One Take Type-Directed Programming?
 
----
-
 ### From the Top
 
 Imagine you had to develop a game based on conventional playing cards - say, Solitaire for example. In OO-land, the first step is to identify all of the nouns in your problem statement:
@@ -47,8 +45,6 @@ object Face {
 
 val aceOfSpades = Card(Suit.Spades, Face.Ace)
 ```
-
----
 
 ### One Step Further
 

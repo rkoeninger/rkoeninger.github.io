@@ -27,6 +27,17 @@ article {
 }
 h1 {
 	text-shadow: 2px 2px 2px #ccccff;
+	margin-bottom: 1em;
+}
+h2 {
+	margin-top: 1em;
+	margin-bottom: 2em;
+}
+h3 {
+	border-bottom: 0.1em solid #ccccff;
+	padding-bottom: 0.2em;
+	margin-top: 1em;
+	margin-bottom: 1em;
 }
 img {
     margin-left: auto;
@@ -62,6 +73,10 @@ dl dt {
 }
 dl dd {
     font-style: oblique;
+}
+.disqus_thread {
+	margin-top: 2em;
+    margin-bottom: 2em;
 }
 
 /* desktop/laptop */

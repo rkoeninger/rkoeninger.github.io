@@ -2,8 +2,6 @@
 
 ## ...Searches and Sorts
 
----
-
 ### First Thing's First
 
 In school, the first algorithms they teach you are are searches and sorts. While there are several sorting algorithms - insertion sort, selection sort, merge sort, quick sort, there are only two common searching algorithms: linear and binary.

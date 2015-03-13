@@ -2,8 +2,6 @@
 
 ## Install List for a New (Windows) Machine
 
----
-
 ### Section 1: Uncategorized
 
   * [Chrome](https://www.google.com/chrome/browser/)

@@ -2,8 +2,6 @@
 
 ## How to Meaningfully Identify Code
 
----
-
 ### What Does a Version Number Mean?
 
 Semantic versioning (link needed) is an attempt to make traditional x.y.z version numbers meaningful.
@@ -17,8 +15,6 @@ tfs://yourcompany.visualstudio.com/DefaultCollection/ProjectName?975
 I got this idea while working on a project with code hosted on Visual Studio Online (link needed).
 
 The vid (version identifer) tells you exactly where the code came from and can be used to get the exact source code which can be used to determine the live application's behavior. A version number like `2.3.4` tells you the degree to which that version differs from `1.2.3`.
-
----
 
 ### Who Are Version Numbers For?
 

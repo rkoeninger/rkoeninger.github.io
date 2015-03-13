@@ -2,8 +2,6 @@
 
 ## The Well Runs Deep...
 
----
-
 ### Knowing a Little Bit of Haskell Might Help
 
 ``` haskell
@@ -56,8 +54,6 @@ instance BivariantFunctor Maybe where
 Looks like an invariant functor has to be **both** covariant and contravariant at the same time. The only type that is both broader and smaller than 'a' is 'a' itself, thus it's refered to as invariant.
 
 A bivariant functor would then be **either** covariant or contravariant. But that introduces non-determinism and doesn't fit into the type system.
-
----
 
 ### Now I'm Just Goofing Around
 
