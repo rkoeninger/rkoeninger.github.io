@@ -109,6 +109,7 @@ dl dd {
     }
     article {
         width: 100%;
+        margin: 4px;
     }
     body {
         font-size: 20px;
