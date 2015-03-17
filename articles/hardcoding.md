@@ -4,6 +4,10 @@
 
 ### Programming 101
 
+> Remember, everything I tell you is a lie.
+
+A good professor of mine would tell us this regularly. He wanted us to understand that no principle is absolute and that it's important to understand why something is a principle so that one does not fall into a cargo cult mindset.
+
 Imagine you were teaching a fresh, young mind their first programming lesson. They do not yet have any concept of functions, conditional branches, loops, types or even variables. If you sit them in front of an editor showing a starting point for learning programming in Java:
 
 ```java
@@ -33,5 +37,3 @@ I recall it took a long time for my classmates and I to understand what `static`
 
 
 ### Unlearning All The Lies
-
-<disqus>

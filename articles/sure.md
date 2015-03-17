@@ -1,4 +1,4 @@
-# C#: Don't Call Me Shirley
+# C#: Don't Call Me Surely
 
 ## Can we mitigate the billion-dollar mistake to a million-dollar mistake?
 
@@ -131,5 +131,3 @@ invoke _ Null = error "NullPointerException"
 From the perspective of another Why do that? Why make using the language so complicated? This is normal to most people, I think, but from a more distanced perspective, it's just bizarre.
 
 I guess we can just make like Scala and idiomatically avoid null by way of the `Maybe<A>` type. And if someone forgets to initialize a reference or sets it to null, throw them in the pit of despair.
-
-<disqus>

@@ -17,6 +17,5 @@
   * [Functors and Type Variance](/index.html?articleId=functorsTypeVariance)
   * [Suits and Faces](/index.html?articleId=suitsAndFaces)
   * [Software List](/index.html?articleId=software)
-
-[GitHub Repositories](http://github.com/rkoeninger?tab=repositories)
-[Linkedin](http://www.linkedin.com/in/robertkoeninger)
+  * [GitHub Repositories](http://github.com/rkoeninger?tab=repositories)
+  * [Linkedin](http://www.linkedin.com/in/robertkoeninger)
