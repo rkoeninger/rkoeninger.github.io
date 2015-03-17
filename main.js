@@ -55,37 +55,28 @@ function setMarkdownLink() {
   markdownLink.attr("href", getArticleUrl());
 }
 
-function insertDisqus(markdown) {
-  var divTag, scriptTag, disqusHTML;
-
-  if (markdown.indexOf(disqusMarker) > -1) {
-    divTag = document.createElement("div");
-    divTag.id = "disqus_thread";
-    divTag.className += "disqus_thread";
-    scriptTag = document.createElement("script");
-    scriptTag.src = "//rkoeningergithubio.disqus.com/embed.js";
-    disqusHTML = divTag.outerHTML + scriptTag.outerHTML;
-    return markdown.replace(disqusMarker, disqusHTML);
-  }
-
-  return markdown;
-}
-
 $(function () {
-  var articleDiv, request;
+  var articleUrl, articleDiv, disqusDiv, request;
+
+  articleUrl = getArticleUrl();
 
   setMarkdownLink();
 
   articleDiv = $("article#article0");
+  disqusDiv = $("div#disqus_thread");
 
   request = {
     type: "GET",
     dataType: "text",
-    url: getArticleUrl(),
+    url: articleUrl,
     success: function (articleMarkdown) {
       var titleMatches;
 
-      articleDiv.html(marked(insertDisqus(articleMarkdown)));
+      articleDiv.html(marked(articleMarkdown));
+
+      if (endsWith(articleUrl, "/default.md")) {
+      	disqusDiv.hide();
+      }
 
       // find (#) elements in markdown
       titleMatches = articleMarkdown.match(/\x23\x20(.*)\x0D?\x0A/);

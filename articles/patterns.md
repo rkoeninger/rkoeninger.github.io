@@ -88,5 +88,3 @@ Separation of concerns is one classic design principle many of these patterns an
   * The IO Monad in Haskell strongly separates I/O from data manipulation.
 
 These are about avoiding spurious or hazardous dependencies between parts of a program, sometimes referred to as [complecting](http://www.infoq.com/presentations/Simple-Made-Easy).
-
-<disqus>

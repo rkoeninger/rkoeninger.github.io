@@ -82,6 +82,9 @@ article {
 	max-width: 900px;
 }
 .disqus_thread {
+	max-width: 900px;
+	margin-left: auto;
+	margin-right: auto;
     margin-top: 2em;
     margin-bottom: 2em;
 }

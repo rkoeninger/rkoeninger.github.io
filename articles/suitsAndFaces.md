@@ -83,5 +83,3 @@ case class Card[S : Suit, F : Face]
 ```
 
 Now the suit and the face are part of the type. Wait, does this even make sense in Scala sense it doesn't have dependent types? I'm going to go read up on Idris and try again...
-
-<disqus>

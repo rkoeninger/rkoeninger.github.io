@@ -17,5 +17,3 @@ Represents an IO action to be run at some point later. The whole program becomes
 ### IO by Dependency Injection
 
 Not mutually exclusive with the functional IO.
-
-<disqus>
