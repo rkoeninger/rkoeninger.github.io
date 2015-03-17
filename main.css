@@ -77,6 +77,10 @@ dl dt {
 dl dd {
     font-style: oblique;
 }
+article {
+	width: 100%;
+	max-width: 900px;
+}
 .disqus_thread {
     margin-top: 2em;
     margin-bottom: 2em;
@@ -95,7 +99,6 @@ dl dd {
     article {
         font-size: 18px;
         margin: 0 auto;
-        width: 650px;
     }
     code {
         font-size: 14px;
@@ -108,8 +111,7 @@ dl dd {
         font-size: 12vw;
     }
     article {
-        width: 100%;
-        margin: 4px;
+        margin: 1em;
     }
     body {
         font-size: 20px;
