@@ -1,10 +1,10 @@
 # Hardcoding? What Does It Really Mean?
 
-## Teaching beginners is facilitated by misleading oversimplifications, but mastery is impeded by them
+## Learning is facilitated by oversimplifications, but mastery is impeded by them
 
 ### Programming 101
 
-> Remember, everything I tell you is a lie.
+> Remember, these are all lies. Everything I tell you is a lie.
 
 A good professor of mine would tell us this regularly. He wanted us to understand that no principle is absolute and that it's important to understand why something is a principle so that one does not fall into a cargo cult mindset.
 

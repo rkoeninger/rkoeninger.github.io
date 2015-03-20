@@ -1,35 +1,32 @@
-@font-face {
-    font-family: 'Franklin Gothic Heavy';
-    src: url('/fonts/FranklinGothicHeavy.eot?#iefix')                  format('embedded-opentype'),
-         url('/fonts/FranklinGothicHeavy.svg#svgFranklinGothic-Heavy') format('svg'),
-         url('/fonts/FranklinGothicHeavy.ttf')                         format('truetype');
-}
 .title-logo {
-    margin: 0 auto;
-    text-align: center;
-    text-transform: uppercase;
-    font-size: 5em;
-    font-family: 'Franklin Gothic Heavy', sans-serif;
-    font-weight: bold;
-    text-shadow: 2px 2px 4px #000077;
-    line-height: 75%;
-    color: #0000ff;
-    transform: perspective(7px) rotateX(1deg);
-    transform-origin: 50% 54%;
-    margin-bottom: 0.6em;
+	display: block;
+    width: 80%;
+    margin: 1em auto 2em auto;
 }
-h1, h2, h3, h4, h5, h6 {
-    color: #444477;
-    font-family: 'Arvo', serif;
+main {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
 }
 article {
     font-family: 'PT Sans', sans-serif;
+    font-size: 18px;
+}
+.disqus_thread {
+    margin: 3em auto 0 auto;
 }
 h1 {
+    text-align: center;
+    color: #444477;
+    font-family: 'Arvo', serif;
     text-shadow: 2px 2px 2px #ccccff;
     margin-bottom: 1em;
 }
 h2 {
+    text-align: center;
+    color: #444477;
+    font-family: 'Arvo', serif;
+    line-height: 1.4em;
     margin-top: 1em;
     margin-bottom: 2em;
 }
@@ -38,6 +35,10 @@ h3 {
     padding-bottom: 0.2em;
     margin-top: 1em;
     margin-bottom: 1em;
+}
+h4, h5, h6 {
+    color: #444477;
+    font-family: 'Arvo', serif;
 }
 img {
     margin-left: auto;
@@ -49,20 +50,17 @@ img {
     margin-right: 0.2em;
     margin-top: -0.2em;
 }
-h1, h2 {
-    text-align: center;
-}
 pre {
     background-color: #f8f8f8;
 }
 table {
-    margin: 0.6em auto;
-}
-table, th, td {
     border: 0.2em solid black;
     border-collapse: collapse;
+    margin: 0.6em auto;
 }
 td, th {
+    border: 0.2em solid black;
+    border-collapse: collapse;
     padding: 0.2em;
 }
 dl {
@@ -77,17 +75,6 @@ dl dt {
 dl dd {
     font-style: oblique;
 }
-article {
-	width: 100%;
-	max-width: 900px;
-}
-.disqus_thread {
-	max-width: 900px;
-	margin-left: auto;
-	margin-right: auto;
-    margin-top: 2em;
-    margin-bottom: 2em;
-}
 
 /* desktop/laptop */
 @media only screen and (min-width: 1000px) {
@@ -99,10 +86,6 @@ article {
         margin-left: 2em;
         margin-right: 0.1em;
     }
-    article {
-        font-size: 18px;
-        margin: 0 auto;
-    }
     code {
         font-size: 14px;
     }
@@ -110,19 +93,20 @@ article {
 
 /* phone/tablet */
 @media only screen and (max-width : 999px) {
-    .title-logo {
-        font-size: 12vw;
-    }
-    article {
-        margin: 1em;
-    }
-    body {
-        font-size: 20px;
-    }
     nav {
         margin: 0 auto;
         text-align: center;
         font-size: 2em;
+    }
+    article {
+        margin: 1em;
+        font-size: 20px;
+    }
+    .disqus_thread {
+        display: none;
+    }
+    code {
+    	font-size: 2em;
     }
     ul {
         text-align: center;
@@ -139,8 +123,5 @@ article {
     }
     table {
         font-size: 1.5em;
-    }
-    .disqus_thread {
-        display: none;
     }
 }

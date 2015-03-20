@@ -75,7 +75,7 @@ $(function () {
       articleDiv.html(marked(articleMarkdown));
 
       if (endsWith(articleUrl, "/default.md")) {
-      	disqusDiv.hide();
+        disqusDiv.hide();
       }
 
       // find (#) elements in markdown

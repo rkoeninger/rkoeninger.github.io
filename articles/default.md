@@ -1,11 +1,6 @@
-<div style=";display: none; "># Fear of a Blue Screen</div>
-<div class="title-logo">
-  Fear<br>
-  of a<br>
-  Blue<br>
-  Screen
-</div>
-<br>
+<div style="display: none; "># Fear of a Blue Screen</div>
+<img class="title-logo" src="logos/fear_of_a_blue_screen.svg" />
+
   * [Development of this site](/index.html?articleId=thisSite)
   * [Sorts and Searches](/index.html?articleId=sortsAndSearches)
   * [Getting tired of NullReferenceExceptions in C#](/index.html?articleId=sure)
@@ -16,6 +11,10 @@
   * [Approaches to Configuration](/index.html?articleId=config)
   * [Functors and Type Variance](/index.html?articleId=functorsTypeVariance)
   * [Suits and Faces](/index.html?articleId=suitsAndFaces)
+  * [Hardcoding](/index.html?articleId=hardcoding)
+  * [Who Cares About Monads?](/index.html?articleId=patterns)
   * [Software List](/index.html?articleId=software)
   * [GitHub Repositories](http://github.com/rkoeninger?tab=repositories)
   * [Linkedin](http://www.linkedin.com/in/robertkoeninger)
+  * [oDesk](http://www.odesk.com/users/~015abc115b8c8a1001)
+  * [Elance](http://www.elance.com/s/robertkoeninger)
