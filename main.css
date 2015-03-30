@@ -1,5 +1,5 @@
 .title-logo {
-	display: block;
+    display: block;
     width: 80%;
     margin: 1em auto 2em auto;
 }
@@ -98,6 +98,9 @@ dl dd {
         text-align: center;
         font-size: 2em;
     }
+    main {
+        max-width: 100%;
+    }
     article {
         margin: 1em;
         font-size: 20px;
@@ -105,8 +108,8 @@ dl dd {
     .disqus_thread {
         display: none;
     }
-    code {
-    	font-size: 2em;
+    pre code {
+        font-size: 2em;
     }
     ul {
         text-align: center;
@@ -122,6 +125,6 @@ dl dd {
         font-size: 200%;
     }
     table {
-        font-size: 1.5em;
+        font-size: 2.5em;
     }
 }
