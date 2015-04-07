@@ -6,7 +6,7 @@
 /*jslint browser: true, regexp: true*/
 /*global marked, hljs*/
 
-var disqusMarker = "<disqus>";
+var disqusExcludedArticles = ["/default.md"];
 
 function queryString(key) {
   var qsParts, argAndVal, i;
@@ -55,6 +55,16 @@ function setMarkdownLink() {
   markdownLink.attr("href", getArticleUrl());
 }
 
+function hideDisqusThreadMaybe(articleUrl, disqusDiv) {
+  var i;
+  for (i = 0; i < disqusExcludedArticles.length; ++i) {
+    if (endsWith(articleUrl, disqusExcludedArticles[i])) {
+      disqusDiv.hide();
+      return;
+    }
+  }
+}
+
 $(function () {
   var articleUrl, articleDiv, disqusDiv, request;
 
@@ -73,10 +83,7 @@ $(function () {
       var titleMatches;
 
       articleDiv.html(marked(articleMarkdown));
-
-      if (endsWith(articleUrl, "/default.md")) {
-        disqusDiv.hide();
-      }
+      hideDisqusThreadMaybe(articleUrl, disqusDiv);
 
       // find (#) elements in markdown
       titleMatches = articleMarkdown.match(/\x23\x20(.*)\x0D?\x0A/);
