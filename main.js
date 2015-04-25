@@ -7,6 +7,7 @@
 /*global marked, hljs*/
 
 var disqusExcludedArticles = ["/default.md"];
+var historyUrlBase = "//github.com/rkoeninger/rkoeninger.github.io/commits/master/articles/";
 
 function queryString(key) {
   var qsParts, argAndVal, i;
@@ -32,27 +33,32 @@ function endsWith(str, suffix) {
   return str.indexOf(suffix, str.length - suffix.length) !== -1;
 }
 
-function getArticleUrl() {
-  var articleId, articleUrl;
-
-  articleId = queryString("articleId");
+function getArticleFileName() {
+  var articleId = queryString("articleId");
 
   if (!articleId) {
     articleId = "default";
   }
 
-  articleUrl = "/articles/" + articleId;
-
-  if (!endsWith(articleUrl, ".md")) {
-    articleUrl += ".md";
+  if (!endsWith(articleId, ".md")) {
+    articleId += ".md";
   }
 
-  return articleUrl;
+  return articleId;
 }
 
-function setMarkdownLink() {
-  var markdownLink = $("nav a#markdown-link");
-  markdownLink.attr("href", getArticleUrl());
+function getArticleUrl() {
+  return "/articles/" + getArticleFileName();
+}
+
+function setSourceLink() {
+  var sourceLink = $("nav a#source-link");
+  sourceLink.attr("href", getArticleUrl());
+}
+
+function setHistoryLink() {
+  var historyLink = $("nav a#history-link");
+  historyLink.attr("href", historyUrlBase + getArticleFileName());
 }
 
 function hideDisqusThreadMaybe(articleUrl, disqusDiv) {
@@ -66,16 +72,17 @@ function hideDisqusThreadMaybe(articleUrl, disqusDiv) {
 }
 
 $(function () {
-  var articleUrl, articleDiv, disqusDiv, request;
-
-  articleUrl = getArticleUrl();
-
-  setMarkdownLink();
+  var articleUrl, articleDiv, disqusDiv;
 
   articleDiv = $("article#article0");
   disqusDiv = $("div#disqus_thread");
 
-  request = {
+  setSourceLink();
+  setHistoryLink();
+
+  articleUrl = getArticleUrl();
+
+  $.ajax({
     type: "GET",
     dataType: "text",
     url: articleUrl,
@@ -98,7 +105,5 @@ $(function () {
     error: function (jqXHR, textStatus, errorThrown) {
       articleDiv.html("failed to load article content<br />" + textStatus + "<br />" + errorThrown);
     }
-  };
-
-  $.ajax(request);
+  });
 });
