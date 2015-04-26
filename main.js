@@ -8,6 +8,7 @@
 
 var disqusExcludedArticles = ["/default.md"];
 var historyUrlBase = "//github.com/rkoeninger/rkoeninger.github.io/commits/master/articles/";
+var commitsUrlBase = "//api.github.com/repos/rkoeninger/rkoeninger.github.io/commits?path=";
 
 function queryString(key) {
   var qsParts, argAndVal, i;
@@ -71,6 +72,15 @@ function hideDisqusThreadMaybe(articleUrl, disqusDiv) {
   }
 }
 
+function getCommitHistoryUrl() {
+  return commitsUrlBase + getArticleUrl();
+}
+
+function setLastModifiedLabel(label) {
+  var lastModifiedLabel = $("main div#last-modified");
+  lastModifiedLabel.text(label);
+}
+
 $(function () {
   var articleUrl, articleDiv, disqusDiv;
 
@@ -106,4 +116,17 @@ $(function () {
       articleDiv.html("failed to load article content<br />" + textStatus + "<br />" + errorThrown);
     }
   });
+
+  $.getJSON(
+    getCommitHistoryUrl(),
+    function (data) {
+      var author, date;
+
+      if (data.length > 0) {
+        author = data[0].commit.author.name;
+        date = new Date(data[0].commit.author.date).toLocaleDateString();
+        setLastModifiedLabel("Last modified by " + author + " on " + date);
+      }
+    }
+  );
 });
