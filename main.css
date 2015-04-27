@@ -80,9 +80,35 @@ nav {
 }
 nav a {
     color: black;
-    text-align: center;
     text-decoration: none;
+    text-align: center;
     font-size: 2em;
+}
+blockquote {
+    font-family: 'Architects Daughter', sans-serif;
+    font-size: 1.2em;
+    background-color: #eeeeff;
+    padding: 0.5em;
+    margin-bottom: 2em;
+    position: relative;
+}
+blockquote p {
+    margin: 0;
+    margin-bottom: 0.5em;
+}
+cite {
+    font-family: 'Rock Salt', serif;
+    font-size: 1.2rem;
+    position: absolute;
+    right: -2em;
+    bottom: -2em;
+    background-color: #ffffff;
+    border: 0.2em solid #ccccff;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+}
+cite a {
+    text-decoration: none;
 }
 
 /* desktop/laptop */
