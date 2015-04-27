@@ -88,7 +88,7 @@ blockquote {
     font-family: 'Architects Daughter', sans-serif;
     font-size: 1.2em;
     background-color: #eeeeff;
-    padding: 0.5em;
+    padding: 1em;
     margin-bottom: 2em;
     position: relative;
 }
@@ -134,7 +134,7 @@ cite a {
         flex-direction: row;
         align-items: center;
         justify-content: center;
-        margin: 0 auto;
+        margin: 1em auto;
         text-align: center;
         font-size: 4em;
     }
@@ -169,5 +169,8 @@ cite a {
     }
     table {
         font-size: 2.5em;
+    }
+    cite {
+        font-size: 2em;
     }
 }
