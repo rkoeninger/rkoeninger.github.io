@@ -2,6 +2,7 @@
 <img class="title-logo" src="logos/fear_of_a_blue_screen.svg" />
 
   * [Development of this site](/index.html?articleId=thisSite)
+  * [Doing the Impossible](/index.html?articleId=impossible)
   * [Sorts and Searches](/index.html?articleId=sortsAndSearches)
   * [Getting tired of NullReferenceExceptions in C#](/index.html?articleId=sure)
   * [Arguing Semantics](/index.html?articleId=semantics)
