@@ -75,6 +75,9 @@ dl dt {
 dl dd {
     font-style: oblique;
 }
+nav {
+    display: flex;
+}
 nav a {
     color: black;
     text-align: center;
@@ -85,6 +88,7 @@ nav a {
 /* desktop/laptop */
 @media only screen and (min-width: 1000px) {
     nav {
+        flex-direction: column;
         margin-top: 1em;
         margin-left: 1em;
         float: left;
@@ -101,9 +105,15 @@ nav a {
 /* phone/tablet */
 @media only screen and (max-width : 999px) {
     nav {
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
         margin: 0 auto;
         text-align: center;
-        font-size: 3em;
+        font-size: 4em;
+    }
+    nav a {
+        margin: 0 1em;
     }
     main {
         max-width: 100%;
@@ -116,7 +126,7 @@ nav a {
         display: none;
     }
     pre code {
-        font-size: 2em;
+        font-size: 1.6em;
     }
     ul {
         text-align: center;
