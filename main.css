@@ -33,6 +33,7 @@ h2 {
     text-align: center;
     color: #444477;
     font-family: 'Arvo', serif;
+    font-size: 1.2em;
     margin-top: 1em;
     margin-bottom: 2em;
 }
@@ -169,6 +170,12 @@ cite a {
     }
     table {
         font-size: 2.5em;
+    }
+    blockquote {
+        margin-bottom: 2.5em;
+    }
+    blockquote p {
+        margin-bottom: 1em;
     }
     cite {
         font-size: 2em;
