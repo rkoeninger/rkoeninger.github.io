@@ -172,12 +172,14 @@ cite a {
         font-size: 2.5em;
     }
     blockquote {
-        margin-bottom: 2.5em;
+        margin-bottom: 3em;
     }
     blockquote p {
         margin-bottom: 1em;
     }
     cite {
         font-size: 2em;
+        right: -0.5em;
+        bottom: -2em;
     }
 }
