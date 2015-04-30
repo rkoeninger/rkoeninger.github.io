@@ -57,6 +57,45 @@ So it implements a chaining pattern. A function that takes `a` and returns `m b`
 
 That's a great explanation of the blather I wrote above. A series of monadic operations allows one to focus on the path of execution that doesn't involve hairy things like the possibility of missing data, raised exceptions, multiple values, no values, side-effects and anything else that matches the pattern.
 
+### The Happy Path
+
+Some people really object *TODO Tony Morris link* to the idea of explaining something using examples instead of starting with general principles, but the abstractness of a concept like monads is a little too far out for the reader to grasp their purpose or receive any motivation from their mathematical definition alone.
+
+So let's start with the (second) simpliest one first: The `Maybe` monad. Also sometimes called the `Option` monad. `Maybe` is a fairly simple type that we could represent with this made-up syntax:
+
+*TODO use haskell syntax instead and refer to haskell syntax primer*
+
+```csharp
+Maybe<A> = Some<A> | None
+```
+
+So a `Maybe` either has a value or it doesn't. It's almost like making type A nullable.
+
+The happy path here is having a value, `Some`, and the exceptional case that we might want to gloss over is `None`. The monadic binding operation for `Maybe` is defined like this:
+
+```csharp
+Maybe<B> Bind<A, B>(Maybe<A> m, Func<A, Maybe<B>> f)
+{
+    return m is None ? None : f(m.Value);
+}
+```
+
+So if we start with `None`, we ignore the operation and we just get `None`. If we have a value, we apply the function to the value. This is sort of like the "elvis operator" *TODO link* with respect to nullable types.
+
+```
+Maybe<double> GetNumberMaybe();
+Maybe<double> DivMaybe(this double, double);
+A OrElse(this Maybe<A>, A);
+
+Bind(GetNumberMaybe(), 1.DivMaybe).OrElse(0)
+// results in zero if either value was not read or was zero
+```
+
+The hidden complexity for Maybe is that the value might be missing.
+The hidden complexity for List is that there might be multiple (or zero) values.
+The hidden complexity for `r -> ` is that the value is being generated given some value of type `r`.
+The hidden complexity for `IO` is that the value will be the result of a side-effecting operation. *TODO glossary for side-effects?*
+
 ### One Dev's Wisdom is Another Dev's Nonsense
 
 As functional programming gains popularity, many people are encountering new terminology for the first time:
