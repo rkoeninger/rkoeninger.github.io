@@ -16,6 +16,7 @@
   * [Who Cares About Monads?](/index.html?articleId=patterns)
   * [Software List](/index.html?articleId=software)
   * [GitHub Repositories](http://github.com/rkoeninger?tab=repositories)
+  * [Project Statuses](/index.html?articleId=status)
   * [Linkedin](http://www.linkedin.com/in/robertkoeninger)
   * [oDesk](http://www.odesk.com/users/~015abc115b8c8a1001)
   * [Elance](http://www.elance.com/s/robertkoeninger)
