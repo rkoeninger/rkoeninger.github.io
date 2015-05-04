@@ -6,7 +6,8 @@
 /*jslint browser: true, regexp: true*/
 /*global marked, hljs*/
 
-var disqusExcludedArticles = ["/default.md"];
+var defaultArticle = "underConstruction";
+var disqusExcludedArticles = ["/default.md", "/underConstruction.md"];
 var historyUrlBase = "//github.com/rkoeninger/rkoeninger.github.io/commits/master/articles/";
 var commitsUrlBase = "//api.github.com/repos/rkoeninger/rkoeninger.github.io/commits?path=";
 
@@ -38,7 +39,7 @@ function getArticleFileName() {
   var articleId = queryString("articleId");
 
   if (!articleId) {
-    articleId = "default";
+    articleId = defaultArticle;
   }
 
   if (!endsWith(articleId, ".md")) {

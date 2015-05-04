@@ -2,6 +2,7 @@
 <img class="title-logo" src="logos/fear_of_a_blue_screen.svg" />
 
   * [Development of this site](/index.html?articleId=thisSite)
+  * [Syntax Primer](/index.html?articleId=primer)
   * [Doing the Impossible](/index.html?articleId=impossible)
   * [Sorts and Searches](/index.html?articleId=sortsAndSearches)
   * [Getting tired of NullReferenceExceptions in C#](/index.html?articleId=sure)
@@ -16,6 +17,7 @@
   * [Who Cares About Monads?](/index.html?articleId=patterns)
   * [Software List](/index.html?articleId=software)
   * [GitHub Repositories](http://github.com/rkoeninger?tab=repositories)
+  * [Project Statuses](/index.html?articleId=status)
   * [Linkedin](http://www.linkedin.com/in/robertkoeninger)
   * [oDesk](http://www.odesk.com/users/~015abc115b8c8a1001)
   * [Elance](http://www.elance.com/s/robertkoeninger)
