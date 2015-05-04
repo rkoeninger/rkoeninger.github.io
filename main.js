@@ -53,12 +53,12 @@ function getArticleUrl() {
 }
 
 function setSourceLink() {
-  var sourceLink = $("nav a#source-link");
+  var sourceLink = $("#source-link");
   sourceLink.attr("href", getArticleUrl());
 }
 
 function setHistoryLink() {
-  var historyLink = $("nav a#history-link");
+  var historyLink = $("#history-link");
   historyLink.attr("href", historyUrlBase + getArticleFileName());
 }
 
@@ -77,15 +77,15 @@ function getCommitHistoryUrl() {
 }
 
 function setLastModifiedLabel(label) {
-  var lastModifiedLabel = $("main div#last-modified");
+  var lastModifiedLabel = $("#last-modified");
   lastModifiedLabel.text(label);
 }
 
 $(function () {
   var articleUrl, articleDiv, disqusDiv;
 
-  articleDiv = $("article#article0");
-  disqusDiv = $("div#disqus_thread");
+  articleDiv = $("#article0");
+  disqusDiv = $("#disqus_thread");
 
   setSourceLink();
   setHistoryLink();

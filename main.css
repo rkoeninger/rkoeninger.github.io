@@ -1,15 +1,38 @@
-.title-logo {
+@font-face {
+    font-family: 'GothicTitle';
+    src: url('/fonts/GothicTitle.eot');
+    src: url('/fonts/GothicTitle.eot?#iefix') format('embedded-opentype'),
+         url('/fonts/GothicTitle.woff2') format('woff2'),
+         url('/fonts/GothicTitle.woff') format('woff'),
+         url('/fonts/GothicTitle.ttf') format('truetype'),
+         url('/fonts/GothicTitle.svg#GothicTitle') format('svg');
+}
+.title-logo-wrapper {
+    width: 90%;
+    margin: 0 auto;
     display: block;
-    width: 80%;
-    max-height: 800px;
-    margin: 1em auto 2em auto;
+    overflow: hidden;
+}
+.title-logo {
+    margin: 0 auto;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: 'GothicTitle', serif;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px #000077;
+    line-height: 75%;
+    color: #0000ff;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    transform: perspective(7px) rotateX(1deg);
+    transform-origin: 50% 54%;
 }
 main {
     width: 100%;
     max-width: 800px;
     margin: 0 auto;
 }
-main div#last-modified {
+#last-modified {
     text-align: center;
     margin: 3em auto;
     font-size: 0.8em;
@@ -180,6 +203,5 @@ cite a {
     cite {
         font-size: 2em;
         right: -0.5em;
-        bottom: -2em;
     }
 }
