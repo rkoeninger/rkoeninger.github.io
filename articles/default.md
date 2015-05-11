@@ -11,6 +11,7 @@
   * [Version Numbering](/index.html?articleId=versioning)
   * [FP and OOP approaches to I/O](/index.html?articleId=io)
   * [Natural Subtraction](/index.html?articleId=naturals)
+  * [The Golden Ratio](/index.html?articleId=golden)
   * [Approaches to Configuration](/index.html?articleId=config)
   * [Functors and Type Variance](/index.html?articleId=functorsTypeVariance)
   * [Suits and Faces](/index.html?articleId=suitsAndFaces)
