@@ -1,3 +1,5 @@
+'use strict';
+
 /* On page load, get the value of the "articleId" argument in the query string
  * and pull the contents of the markdown file by that name in "/articles/"
  * abd use it to populate the page content.
