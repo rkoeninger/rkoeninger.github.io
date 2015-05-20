@@ -1,5 +1,7 @@
-<div style="display: none; "># Fear of a Blue Screen</div>
-<img class="title-logo" src="logos/fear_of_a_blue_screen.svg" />
+<span style="display: none; "># Fear of a Blue Screen</span>
+<span class="title-logo">
+Fear<br>of a<br>Blue<br>Screen
+</span>
 
   * [Development of this site](/index.html?articleId=thisSite)
   * [Syntax Primer](/index.html?articleId=primer)

@@ -7,25 +7,22 @@
          url('/fonts/GothicTitle.ttf') format('truetype'),
          url('/fonts/GothicTitle.svg#GothicTitle') format('svg');
 }
-.title-logo-wrapper {
-    width: 90%;
-    margin: 0 auto;
-    display: block;
-    overflow: hidden;
-}
 .title-logo {
-    margin: 0 auto;
+    display: block;
     text-align: center;
+    font-size: 6em;
+    line-height: 75%;
     text-transform: uppercase;
     font-family: 'GothicTitle', serif;
     font-weight: bold;
-    text-shadow: 2px 2px 4px #000077;
-    line-height: 75%;
     color: #0000ff;
-    padding-top: 1rem;
+    margin: 0 auto 1.25em auto;
     padding-bottom: 1rem;
     transform: perspective(7px) rotateX(1deg);
-    transform-origin: 50% 54%;
+}
+body {
+    margin: 0;
+    padding: 0;
 }
 main {
     width: 100%;
@@ -166,7 +163,7 @@ cite a {
         margin: 0 1em;
     }
     main {
-        max-width: 100%;
+        max-width: default;
     }
     article {
         margin: 1em;
