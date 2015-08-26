@@ -3,18 +3,6 @@
 /*jslint browser: true, regexp: true, indent: 4*/
 /*global require*/
 
-if (require) {
-    console.log("require is available");
-} else {
-    console.log("require is NOT available");
-}
-
-if (require.config) {
-    console.log("require.config is available");
-} else {
-    console.log("require.config is NOT available");
-}
-
 require.config({
     paths: {
         "jasmine": ["/jasmine/jasmine"],

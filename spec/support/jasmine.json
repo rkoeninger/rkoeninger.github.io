@@ -5,6 +5,6 @@
   ],
   "helpers": [
     "../require.js",
-    "../requireTestConfig.js"
+    "../requireNodeConfig.js"
   ]
 }
