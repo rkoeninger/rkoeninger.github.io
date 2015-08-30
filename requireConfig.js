@@ -6,8 +6,8 @@
 require.config({
     paths: {
         "jquery": "//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min",
-        "main": "/main",
-        "marked": "/marked"
+        "marked": "//cdnjs.cloudflare.com/ajax/libs/marked/0.3.2/marked.min",
+        "main": "/main"
     }
 });
 
