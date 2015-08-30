@@ -1,5 +1,7 @@
 language: node_js
+version:
+  - "0.12"
 before_script:
-  - npm install -g jasmine
+  - npm install -g phantomjs
 script:
-  - jasmine
+  - phantomjs runJasmine2.js http://rkoeninger.github.io/spec.html
