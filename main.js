@@ -8,7 +8,7 @@
 /*jslint browser: true, regexp: true, indent: 4*/
 /*global define, hljs*/
 
-define(["marked"], function (marked) {
+define(["marked", "jquery"], function (marked, $) {
     var main = (function () {
         var defaultArticle = "underConstruction";
         var disqusExcludedArticles = ["/default.md", "/underConstruction.md"];

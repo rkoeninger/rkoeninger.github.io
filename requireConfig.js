@@ -5,12 +5,10 @@
 
 require.config({
     paths: {
-        //jquery: 'libs/jquery/jquery',
-        //underscore: 'libs/underscore/underscore',
-        //backbone: 'libs/backbone/backbone'
+        "jquery": "//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min",
     }
 });
 
-require(['main'], function (main) {
+require(["main"], function (main) {
     main.init();
 });

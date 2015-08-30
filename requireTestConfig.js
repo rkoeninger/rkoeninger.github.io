@@ -5,6 +5,7 @@
 
 require.config({
     paths: {
+        "jquery": "//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min",
         "jasmine": ["/jasmine/jasmine"],
         "jasmine-html": ["/jasmine/jasmine-html"],
         "jasmine-boot": ["/jasmine/boot"],
