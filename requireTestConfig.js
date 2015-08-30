@@ -1,7 +1,7 @@
 'use strict';
 
 /*jslint browser: true, regexp: true, indent: 4*/
-/*global require*/
+/*global require, MathJax*/
 
 require.config({
     paths: {
@@ -10,6 +10,7 @@ require.config({
         "jasmine-boot": "//cdnjs.cloudflare.com/ajax/libs/jasmine/2.3.4/boot.min",
         "jquery": "//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min",
         "marked": "//cdnjs.cloudflare.com/ajax/libs/marked/0.3.2/marked.min",
+        "mathjax": "//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML&amp;delayStartupUntil=configured",
         "main": "/main",
         "main-spec": "/spec/main.spec"
     },
@@ -19,6 +20,14 @@ require.config({
         },
         "jasmine-boot": {
             deps: ["jasmine", "jasmine-html"]
+        },
+        "mathjax": {
+            exports: "MathJax",
+            init: function () {
+                MathJax.Hub.Config({tex2jax: {inlineMath: [["$", "$"]]}});
+                MathJax.Hub.Startup.onload();
+                return MathJax;
+            }
         }
     }
 });
