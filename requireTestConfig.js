@@ -8,9 +8,7 @@ require.config({
         "jasmine": ["/jasmine/jasmine"],
         "jasmine-html": ["/jasmine/jasmine-html"],
         "jasmine-boot": ["/jasmine/boot"],
-        "fake-spec": ["/spec/fake.spec"],
         "main-spec": ["/spec/main.spec"],
-        "nonrequire-spec": ["/spec/nonrequire.spec"],
         "main": ["/main"],
         "marked": ["/marked"]
     },
@@ -25,7 +23,7 @@ require.config({
 });
 
 require(["jasmine-boot"], function () {
-    require(["fake-spec", "main-spec", "nonrequire-spec"], function () {
+    require(["main-spec"], function () {
         window.onload(); // Trigger jasmine
     });
 });
