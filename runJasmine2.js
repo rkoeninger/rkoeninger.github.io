@@ -1,7 +1,7 @@
 'use strict';
 
-/*jslint indent: 4*/
-/*global require, phantom, document*/
+/*jslint node: true, browser: true, indent: 4*/
+/*global phantom*/
 
 var system = require('system');
 
