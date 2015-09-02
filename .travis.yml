@@ -3,5 +3,7 @@ version:
   - "0.12"
 before_script:
   - npm install -g phantomjs
+  - npm install -g jslint
 script:
   - phantomjs runJasmine2.js http://rkoeninger.github.io/spec.html
+  - jslint **/*.js

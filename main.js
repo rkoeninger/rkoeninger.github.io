@@ -5,10 +5,10 @@
 
 define(["marked", "jquery", "mathjax", "hljs"], function (marked, $, ignore, hljs) {
     var main = (function () {
-        var defaultArticle = "underConstruction";
-        var disqusExcludedArticles = ["/default.md", "/underConstruction.md"];
-        var historyUrlBase = "//github.com/rkoeninger/rkoeninger.github.io/commits/master/articles/";
-        var commitsUrlBase = "//api.github.com/repos/rkoeninger/rkoeninger.github.io/commits?path=";
+        var defaultArticle = "underConstruction",
+            disqusExcludedArticles = ["/default.md", "/underConstruction.md"],
+            historyUrlBase = "//github.com/rkoeninger/rkoeninger.github.io/commits/master/articles/",
+            commitsUrlBase = "//api.github.com/repos/rkoeninger/rkoeninger.github.io/commits?path=";
 
         function getQsValue(queryString, key) {
             var qsParts, argAndVal, i;
@@ -23,7 +23,7 @@ define(["marked", "jquery", "mathjax", "hljs"], function (marked, $, ignore, hlj
                 return "";
             }
 
-            for (i = 0; i < qsParts.length; ++i) {
+            for (i = 0; i < qsParts.length; i++) {
                 argAndVal = qsParts[i].split("=");
 
                 if (argAndVal.length === 2 && argAndVal[0] === key) {
@@ -40,7 +40,7 @@ define(["marked", "jquery", "mathjax", "hljs"], function (marked, $, ignore, hlj
 
         function contains(list, item) {
             var i;
-            for (i = 0; i < list.length; ++i) {
+            for (i = 0; i < list.length; i++) {
                 if (endsWith(item, list[i])) {
                     return true;
                 }
@@ -133,7 +133,7 @@ define(["marked", "jquery", "mathjax", "hljs"], function (marked, $, ignore, hlj
             getCommitHistoryUrl: getCommitHistoryUrl,
             init: init
         };
-    })();
+    }());
 
     return main;
 });
