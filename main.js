@@ -1,10 +1,5 @@
 'use strict';
 
-/* On page load, get the value of the "articleId" argument in the query string
- * and pull the contents of the markdown file by that name in "/articles/"
- * and use it to populate the page content.
- */
-
 /*jslint browser: true, regexp: true, indent: 4*/
 /*global define, hljs*/
 
@@ -15,10 +10,14 @@ define(["marked", "jquery", "mathjax", "hljs"], function (marked, $, ignore, hlj
         var historyUrlBase = "//github.com/rkoeninger/rkoeninger.github.io/commits/master/articles/";
         var commitsUrlBase = "//api.github.com/repos/rkoeninger/rkoeninger.github.io/commits?path=";
 
-        function queryString(key) {
+        function getQsValue(queryString, key) {
             var qsParts, argAndVal, i;
 
-            qsParts = window.location.search.substr(1).split("&");
+            if (queryString.length === 0) {
+                return "";
+            }
+
+            qsParts = queryString.substr(1).split("&");
 
             if (!(qsParts || key)) {
                 return "";
@@ -39,8 +38,19 @@ define(["marked", "jquery", "mathjax", "hljs"], function (marked, $, ignore, hlj
             return str.indexOf(suffix, str.length - suffix.length) !== -1;
         }
 
-        function getArticleFileName() {
-            var articleId = queryString("articleId");
+        function contains(list, item) {
+            var i;
+            for (i = 0; i < list.length; ++i) {
+                if (endsWith(item, list[i])) {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        function getArticleFileName(queryString) {
+            var articleId = getQsValue(queryString, "articleId");
 
             if (!articleId) {
                 articleId = defaultArticle;
@@ -53,49 +63,25 @@ define(["marked", "jquery", "mathjax", "hljs"], function (marked, $, ignore, hlj
             return articleId;
         }
 
-        function getArticleUrl() {
-            return "/articles/" + getArticleFileName();
+        function getArticleUrl(articleFile) {
+            return "/articles/" + articleFile;
         }
 
-        function setSourceLink() {
-            var sourceLink = $("#source-link");
-            sourceLink.attr("href", getArticleUrl());
-        }
-
-        function setHistoryLink() {
-            var historyLink = $("#history-link");
-            historyLink.attr("href", historyUrlBase + getArticleFileName());
-        }
-
-        function hideDisqusThreadMaybe(articleUrl, disqusDiv) {
-            var i;
-            for (i = 0; i < disqusExcludedArticles.length; ++i) {
-                if (endsWith(articleUrl, disqusExcludedArticles[i])) {
-                    disqusDiv.hide();
-                    return;
-                }
-            }
-        }
-
-        function getCommitHistoryUrl() {
-            return commitsUrlBase + getArticleUrl();
-        }
-
-        function setLastModifiedLabel(label) {
-            var lastModifiedLabel = $("#last-modified");
-            lastModifiedLabel.text(label);
+        function getCommitHistoryUrl(articleUrl) {
+            return commitsUrlBase + articleUrl;
         }
 
         function init() {
-            var articleUrl, articleDiv, disqusDiv;
+            var queryString, articleFile, articleUrl, articleDiv, disqusDiv;
 
+            queryString = window.location.search;
             articleDiv = $("#article0");
             disqusDiv = $("#disqus_thread");
 
-            setSourceLink();
-            setHistoryLink();
-
-            articleUrl = getArticleUrl();
+            articleFile = getArticleFileName(queryString);
+            articleUrl = getArticleUrl(articleFile);
+            $("#source-link").attr("href", articleUrl);
+            $("#history-link").attr("href", historyUrlBase + articleFile);
 
             $.ajax({
                 type: "GET",
@@ -105,7 +91,10 @@ define(["marked", "jquery", "mathjax", "hljs"], function (marked, $, ignore, hlj
                     var titleMatches;
 
                     articleDiv.html(marked(articleMarkdown));
-                    hideDisqusThreadMaybe(articleUrl, disqusDiv);
+
+                    if (contains(disqusExcludedArticles, articleUrl)) {
+                        disqusDiv.hide();
+                    }
 
                     // find (#) elements in markdown
                     titleMatches = articleMarkdown.match(/\x23\x20(.*)\x0D?\x0A/);
@@ -123,21 +112,27 @@ define(["marked", "jquery", "mathjax", "hljs"], function (marked, $, ignore, hlj
             });
 
             $.getJSON(
-                getCommitHistoryUrl(),
+                getCommitHistoryUrl(articleUrl),
                 function (data) {
                     var author, date;
 
                     if (data.length > 0) {
                         author = data[0].commit.author.name;
                         date = new Date(data[0].commit.author.date).toLocaleDateString();
-                        setLastModifiedLabel("Last modified by " + author + " on " + date);
+                        $("#last-modified").text("Last modified by " + author + " on " + date);
                     }
                 }
             );
         }
+
         return {
-            init: init,
-            endsWith: endsWith
+            getQsValue: getQsValue,
+            endsWith: endsWith,
+            contains: contains,
+            getArticleFileName: getArticleFileName,
+            getArticleUrl: getArticleUrl,
+            getCommitHistoryUrl: getCommitHistoryUrl,
+            init: init
         };
     })();
 
