@@ -6,4 +6,4 @@ before_script:
   - npm install -g jslint
 script:
   - phantomjs runJasmine2.js http://rkoeninger.github.io/spec.html
-  - jslint **/*.js
+  - jslint '**/*.js'
