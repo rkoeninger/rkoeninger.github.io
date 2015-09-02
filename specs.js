@@ -76,7 +76,9 @@ page.open(system.args[1], function (status) {
                 console.log(document.body.querySelectorAll('.symbol-summary > li').length + " tests passed.");
                 return 0;
             });
-            phantom.exit(exitCode);
+            setTimeout(function () {
+                phantom.exit(exitCode);
+            }, 0);
         });
     }
 });
