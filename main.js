@@ -72,11 +72,10 @@ define(["marked", "jquery", "mathjax", "hljs"], function (marked, $, ignore, hlj
         }
 
         function init() {
-            var queryString, articleFile, articleUrl, articleDiv, disqusDiv;
+            var queryString, articleFile, articleUrl, articleDiv;
 
             queryString = window.location.search;
-            articleDiv = $("#article0");
-            disqusDiv = $("#disqus_thread");
+            articleDiv = $("#main-article");
 
             articleFile = getArticleFileName(queryString);
             articleUrl = getArticleUrl(articleFile);
@@ -93,7 +92,7 @@ define(["marked", "jquery", "mathjax", "hljs"], function (marked, $, ignore, hlj
                     articleDiv.html(marked(articleMarkdown));
 
                     if (contains(disqusExcludedArticles, articleUrl)) {
-                        disqusDiv.hide();
+                        $("#disqus_thread").hide();
                     }
 
                     // find (#) elements in markdown
