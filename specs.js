@@ -46,7 +46,8 @@ page.open("http://localhost:8080/spec.html", function (status) {
                     failure,
                     description,
                     resultMessage,
-                    stackTrace;
+                    stackTrace,
+                    passedCount;
                 console.log('');
 
                 if (failures && failures.length > 0) {
@@ -66,7 +67,13 @@ page.open("http://localhost:8080/spec.html", function (status) {
                     return 1;
                 }
 
-                console.log(document.body.querySelectorAll('.symbol-summary > li').length + " tests passed.");
+                passedCount = document.body.querySelectorAll('.symbol-summary > li').length;
+                console.log(passedCount + " tests passed.");
+
+                if (passedCount === 0) {
+                    return 1;
+                }
+
                 return 0;
             });
             setTimeout(function () {
