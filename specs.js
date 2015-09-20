@@ -36,7 +36,10 @@ page.open("http://localhost:8080/spec.html", function (status) {
     } else {
         waitFor(function () {
             return page.evaluate(function () {
-                return document.body.querySelector('.symbolSummary .pending') === null;
+                var symbols = document.body.querySelector('.symbolSummary');
+                return symbols
+                    && symbols.length > 0
+                    && document.body.querySelector('.symbolSummary .pending') === null;
             });
         }, function () {
             var exitCode = page.evaluate(function () {
