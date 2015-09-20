@@ -4,7 +4,7 @@
 /*global phantom*/
 
 function waitFor(testFx, onReady, timeOutMillis) {
-    var maxtimeOutMillis = timeOutMillis || 3000,
+    var maxtimeOutMillis = timeOutMillis || 10000,
         start = new Date().getTime(),
         condition = false,
         interval = setInterval(function () {
@@ -12,7 +12,7 @@ function waitFor(testFx, onReady, timeOutMillis) {
                 condition = testFx();
             } else {
                 if (!condition) {
-                    console.log("Timeout waiting for test results after " + timeOutMillis + "ms.");
+                    console.log("Timeout waiting for test results after " + maxtimeOutMillis + "ms.");
                     phantom.exit(1);
                 } else {
                     console.log("Tests finished in " + (new Date().getTime() - start) + "ms.");
