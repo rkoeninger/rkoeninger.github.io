@@ -64,13 +64,12 @@ page.open("http://localhost:8080/spec.html", function (status) {
                         console.log(stackTrace.innerText); // TODO remove lines containing 'jasmine.js' or 'require.js'
                         console.log("");
                     }
-                    return 1;
                 }
 
                 passedCount = document.body.querySelectorAll('.symbol-summary > li').length;
                 console.log(passedCount + " tests passed.");
 
-                if (passedCount === 0) {
+                if ((failures && failures.length > 0) || passedCount === 0) {
                     return 1;
                 }
 
