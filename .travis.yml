@@ -8,9 +8,9 @@ before_script:
   - npm install -g phantomjs
   - npm install -g jslint
 script:
-  - http-server -p 9259&
+  - http-server&
   - NODE_SERVER_PID=$!
   - sleep 10
-  - phantomjs specs.js http://localhost:9259/spec.html
+  - phantomjs specs.js
   - kill -9 $NODE_SERVER_PID
   - jslint '**/*.js' || true

@@ -3,8 +3,6 @@
 /*jslint node: true, browser: true, indent: 4*/
 /*global phantom*/
 
-var system = require('system');
-
 function waitFor(testFx, onReady, timeOutMillis) {
     var maxtimeOutMillis = timeOutMillis || 3000,
         start = new Date().getTime(),
@@ -25,18 +23,13 @@ function waitFor(testFx, onReady, timeOutMillis) {
         }, 100);
 }
 
-if (system.args.length !== 2) {
-    console.log('Usage: run-jasmine.js URL');
-    phantom.exit(1);
-}
-
 var page = require('webpage').create();
 
 page.onConsoleMessage = function (msg) {
     console.log(msg);
 };
 
-page.open(system.args[1], function (status) {
+page.open("http://localhost:8080/spec.html", function (status) {
     if (status !== "success") {
         console.log("Unable to access network");
         phantom.exit();
