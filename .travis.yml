@@ -4,8 +4,12 @@ language: node_js
 version:
   - "0.12"
 before_script:
+  - npm install -g http-server
   - npm install -g phantomjs
   - npm install -g jslint
 script:
-  - phantomjs specs.js http://rkoeninger.github.io/spec.html
+  - http-server -p 9259 &
+  - NODE_SERVER_PID = $!
+  - phantomjs specs.js http://localhost:9259/spec.html
+  - kill -9 $NODE_SERVER_PID
   - jslint '**/*.js' || true
