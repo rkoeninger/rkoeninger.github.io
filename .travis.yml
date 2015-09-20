@@ -10,6 +10,7 @@ before_script:
 script:
   - http-server -p 9259&
   - NODE_SERVER_PID=$!
+  - sleep 10
   - phantomjs specs.js http://localhost:9259/spec.html
   - kill -9 $NODE_SERVER_PID
   - jslint '**/*.js' || true
