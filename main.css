@@ -181,6 +181,12 @@ code.lang-lua {
 code.lang-php {
     background-image: url('/logos/php.svg');
 }
+code.lang-javascript {
+    background-image: url('/logos/javascript.svg');
+}
+code.lang-css {
+    background-image: url('/logos/css.svg');
+}
 
 /* desktop/laptop */
 @media only screen and (min-width: 1000px) {
