@@ -1,5 +1,3 @@
-<!-- # Fear of a Blue Screen
--->
 <img src="/logos/fearOfABlueScreen.svg"
      class="title-logo"
      alt="Fear of a Blue Screen">
