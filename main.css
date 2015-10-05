@@ -137,6 +137,50 @@ cite {
 cite a {
     text-decoration: none;
 }
+code.hljs {
+    background-repeat: no-repeat;
+    background-position: top right;
+    background-size: 2em 2em;
+}
+code.lang-csharp {
+    background-image: url('/logos/csharp.svg');
+}
+code.lang-fsharp {
+    background-image: url('/logos/fsharp.svg');
+}
+code.lang-vbnet {
+    background-image: url('/logos/vbnet.svg');
+}
+code.lang-java {
+    background-image: url('/logos/java.svg');
+}
+code.lang-python {
+    background-image: url('/logos/python.svg');
+}
+code.lang-ruby {
+    background-image: url('/logos/ruby.svg');
+}
+code.lang-haskell {
+    background-image: url('/logos/haskell.svg');
+}
+code.lang-scala {
+    background-image: url('/logos/scala.svg');
+}
+code.lang-erlang {
+    background-image: url('/logos/erlang.svg');
+}
+code.lang-clojure {
+    background-image: url('/logos/clojure.svg');
+}
+code.lang-groovy {
+    background-image: url('/logos/groovy.svg');
+}
+code.lang-lua {
+    background-image: url('/logos/lua.svg');
+}
+code.lang-php {
+    background-image: url('/logos/php.svg');
+}
 
 /* desktop/laptop */
 @media only screen and (min-width: 1000px) {
