@@ -4,27 +4,11 @@
 @import url('//fonts.googleapis.com/css?family=Rock+Salt');
 @import url('//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css');
 @import url('//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/styles/github.min.css');
-@font-face {
-    font-family: 'GothicTitle';
-    src: url('/fonts/GothicTitle.eot');
-    src: url('/fonts/GothicTitle.eot?#iefix') format('embedded-opentype'),
-         url('/fonts/GothicTitle.woff2') format('woff2'),
-         url('/fonts/GothicTitle.woff') format('woff'),
-         url('/fonts/GothicTitle.ttf') format('truetype'),
-         url('/fonts/GothicTitle.svg#GothicTitle') format('svg');
-}
 .title-logo {
     display: block;
     text-align: center;
-    font-size: 6em;
-    line-height: 75%;
-    text-transform: uppercase;
-    font-family: 'GothicTitle', serif;
-    font-weight: bold;
-    color: #0000ff;
-    margin: 0 auto 1.25em auto;
-    padding-bottom: 1rem;
-    transform: perspective(7px) rotateX(1deg);
+    margin: 0 auto;
+    padding-bottom: 1em;
 }
 body {
     margin: 0;

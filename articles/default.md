@@ -1,7 +1,8 @@
-<span style="display: none; "># Fear of a Blue Screen</span>
-<span class="title-logo">
-Fear<br>of a<br>Blue<br>Screen
-</span>
+<!-- # Fear of a Blue Screen
+-->
+<img src="/logos/fearOfABlueScreen.svg"
+     class="title-logo"
+     alt="Fear of a Blue Screen">
 
   * [Development of this site](/index.html?articleId=thisSite)
   * [Syntax Primer](/index.html?articleId=primer)
@@ -22,6 +23,6 @@ Fear<br>of a<br>Blue<br>Screen
   * [Software List](/index.html?articleId=software)
   * [GitHub Repositories](http://github.com/rkoeninger?tab=repositories)
   * [Project Statuses](/index.html?articleId=status)
-  * [Linkedin](http://www.linkedin.com/in/robertkoeninger)
+  * [LinkedIn](http://www.linkedin.com/in/robertkoeninger)
   * [oDesk](http://www.odesk.com/users/~015abc115b8c8a1001)
   * [Elance](http://www.elance.com/s/robertkoeninger)
