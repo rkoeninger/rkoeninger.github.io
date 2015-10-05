@@ -9,6 +9,8 @@
     text-align: center;
     margin: 0 auto;
     padding-bottom: 1em;
+    width: 100%;
+    max-width: 36em;
 }
 body {
     margin: 0;
@@ -206,7 +208,7 @@ code.lang-css {
         max-width: default;
     }
     article {
-        margin: 1em;
+        margin: 0.5em;
         font-size: 20px;
     }
     .disqus_thread {
@@ -223,7 +225,6 @@ code.lang-css {
         list-style-type: none;
     }
     li {
-        background-color: #ccccff;
         margin-top: 2px;
         margin-bottom: 2px;
         font-size: 200%;
