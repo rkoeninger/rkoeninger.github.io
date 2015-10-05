@@ -5,8 +5,8 @@
 
 define(["marked", "jquery", "mathjax", "hljs"], function (marked, $, ignore, hljs) {
     var main = (function () {
-        var defaultArticle = "underConstruction",
-            disqusExcludedArticles = ["/default.md", "/underConstruction.md"],
+        var defaultArticle = "default",
+            disqusExcludedArticles = ["/default.md"],
             historyUrlBase = "//github.com/rkoeninger/rkoeninger.github.io/commits/master/articles/",
             commitsUrlBase = "//api.github.com/repos/rkoeninger/rkoeninger.github.io/commits?path=";
 

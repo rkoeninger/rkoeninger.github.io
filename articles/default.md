@@ -11,6 +11,7 @@
   * [Arguing Semantics](/index.html?articleId=semantics)
   * [Version Numbering](/index.html?articleId=versioning)
   * [FP and OOP approaches to I/O](/index.html?articleId=io)
+  * [MVC as AV](/index.html?articleId=mvc)
   * [Natural Subtraction](/index.html?articleId=naturals)
   * [The Golden Ratio](/index.html?articleId=golden)
   * [Approaches to Configuration](/index.html?articleId=config)
