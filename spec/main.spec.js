@@ -30,17 +30,17 @@ define(["main"], function (main) {
         });
     });
     describe("getArticleFileName", function () {
-        it("should return underConstruction article with extension for empty query string", function () {
-            expect(main.getArticleFileName("")).toEqual("underConstruction.md");
+        it("should return default article with extension for empty query string", function () {
+            expect(main.getArticleFileName("")).toEqual("default.md");
         });
-        it("should return underConstruction article with extension for query string with no args", function () {
-            expect(main.getArticleFileName("?")).toEqual("underConstruction.md");
+        it("should return default article with extension for query string with no args", function () {
+            expect(main.getArticleFileName("?")).toEqual("default.md");
         });
-        it("should return underConstruction article with extension for query string with no articleId arg", function () {
-            expect(main.getArticleFileName("?abc=xyz&def=tuv")).toEqual("underConstruction.md");
+        it("should return default article with extension for query string with no articleId arg", function () {
+            expect(main.getArticleFileName("?abc=xyz&def=tuv")).toEqual("default.md");
         });
         it("should treat articleId with no value just like missing articleId arg", function () {
-            expect(main.getArticleFileName("?articleId=")).toEqual("underConstruction.md");
+            expect(main.getArticleFileName("?articleId=")).toEqual("default.md");
         });
         it("should find articleId no matter where it is in query string", function () {
             expect(main.getArticleFileName("?articleId=abc.md")).toEqual("abc.md");
