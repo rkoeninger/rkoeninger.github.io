@@ -24,7 +24,7 @@ Frequently, a ViewModel class will get re-used to both build the page and submit
 
 Views in many languages are some kind of template language with it's own syntax, often specifically desinged to generate HTML. Despite looking like a template, it might be easier to think of them as functions. Functions that take an argument (or set of arguments) and return HTML. In many frameworks, they take a single argument, the view model. This also relates to the triviality of the model part of the pattern as the model is now just a conveinent way of passing data into the view.
 
-```nohighlight
+```
 @Model SomeModel;
 
 <div>
