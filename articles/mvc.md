@@ -24,6 +24,28 @@ Frequently, a ViewModel class will get re-used to both build the page and submit
 
 Views in many languages are some kind of template language with it's own syntax, often specifically desinged to generate HTML. Despite looking like a template, it might be easier to think of them as functions. Functions that take an argument (or set of arguments) and return HTML. In many frameworks, they take a single argument, the view model. This also relates to the triviality of the model part of the pattern as the model is now just a conveinent way of passing data into the view.
 
+```nohighlight
+@Model SomeModel;
+
+<div>
+    Hello, my name is @Model.FirstName @Model.LastName
+
+    I am @Model.Age.ToString("0.00") years old
+</div>
+```
+
+This could be written like:
+
+```csharp
+String SomeView(SomeModel model)
+{
+    return String.Format(
+        @"<div>Hello, my name is {0} {1}
+          I am {2:0.00} years old</div>",
+        model.FirstName, model.LastName, model.Age);
+}
+```
+
 Since the view is still a meaningful part of the design pattern, I wouldn't leave it out of the name.
 
 ### Controller
@@ -34,4 +56,24 @@ In the last couple of apps I've worked on, the Controller classes weren't *thing
 
 So I wouldn't think of the Controller as being the important bit so much as the Actions, which are (again) just methods.
 
-*TODO code sample*
+```csharp
+class SomeController : Controller
+{
+    ICustomerDao CustomerDao { get; set; }
+
+    ActionResult Summary(int customerId)
+    {
+        var customer = CustomerDao.ById(customerId);
+
+        ...
+    }
+}
+```
+
+The action methods serve the purpose of linking business logic to user input and the view. The business logic is under the action methods not in the sense that it's in the class with the action methods, but under the execution path that extends from the action method.
+
+### What's Left?
+
+Only two things are left from the MVC pattern - views that render the UI and actions that link the UI to the business logic.
+
+Boiled down to these two pieces, they simply represent a classic design tenet: separation of concerns.
