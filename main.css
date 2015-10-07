@@ -137,6 +137,9 @@ code.lang-fsharp {
 code.lang-vbnet {
     background-image: url('/logos/vbnet.svg');
 }
+code.lang-razor {
+    background-image: url('/logos/razor.svg');
+}
 code.lang-java {
     background-image: url('/logos/java.svg');
 }
