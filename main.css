@@ -176,6 +176,9 @@ code.lang-javascript {
 code.lang-css {
     background-image: url('/logos/css.svg');
 }
+code.lang-html {
+    background-image: url('/logos/html.svg');
+}
 
 /* desktop/laptop */
 @media only screen and (min-width: 1000px) {
