@@ -124,60 +124,127 @@ cite a {
     text-decoration: none;
 }
 code.hljs {
-    background-repeat: no-repeat;
-    background-position: top right;
-    background-size: 2em 2em;
+    position: relative;
 }
-code.lang-csharp {
+code.hljs::before {
+    position: absolute;
+    content: '';
+    top: 0.2em;
+    right: 0.2em;
+    width: 4em;
+    height: 80%;
+    background-size: 1.75em;
+    background-position: top right;
+    background-repeat: no-repeat;
+    opacity: 0.5;
+}
+code.hljs:hover::before {
+    background-image: none;
+    text-align: right;
+    padding-top: 0.2em;
+    padding-right: 0.2em;
+}
+code.lang-csharp::before {
     background-image: url('/logos/csharp.svg');
 }
-code.lang-fsharp {
+code.lang-csharp:hover::before {
+    content: 'C#';
+}
+code.lang-fsharp::before {
     background-image: url('/logos/fsharp.svg');
 }
-code.lang-vbnet {
+code.lang-fsharp:hover::before {
+    content: 'F#';
+}
+code.lang-vbnet::before {
     background-image: url('/logos/vbnet.svg');
 }
-code.lang-razor {
+code.lang-vbnet:hover::before {
+    content: 'VB.Net';
+}
+code.lang-razor::before {
     background-image: url('/logos/razor.svg');
 }
-code.lang-java {
+code.lang-razor:hover::before {
+    content: 'Razor';
+}
+code.lang-java::before {
     background-image: url('/logos/java.svg');
 }
-code.lang-python {
+code.lang-java:hover::before {
+    content: 'Java';
+}
+code.lang-python::before {
     background-image: url('/logos/python.svg');
 }
-code.lang-ruby {
+code.lang-python:hover::before {
+    content: 'Python';
+}
+code.lang-ruby::before {
     background-image: url('/logos/ruby.svg');
 }
-code.lang-haskell {
+code.lang-ruby:hover::before {
+    content: 'Ruby';
+}
+code.lang-haskell::before {
     background-image: url('/logos/haskell.svg');
 }
-code.lang-scala {
+code.lang-haskell:hover::before {
+    content: 'Haskell';
+}
+code.lang-scala::before {
     background-image: url('/logos/scala.svg');
 }
-code.lang-erlang {
+code.lang-scala:hover::before {
+    content: 'Scala';
+}
+code.lang-erlang::before {
     background-image: url('/logos/erlang.svg');
 }
-code.lang-clojure {
+code.lang-erlang:hover::before {
+    content: 'Erlang';
+}
+code.lang-clojure::before {
     background-image: url('/logos/clojure.svg');
 }
-code.lang-groovy {
+code.lang-clojure:hover::before {
+    content: 'Clojure';
+}
+code.lang-groovy::before {
     background-image: url('/logos/groovy.svg');
 }
-code.lang-lua {
+code.lang-groovy:hover::before {
+    content: 'Groovy';
+}
+code.lang-lua::before {
     background-image: url('/logos/lua.svg');
 }
-code.lang-php {
+code.lang-lua:hover::before {
+    content: 'Lua';
+}
+code.lang-php::before {
     background-image: url('/logos/php.svg');
 }
-code.lang-javascript {
+code.lang-php:hover::before {
+    content: 'PHP';
+}
+code.lang-javascript::before {
     background-image: url('/logos/javascript.svg');
 }
-code.lang-css {
+code.lang-javascript:hover::before {
+    content: 'Javascript';
+}
+code.lang-css::before {
     background-image: url('/logos/css.svg');
 }
-code.lang-html {
+code.lang-css:hover::before {
+    content: 'CSS';
+}
+code.lang-html::before {
     background-image: url('/logos/html.svg');
+}
+code.lang-html:hover::before {
+    content: 'HTML';
 }
 
 /* desktop/laptop */
