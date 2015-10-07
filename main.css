@@ -143,6 +143,7 @@ code.hljs:hover::before {
     text-align: right;
     padding-top: 0.2em;
     padding-right: 0.2em;
+    opacity: 1;
 }
 code.lang-csharp::before {
     background-image: url('/logos/csharp.svg');
