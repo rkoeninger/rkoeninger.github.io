@@ -49,18 +49,13 @@ define(["marked", "jquery", "mathjax", "hljs"], function (marked, $, ignore, hlj
             return false;
         }
 
+        function appendMdExtension(articleId) {
+            return endsWith(articleId, ".md") ? articleId : articleId + ".md";
+        }
+
         function getArticleFileName(queryString) {
             var articleId = getQsValue(queryString, "articleId");
-
-            if (!articleId) {
-                articleId = defaultArticle;
-            }
-
-            if (!endsWith(articleId, ".md")) {
-                articleId += ".md";
-            }
-
-            return articleId;
+            return appendMdExtension(articleId || defaultArticle);
         }
 
         function getArticleUrl(articleFile) {
@@ -71,14 +66,32 @@ define(["marked", "jquery", "mathjax", "hljs"], function (marked, $, ignore, hlj
             return commitsUrlBase + articleUrl;
         }
 
-        function init() {
-            var queryString, articleFile, articleUrl, articleDiv;
+        function getPageTitle(articleMarkdown) {
+            // find (#) elements in markdown
+            var titleMatches = articleMarkdown.match(/\x23\x20(.*)\x0D?\x0A/);
 
-            queryString = window.location.search;
-            articleDiv = $("#main-article");
+            if (titleMatches) {
+                // strip markdown formatting from (#) element and make it the title
+                return $(marked(titleMatches[1]))[0].textContent;
+            }
+            
+            return "Fear of a Blue Screen";
+        }
 
-            articleFile = getArticleFileName(queryString);
-            articleUrl = getArticleUrl(articleFile);
+        function parseArticleId(url) {
+            var matches = url.match(/(\x3F|\x26)articleId\x3D[^\x26]+/);
+
+            if (matches) {
+                return matches[0].substring(matches[0].indexOf("=") + 1);
+            }
+
+            return null;
+        }
+
+        function loadArticle(articleFile) {
+            var articleUrl = getArticleUrl(articleFile),
+                articleDiv = $("#main-article");
+
             $("#source-link").attr("href", articleUrl);
             $("#history-link").attr("href", historyUrlBase + articleFile);
 
@@ -87,41 +100,44 @@ define(["marked", "jquery", "mathjax", "hljs"], function (marked, $, ignore, hlj
                 dataType: "text",
                 url: articleUrl,
                 success: function (articleMarkdown) {
-                    var titleMatches;
-
                     articleDiv.html(marked(articleMarkdown));
 
                     if (contains(disqusExcludedArticles, articleUrl)) {
                         $("#disqus_thread").hide();
                     }
 
-                    // find (#) elements in markdown
-                    titleMatches = articleMarkdown.match(/\x23\x20(.*)\x0D?\x0A/);
+                    document.title = getPageTitle(articleMarkdown);
 
-                    if (titleMatches) {
-                        // strip markdown formatting from (#) element and make it the title
-                        document.title = $(marked(titleMatches[1]))[0].textContent;
-                    }
+                    // Navigate within the site using PushState
+                    $("a[href*='articleId=']").unbind().on("click", function (e) {
+                        if (e.which !== 1) {
+                            return true;
+                        }
 
+                        var url = $(this).attr("href"),
+                            articleId = parseArticleId(url);
+                        history.pushState({articleId: articleId}, "", url);
+                        loadArticle(appendMdExtension(articleId));
+                        return false;
+                    });
+
+                    window.onpopstate = function (event) {
+                        loadArticle(appendMdExtension(event.state.articleId));
+                    };
+
+                    hljs.initHighlighting.called = false;
                     hljs.initHighlighting();
+
+                    MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
                 },
                 error: function (ignore, textStatus, errorThrown) {
                     articleDiv.html("failed to load article content<br />" + textStatus + "<br />" + errorThrown);
                 }
             });
+        }
 
-            $.getJSON(
-                getCommitHistoryUrl(articleUrl),
-                function (data) {
-                    var author, date;
-
-                    if (data.length > 0) {
-                        author = data[0].commit.author.name;
-                        date = new Date(data[0].commit.author.date).toLocaleDateString();
-                        $("#last-modified").text("Last modified by " + author + " on " + date);
-                    }
-                }
-            );
+        function init() {
+            loadArticle(getArticleFileName(window.location.search));
         }
 
         return {
@@ -131,6 +147,7 @@ define(["marked", "jquery", "mathjax", "hljs"], function (marked, $, ignore, hlj
             getArticleFileName: getArticleFileName,
             getArticleUrl: getArticleUrl,
             getCommitHistoryUrl: getCommitHistoryUrl,
+            getPageTitle: getPageTitle,
             init: init
         };
     }());

@@ -15,8 +15,10 @@ require.config({
         "mathjax": {
             exports: "MathJax",
             init: function () {
-                MathJax.Hub.Config({tex2jax: {inlineMath: [["$", "$"]]}});
-                MathJax.Hub.Startup.onload();
+                MathJax.Hub.Config({
+                    tex2jax: {inlineMath: [["$", "$"]]},
+                    skipStartupTypeset: true
+                });
                 return MathJax;
             }
         },
