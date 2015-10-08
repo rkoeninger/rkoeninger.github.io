@@ -1,14 +1,15 @@
 'use strict';
 
 /*jslint browser: true, regexp: true, indent: 4*/
-/*global define, hljs*/
+/*global define, MathJax*/
 
 define(["marked", "jquery", "mathjax", "hljs"], function (marked, $, ignore, hljs) {
     var main = (function () {
         var defaultArticle = "default",
-            disqusExcludedArticles = ["/default.md"],
+            disqusExcludedArticles = ["/default.md", "/status.md"],
             historyUrlBase = "//github.com/rkoeninger/rkoeninger.github.io/commits/master/articles/",
-            commitsUrlBase = "//api.github.com/repos/rkoeninger/rkoeninger.github.io/commits?path=";
+            commitsUrlBase = "//api.github.com/repos/rkoeninger/rkoeninger.github.io/commits?path=",
+            disqusScriptUrl = "//rkoeningergithubio.disqus.com/embed.js";
 
         function getQsValue(queryString, key) {
             var qsParts, argAndVal, i;
@@ -74,7 +75,7 @@ define(["marked", "jquery", "mathjax", "hljs"], function (marked, $, ignore, hlj
                 // strip markdown formatting from (#) element and make it the title
                 return $(marked(titleMatches[1]))[0].textContent;
             }
-            
+
             return "Fear of a Blue Screen";
         }
 
@@ -95,16 +96,19 @@ define(["marked", "jquery", "mathjax", "hljs"], function (marked, $, ignore, hlj
             $("#source-link").attr("href", articleUrl);
             $("#history-link").attr("href", historyUrlBase + articleFile);
 
+            if (contains(disqusExcludedArticles, articleUrl)) {
+                $("#disqus_thread, #disqus_script").remove();
+            } else {
+                articleDiv.after($("<div />", {id: "disqus_thread", class: "disqus_thread"}));
+                articleDiv.after($("<script />", {id: "disqus_script", src: disqusScriptUrl}));
+            }
+
             $.ajax({
                 type: "GET",
                 dataType: "text",
                 url: articleUrl,
                 success: function (articleMarkdown) {
                     articleDiv.html(marked(articleMarkdown));
-
-                    if (contains(disqusExcludedArticles, articleUrl)) {
-                        $("#disqus_thread").hide();
-                    }
 
                     document.title = getPageTitle(articleMarkdown);
 
