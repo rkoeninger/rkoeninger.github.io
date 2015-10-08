@@ -134,6 +134,19 @@ define(["marked", "jquery", "mathjax", "hljs"], function (marked, $, ignore, hlj
                     articleDiv.html("failed to load article content<br />" + textStatus + "<br />" + errorThrown);
                 }
             });
+
+            $.getJSON(
+                getCommitHistoryUrl(articleUrl),
+                function (data) {
+                    var author, date;
+
+                    if (data.length > 0) {
+                        author = data[0].commit.author.name;
+                        date = new Date(data[0].commit.author.date).toLocaleDateString();
+                        $("#last-modified").text("Last modified by " + author + " on " + date);
+                    }
+                }
+            );
         }
 
         function init() {
