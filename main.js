@@ -9,7 +9,9 @@ define(["marked", "jquery", "mathjax", "hljs"], function (marked, $, ignore, hlj
             disqusExcludedArticles = ["/default.md", "/status.md"],
             historyUrlBase = "//github.com/rkoeninger/rkoeninger.github.io/commits/master/articles/",
             commitsUrlBase = "//api.github.com/repos/rkoeninger/rkoeninger.github.io/commits?path=",
-            disqusScriptUrl = "//rkoeningergithubio.disqus.com/embed.js";
+            disqusScriptUrl = "//rkoeningergithubio.disqus.com/embed.js",
+            rawMarkdowns = {},
+            modifiedDates = {};
 
         function getQsValue(queryString, key) {
             var qsParts, argAndVal, i;
@@ -89,9 +91,44 @@ define(["marked", "jquery", "mathjax", "hljs"], function (marked, $, ignore, hlj
             return null;
         }
 
+        function popuplateArticle(articleDiv, articleMarkdown) {
+            articleDiv.html(marked(articleMarkdown));
+            document.title = getPageTitle(articleMarkdown);
+
+            // Navigate within the site using PushState
+            $("a[href*='articleId=']").unbind().on("click", function (e) {
+                if (e.which !== 1) {
+                    return true;
+                }
+
+                var url = $(this).attr("href"),
+                    articleId = parseArticleId(url);
+                history.pushState({articleId: articleId}, "", url);
+                loadArticle(appendMdExtension(articleId));
+                return false;
+            });
+
+            window.onpopstate = function (event) {
+                loadArticle(appendMdExtension(event.state.articleId));
+            };
+
+            hljs.initHighlighting.called = false;
+            hljs.initHighlighting();
+
+            MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+
+            // TODO scroll to top
+        }
+
+        function populateLastModifiedLabel(author, date) {
+            $("#last-modified").text("Last modified by " + author + " on " + date);
+        }
+
         function loadArticle(articleFile) {
             var articleUrl = getArticleUrl(articleFile),
-                articleDiv = $("#main-article");
+                articleDiv = $("#main-article"),
+                modifiedDate = modifiedDates[articleFile],
+                rawMarkdown = rawMarkdowns[articleFile];
 
             $("#source-link").attr("href", articleUrl);
             $("#history-link").attr("href", historyUrlBase + articleFile);
@@ -103,54 +140,40 @@ define(["marked", "jquery", "mathjax", "hljs"], function (marked, $, ignore, hlj
                 articleDiv.after($("<script />", {id: "disqus_script", src: disqusScriptUrl}));
             }
 
-            $.ajax({
-                type: "GET",
-                dataType: "text",
-                url: articleUrl,
-                success: function (articleMarkdown) {
-                    articleDiv.html(marked(articleMarkdown));
-
-                    document.title = getPageTitle(articleMarkdown);
-
-                    // Navigate within the site using PushState
-                    $("a[href*='articleId=']").unbind().on("click", function (e) {
-                        if (e.which !== 1) {
-                            return true;
-                        }
-
-                        var url = $(this).attr("href"),
-                            articleId = parseArticleId(url);
-                        history.pushState({articleId: articleId}, "", url);
-                        loadArticle(appendMdExtension(articleId));
-                        return false;
-                    });
-
-                    window.onpopstate = function (event) {
-                        loadArticle(appendMdExtension(event.state.articleId));
-                    };
-
-                    hljs.initHighlighting.called = false;
-                    hljs.initHighlighting();
-
-                    MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
-                },
-                error: function (ignore, textStatus, errorThrown) {
-                    articleDiv.html("failed to load article content<br />" + textStatus + "<br />" + errorThrown);
-                }
-            });
-
-            $.getJSON(
-                getCommitHistoryUrl(articleUrl),
-                function (data) {
-                    var author, date;
-
-                    if (data.length > 0) {
-                        author = data[0].commit.author.name;
-                        date = new Date(data[0].commit.author.date).toLocaleDateString();
-                        $("#last-modified").text("Last modified by " + author + " on " + date);
+            if (rawMarkdown) {
+                popuplateArticle(articleDiv, rawMarkdown);
+            } else {
+                $.ajax({
+                    type: "GET",
+                    dataType: "text",
+                    url: articleUrl,
+                    success: function (articleMarkdown) {
+                        rawMarkdowns[articleFile] = articleMarkdown;
+                        popuplateArticle(articleDiv, articleMarkdown);
+                    },
+                    error: function (ignore, textStatus, errorThrown) {
+                        articleDiv.html("failed to load article content<br />" + textStatus + "<br />" + errorThrown);
                     }
-                }
-            );
+                });
+            }
+
+            if (modifiedDate) {
+                populateLastModifiedLabel(modifiedDate.author, modifiedDate.date);
+            } else {
+                $.getJSON(
+                    getCommitHistoryUrl(articleUrl),
+                    function (data) {
+                        var author, date;
+
+                        if (data.length > 0) {
+                            author = data[0].commit.author.name;
+                            date = new Date(data[0].commit.author.date).toLocaleDateString();
+                            modifiedDates[articleFile] = { author: author, date: date };
+                            populateLastModifiedLabel(author, date);
+                        }
+                    }
+                );
+            }
         }
 
         function init() {
