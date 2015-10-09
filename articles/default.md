@@ -19,6 +19,7 @@
   * [Suits and Faces](/index.html?articleId=suitsAndFaces)
   * [Hardcoding](/index.html?articleId=hardcoding)
   * [Who Cares About Monads?](/index.html?articleId=patterns)
+  * [I Am a VB God!](/index.html?articleId=vbgod)
   * [Software List](/index.html?articleId=software)
   * [GitHub Repositories](http://github.com/rkoeninger?tab=repositories)
   * [Project Statuses](/index.html?articleId=status)
