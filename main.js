@@ -135,7 +135,7 @@ define(["marked", "jquery", "mathjax", "hljs"], function (marked, $, ignore, hlj
 
             if (contains(disqusExcludedArticles, articleUrl)) {
                 $("#disqus_thread, #disqus_script").remove();
-            } else {
+            } else if (window.innerWidth < 1000) {
                 articleDiv.after($("<div />", {id: "disqus_thread", class: "disqus_thread"}));
                 articleDiv.after($("<script />", {id: "disqus_script", src: disqusScriptUrl}));
             }

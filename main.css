@@ -285,9 +285,6 @@ code.lang-html:hover::before {
         margin: 0.5em;
         font-size: 20px;
     }
-    .disqus_thread {
-        display: none;
-    }
     pre code {
         font-size: 1.6em;
     }
