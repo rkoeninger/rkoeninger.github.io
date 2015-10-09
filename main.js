@@ -136,8 +136,8 @@ define(["marked", "jquery", "mathjax", "hljs"], function (marked, $, ignore, hlj
             if (contains(disqusExcludedArticles, articleUrl)) {
                 $("#disqus_thread, #disqus_script").remove();
             } else if (window.matchMedia("screen and (min-width: 1000px)").matches) {
-                articleDiv.after($("<div />", {id: "disqus_thread", class: "disqus_thread"}));
-                articleDiv.after($("<script />", {id: "disqus_script", src: disqusScriptUrl}));
+                $("main").append($("<div />", {id: "disqus_thread", class: "disqus_thread"}));
+                $("main").append($("<script />", {id: "disqus_script", src: disqusScriptUrl}));
             }
 
             if (rawMarkdown) {
