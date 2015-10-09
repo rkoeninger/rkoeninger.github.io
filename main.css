@@ -282,7 +282,7 @@ code.lang-html:hover::before {
         max-width: default;
     }
     article {
-        margin: 0.5em;
+        margin: 0.25em;
         font-size: 20px;
     }
     pre code {
