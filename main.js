@@ -82,13 +82,9 @@ define(["marked", "jquery", "mathjax", "hljs"], function (marked, $, ignore, hlj
         }
 
         function parseArticleId(url) {
-            var matches = url.match(/(\x3F|\x26)articleId\x3D[^\x26]+/);
-
-            if (matches) {
-                return matches[0].substring(matches[0].indexOf("=") + 1);
-            }
-
-            return null;
+            var parser = document.createElement("a");
+            parser.href = url;
+            return getArticleFileName(parser.search);
         }
 
         function popuplateArticle(articleDiv, articleMarkdown) {
@@ -108,9 +104,10 @@ define(["marked", "jquery", "mathjax", "hljs"], function (marked, $, ignore, hlj
                 return false;
             });
 
-            window.onpopstate = function (event) {
-                loadArticle(appendMdExtension(event.state.articleId));
-            };
+            $(window).on("popstate", function (event) {
+                var articleId = event.state ? event.state.articleId : defaultArticle;
+                loadArticle(appendMdExtension(articleId));
+            });
 
             hljs.initHighlighting.called = false;
             hljs.initHighlighting();
