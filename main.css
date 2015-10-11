@@ -88,12 +88,14 @@ dl dt {
 dl dd {
     font-style: oblique;
 }
+a {
+    text-decoration: none;
+}
 nav {
     display: flex;
 }
 nav a {
     color: black;
-    text-decoration: none;
     text-align: center;
     font-size: 2em;
 }
@@ -119,9 +121,6 @@ cite {
     border: 0.2em solid #ccccff;
     padding-left: 0.5em;
     padding-right: 0.5em;
-}
-cite a {
-    text-decoration: none;
 }
 code.hljs {
     position: relative;
@@ -263,6 +262,16 @@ code.lang-html:hover::before {
     code {
         font-size: 14px;
     }
+    img.inset-right {
+        width: 3em;
+        float: right;
+        margin-left: 1em;
+    }
+    img.inset-left {
+        width: 3em;
+        float: left;
+        margin-right: 1em;
+    }
 }
 
 /* phone/tablet */
@@ -312,5 +321,12 @@ code.lang-html:hover::before {
     cite {
         font-size: 2em;
         right: -0.5em;
+    }
+    img.inset-right, img.inset-left {
+        height: 6em;
+        max-width: 80%;
+        display: block;
+        margin-top: 1em;
+        margin-bottom: 1em;
     }
 }
