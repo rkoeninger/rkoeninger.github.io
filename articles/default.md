@@ -2,7 +2,7 @@
      class="title-logo"
      alt="Fear of a Blue Screen">
 
-  * [Development of this site](/index.html?articleId=thisSite)
+  * [About This Site](/index.html?articleId=thisSite)
   * [Syntax Primer](/index.html?articleId=primer)
   * [Doing the Impossible](/index.html?articleId=impossible)
   * [All is One](/index.html?articleId=one)
