@@ -5,7 +5,7 @@
 
 define(["marked", "jquery", "mathjax", "hljs"], function (marked, $, ignore, hljs) {
     var main = (function () {
-        var defaultArticle = "default",
+        var defaultArticle = "default.md",
             disqusExcludedArticles = ["/default.md", "/status.md"],
             historyUrlBase = "//github.com/rkoeninger/rkoeninger.github.io/commits/master/articles/",
             commitsUrlBase = "//api.github.com/repos/rkoeninger/rkoeninger.github.io/commits?path=",
@@ -52,13 +52,8 @@ define(["marked", "jquery", "mathjax", "hljs"], function (marked, $, ignore, hlj
             return false;
         }
 
-        function appendMdExtension(articleId) {
-            return endsWith(articleId, ".md") ? articleId : articleId + ".md";
-        }
-
         function getArticleFileName(queryString) {
-            var articleId = getQsValue(queryString, "articleId");
-            return appendMdExtension(articleId || defaultArticle);
+            return getQsValue(queryString, "articleId") || defaultArticle;
         }
 
         function getArticleUrl(articleFile) {
@@ -100,13 +95,12 @@ define(["marked", "jquery", "mathjax", "hljs"], function (marked, $, ignore, hlj
                 var url = $(this).attr("href"),
                     articleId = parseArticleId(url);
                 history.pushState({articleId: articleId}, "", url);
-                loadArticle(appendMdExtension(articleId));
+                loadArticle(articleId);
                 return false;
             });
 
             $(window).on("popstate", function (event) {
-                var articleId = event.state ? event.state.articleId : defaultArticle;
-                loadArticle(appendMdExtension(articleId));
+                loadArticle(event.state ? event.state.articleId : defaultArticle);
             });
 
             hljs.initHighlighting.called = false;
