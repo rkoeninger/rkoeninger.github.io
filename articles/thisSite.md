@@ -117,6 +117,7 @@ Font Awesome is used for the icons in the navigation bar. It's fairly easy to us
 
 #### MathJax
 
+<img src="/logos/mathJax.svg" class="inset-right" />
 MathJax makes for beautifully typeset mathematical formulas and expressions. My article on [the golden ratio][golden] makes extensive use of this library.
 
 There was an issue for a while with using the built-in render-on-load ability where the MathJax would render before the article on occassion. This was a classic race condition. The MathJax render is now not triggered until the article content is loaded and rendered.
