@@ -63,6 +63,16 @@ img {
     margin-left: auto;
     margin-right: auto;
 }
+img.inset-right {
+    width: 3em;
+    float: right;
+    margin-left: 1em;
+}
+img.inset-left {
+    width: 3em;
+    float: left;
+    margin-right: 1em;
+}
 pre, code {
     background-color: #f8f8f8;
 }
@@ -264,13 +274,9 @@ code.lang-html:hover::before {
     }
     img.inset-right {
         width: 3em;
-        float: right;
-        margin-left: 1em;
     }
     img.inset-left {
         width: 3em;
-        float: left;
-        margin-right: 1em;
     }
 }
 
@@ -322,11 +328,10 @@ code.lang-html:hover::before {
         font-size: 2em;
         right: -0.5em;
     }
-    img.inset-right, img.inset-left {
-        height: 6em;
-        max-width: 80%;
-        display: block;
-        margin-top: 1em;
-        margin-bottom: 1em;
+    img.inset-right {
+        width: 6em;
+    }
+    img.inset-left {
+        width: 6em;
     }
 }
