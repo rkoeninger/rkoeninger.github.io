@@ -67,11 +67,13 @@ img.inset-right {
     width: 3em;
     float: right;
     margin-left: 1em;
+    margin-bottom: 1em;
 }
 img.inset-left {
     width: 3em;
     float: left;
     margin-right: 1em;
+    margin-bottom: 1em;
 }
 pre, code {
     background-color: #f8f8f8;
@@ -259,6 +261,9 @@ code.lang-html:hover::before {
 
 /* desktop/laptop */
 @media only screen and (min-width: 1000px) {
+    .only-mobile {
+        display: none;
+    }
     nav {
         flex-direction: column;
         margin-top: 1em;
@@ -282,6 +287,9 @@ code.lang-html:hover::before {
 
 /* phone/tablet */
 @media only screen and (max-width : 999px) {
+    .no-mobile {
+        display: none;
+    }
     nav {
         flex-direction: row;
         align-items: center;
