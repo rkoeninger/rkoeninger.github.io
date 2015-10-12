@@ -105,7 +105,8 @@ Distinguishing the two types of quotes could be messy, because of the innability
 
 #### JQuery
 
-Pretty standard use of JQuery.
+<img src="/logos/jquery_icon.svg" class="inset-right" />
+Pretty standard use of JQuery. Selecting and modifying elements, attaching event listeners, creating elements, etc.
 
 #### Font Awesome
 
