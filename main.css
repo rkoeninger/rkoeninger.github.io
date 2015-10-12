@@ -149,114 +149,56 @@ code.hljs::before {
     background-repeat: no-repeat;
     opacity: 0.5;
 }
-code.hljs:hover::before {
-    background-image: none;
-    text-align: right;
-    padding-top: 0.2em;
-    padding-right: 0.2em;
-    opacity: 1;
-}
 code.lang-csharp::before {
     background-image: url('/logos/csharp.svg');
-}
-code.lang-csharp:hover::before {
-    content: 'C#';
 }
 code.lang-fsharp::before {
     background-image: url('/logos/fsharp.svg');
 }
-code.lang-fsharp:hover::before {
-    content: 'F#';
-}
 code.lang-vbnet::before {
     background-image: url('/logos/vbnet.svg');
-}
-code.lang-vbnet:hover::before {
-    content: 'VB.Net';
 }
 code.lang-razor::before {
     background-image: url('/logos/razor.svg');
 }
-code.lang-razor:hover::before {
-    content: 'Razor';
-}
 code.lang-java::before {
     background-image: url('/logos/java.svg');
-}
-code.lang-java:hover::before {
-    content: 'Java';
 }
 code.lang-python::before {
     background-image: url('/logos/python.svg');
 }
-code.lang-python:hover::before {
-    content: 'Python';
-}
 code.lang-ruby::before {
     background-image: url('/logos/ruby.svg');
-}
-code.lang-ruby:hover::before {
-    content: 'Ruby';
 }
 code.lang-haskell::before {
     background-image: url('/logos/haskell.svg');
 }
-code.lang-haskell:hover::before {
-    content: 'Haskell';
-}
 code.lang-scala::before {
     background-image: url('/logos/scala.svg');
-}
-code.lang-scala:hover::before {
-    content: 'Scala';
 }
 code.lang-erlang::before {
     background-image: url('/logos/erlang.svg');
 }
-code.lang-erlang:hover::before {
-    content: 'Erlang';
-}
 code.lang-clojure::before {
     background-image: url('/logos/clojure.svg');
-}
-code.lang-clojure:hover::before {
-    content: 'Clojure';
 }
 code.lang-groovy::before {
     background-image: url('/logos/groovy.svg');
 }
-code.lang-groovy:hover::before {
-    content: 'Groovy';
-}
 code.lang-lua::before {
     background-image: url('/logos/lua.svg');
-}
-code.lang-lua:hover::before {
-    content: 'Lua';
 }
 code.lang-php::before {
     background-image: url('/logos/php.svg');
 }
-code.lang-php:hover::before {
-    content: 'PHP';
-}
 code.lang-javascript::before {
     background-image: url('/logos/javascript.svg');
-}
-code.lang-javascript:hover::before {
-    content: 'Javascript';
 }
 code.lang-css::before {
     background-image: url('/logos/css.svg');
 }
-code.lang-css:hover::before {
-    content: 'CSS';
-}
 code.lang-html::before {
     background-image: url('/logos/html.svg');
-}
-code.lang-html:hover::before {
-    content: 'HTML';
 }
 
 /* desktop/laptop */
@@ -276,6 +218,64 @@ code.lang-html:hover::before {
     }
     code {
         font-size: 14px;
+    }
+    code.hljs:hover::before {
+        background-image: none;
+        text-align: right;
+        padding-top: 0.2em;
+        padding-right: 0.2em;
+        opacity: 1;
+    }
+    code.lang-csharp:hover::before {
+        content: 'C#';
+    }
+    code.lang-fsharp:hover::before {
+        content: 'F#';
+    }
+    code.lang-vbnet:hover::before {
+        content: 'VB.Net';
+    }
+    code.lang-razor:hover::before {
+        content: 'Razor';
+    }
+    code.lang-java:hover::before {
+        content: 'Java';
+    }
+    code.lang-python:hover::before {
+        content: 'Python';
+    }
+    code.lang-ruby:hover::before {
+        content: 'Ruby';
+    }
+    code.lang-haskell:hover::before {
+        content: 'Haskell';
+    }
+    code.lang-scala:hover::before {
+        content: 'Scala';
+    }
+    code.lang-erlang:hover::before {
+        content: 'Erlang';
+    }
+    code.lang-clojure:hover::before {
+        content: 'Clojure';
+    }
+    code.lang-groovy:hover::before {
+        content: 'Groovy';
+    }
+    code.lang-lua:hover::before {
+        content: 'Lua';
+    }
+    code.lang-php:hover::before {
+        content: 'PHP';
+    }
+    code.lang-javascript:hover::before {
+        content: 'Javascript';
+    }
+    code.lang-css:hover::before {
+        content: 'CSS';
+    }
+    code.lang-html:hover::before {
+        content: 'HTML';
     }
     img.inset-right {
         width: 3em;
