@@ -48,9 +48,5 @@ define(["main"], function (main) {
             expect(main.getArticleFileName("?articleId=abc.md&def=tuv")).toEqual("abc.md");
             expect(main.getArticleFileName("?abc=xyz&articleId=abc.md&def=tuv")).toEqual("abc.md");
         });
-        it("should add .md file extension whether it is present in the query string or not", function () {
-            expect(main.getArticleFileName("?articleId=abc.md")).toEqual("abc.md");
-            expect(main.getArticleFileName("?articleId=abc")).toEqual("abc.md");
-        });
     });
 });
