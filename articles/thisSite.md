@@ -165,7 +165,7 @@ All javascript libraries are loaded from [cdnjs][cdnjs]. None are hosted out of 
 #### Jasmine
 
 <img src="/logos/jasmine.svg" class="inset-right" />
-The spec page can be viewed any time at [http://rkoeninger.github.io/spec.html][specpage]
+The spec page can be viewed any time at [/spec.html][specpage]
 
 #### PhantomJS
 
