@@ -75,6 +75,16 @@ img.inset-left {
     margin-right: 1em;
     margin-bottom: 1em;
 }
+img.heading {
+    width: 10em;
+    float: left;
+    margin-right: 2em;
+    margin-bottom: 1em;
+}
+img.detail {
+    height: 2em;
+    margin: 0.5em;
+}
 pre, code {
     background-color: #f8f8f8;
 }
@@ -277,12 +287,6 @@ code.lang-html::before {
     code.lang-html:hover::before {
         content: 'HTML';
     }
-    img.inset-right {
-        width: 3em;
-    }
-    img.inset-left {
-        width: 3em;
-    }
 }
 
 /* phone/tablet */
@@ -307,6 +311,10 @@ code.lang-html::before {
     article {
         margin: 0.25em;
         font-size: 20px;
+    }
+    h1, h2, h3, h4, h5, h6 {
+        text-align: center;
+        margin: 0 auto;
     }
     pre code {
         font-size: 1.6em;
@@ -335,6 +343,10 @@ code.lang-html::before {
     cite {
         font-size: 2em;
         right: -0.5em;
+    }
+    .icon-set {
+        text-align: center;
+        margin: 0 auto;
     }
     img.inset-right {
         width: 6em;
