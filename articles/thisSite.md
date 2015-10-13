@@ -153,7 +153,7 @@ When you transform CSS text, it can severely warp the bounding box. This caused 
 
 #### Require.js
 
-<img src="/logos/requirejs.svg" class="inset-right" />
+<img src="/logos/requirejs_icon.svg" class="inset-right" />
 Javascript modules are loaded using AMD via Require.js. Different configurations are used for testing and the live site. Shims were needed for MathJax and Highlight.js.
 
 #### cdnjs
