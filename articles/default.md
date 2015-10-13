@@ -3,6 +3,7 @@
      alt="Fear of a Blue Screen">
 
   * [About This Site](/index.html?articleId=thisSite.md)
+  * [About Me](/index.html?articleId=me.md)
   * [Syntax Primer](/index.html?articleId=primer.md)
   * [Doing the Impossible](/index.html?articleId=impossible.md)
   * [All is One](/index.html?articleId=one.md)
