@@ -110,6 +110,7 @@ define(["marked", "jquery", "mathjax", "hljs"], function (marked, $, ignore, hlj
                             articleId = parseArticleId(url);
                         history.pushState({articleId: articleId}, "", url);
                         loadArticle(articleId);
+                        $("html, body").animate({ scrollTop: 0 }, "fast");
                         return false;
                     });
                 }
