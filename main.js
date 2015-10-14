@@ -99,16 +99,20 @@ define(["marked", "jquery", "mathjax", "hljs"], function (marked, $, ignore, hlj
             document.title = getPageTitle(articleMarkdown);
 
             // Navigate within the site using PushState
-            $("a[href*='articleId=']").unbind().on("click", function (e) {
-                if (e.which !== 1) {
-                    return true;
-                }
+            $("a").each(function () {
+                if (this.host === window.location.host) {
+                    $(this).click(function (e) {
+                        if (e.which !== 1) {
+                            return true;
+                        }
 
-                var url = $(this).attr("href"),
-                    articleId = parseArticleId(url);
-                history.pushState({articleId: articleId}, "", url);
-                loadArticle(articleId);
-                return false;
+                        var url = $(this).attr("href"),
+                            articleId = parseArticleId(url);
+                        history.pushState({articleId: articleId}, "", url);
+                        loadArticle(articleId);
+                        return false;
+                    });
+                }
             });
 
             hljs.initHighlighting.called = false;
