@@ -23,7 +23,12 @@
   * [I Am a VB God!](/?vbgod)
   * [Software List](/?software)
   * [Project Statuses](/?status)
-  * [GitHub Repositories](http://github.com/rkoeninger?tab=repositories)
-  * [LinkedIn](http://www.linkedin.com/in/robertkoeninger)
   * [oDesk](http://www.odesk.com/users/~015abc115b8c8a1001)
   * [Elance](http://www.elance.com/s/robertkoeninger)
+
+<div class="icon-set">
+    <a href="//github.com/rkoeninger"><img src="/logos/github.svg" class="detail" /></a>
+    <a href="//www.linkedin.com/in/robertkoeninger"><img src="/logos/linkedin_icon.svg" class="detail" /></a>
+</div>
+
+<div style="clear: both" />
