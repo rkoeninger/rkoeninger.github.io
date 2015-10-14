@@ -37,6 +37,12 @@ define(["marked", "jquery", "mathjax", "hljs"], function (marked, $, ignore, hlj
             return "";
         }
 
+        function wholeQs(s) {
+            return s.length < 2 || s[0] !== "?" || s.indexOf("&") !== -1
+                ? null
+                : s.substring(1);
+        }
+
         function endsWith(str, suffix) {
             return str.indexOf(suffix, str.length - suffix.length) !== -1;
         }
@@ -52,8 +58,14 @@ define(["marked", "jquery", "mathjax", "hljs"], function (marked, $, ignore, hlj
             return false;
         }
 
+        function defaultExtension(articleName) {
+            return articleName.indexOf(".") > 0 ? articleName : articleName + ".md";
+        }
+
         function getArticleFileName(queryString) {
-            return getQsValue(queryString, "articleId") || defaultArticle;
+            return defaultExtension(getQsValue(queryString, "articleId")
+                || wholeQs(queryString)
+                || defaultArticle);
         }
 
         function getArticleUrl(articleFile) {
@@ -79,7 +91,7 @@ define(["marked", "jquery", "mathjax", "hljs"], function (marked, $, ignore, hlj
         function parseArticleId(url) {
             var parser = document.createElement("a");
             parser.href = url;
-            return getArticleFileName(parser.search);
+            return defaultExtension(getArticleFileName(parser.search));
         }
 
         function popuplateArticle(articleDiv, articleMarkdown) {
