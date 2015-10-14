@@ -99,10 +99,6 @@ define(["marked", "jquery", "mathjax", "hljs"], function (marked, $, ignore, hlj
                 return false;
             });
 
-            $(window).on("popstate", function (event) {
-                loadArticle(event.state ? event.state.articleId : defaultArticle);
-            });
-
             hljs.initHighlighting.called = false;
             hljs.initHighlighting();
 
@@ -168,6 +164,13 @@ define(["marked", "jquery", "mathjax", "hljs"], function (marked, $, ignore, hlj
         }
 
         function init() {
+            $(window).on("popstate", function (event) {
+                var articleId = event.originalEvent.state
+                    ? event.originalEvent.state.articleId
+                    : defaultArticle;
+                loadArticle(articleId);
+            });
+
             loadArticle(getArticleFileName(window.location.search));
         }
 
