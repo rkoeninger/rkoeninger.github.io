@@ -119,8 +119,6 @@ define(["marked", "jquery", "mathjax", "hljs"], function (marked, $, ignore, hlj
             hljs.initHighlighting();
 
             MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
-
-            $("html, body").animate({ scrollTop: 0 }, "fast");
         }
 
         function populateLastModifiedLabel(author, date) {
