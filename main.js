@@ -38,7 +38,7 @@ define(["marked", "jquery", "mathjax", "hljs"], function (marked, $, ignore, hlj
         }
 
         function wholeQs(s) {
-            return s.length < 2 || s[0] !== "?" || s.indexOf("&") !== -1
+            return s.length < 2 || s[0] !== "?" || s.indexOf("&") !== -1 || s.indexOf("=") !== -1
                 ? null
                 : s.substring(1);
         }
