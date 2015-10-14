@@ -196,4 +196,4 @@ A Disqus comment thread is loaded for articles not in the exclude list (the home
 [arvo]: //www.google.com/fonts/specimen/Arvo "Google Fonts: Arvo"
 [architectsDaugther]: //www.google.com/fonts/specimen/Architects+Daughter "Google Fonts: Architect's Daughter"
 [rockSalt]: //www.google.com/fonts/specimen/Rock+Salt "Google Fonts: Rock Salt"
-[golden]: /index.html?articleId=golden.md "The Golden Ratio"
+[golden]: /?golden "The Golden Ratio"

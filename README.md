@@ -4,4 +4,4 @@
 
 Site can be viewed [here](//rkoeninger.github.io).
 
-Write-up on content and implementation available [here](//rkoeninger.github.io?articleId=thisSite.md).
+Write-up on content and implementation available [here](//rkoeninger.github.io/?thisSite).

@@ -96,7 +96,7 @@ Visual Studio has been my main IDE these past few years as most of my work has b
 Another consequence of working in .Net for a while is that C# has become my main working language. I was resistant to some of the details at first coming from Java, but I have come to prefer it.
 
 <img src="/logos/vbnet.svg" class="inset-left" />
-I didn't think I knew much about VB until I was told that [I am a VB god](/index.html?articleId=vbgod.md). I'm not sure I'd want to work in it, but I could manage. Don't even ask about VB Classic.
+I didn't think I knew much about VB until I was told that [I am a VB god][vbgod]. I'm not sure I'd want to work in it, but I could manage. Don't even ask about VB Classic.
 
 <img src="/logos/java.svg" class="inset-left" />
 Java was the first language I really got into. I started learning when it was on version 1.4.2 back in high school. Even though I haven't been using for work as recently, I've kept up on developments in the language, up through the introduction of lambdas in Java 8 and the proposed module system for Java 9+.
@@ -145,3 +145,5 @@ Used on a couple of projects. Ease of getting started is great, but I don't have
 
 <img src="/logos/jira_icon.svg" class="inset-left" />
 Two former workplaces of mine used Jira. I'm familiar with it, but it feels kind of heavyweight for what you get out of it.
+
+[vbgod]: /?vbgod "I Am A VB God"
