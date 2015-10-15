@@ -1,47 +1,83 @@
 # Software List
 
-## Install List for a New (Windows) Machine
+## Install List for a New Windows Machine
 
-### Section 1: Uncategorized
+<div class="no-mobile">
+    <h3>Chocolatey Install Script</h3>
+    <p>It should be possible to drop this into a bat script and run it in a command window with Administrative privileges. It will retrieve all the basic tools a .Net developer might want.</p>
+    <p>You can omit the first line if you already have [Chocolatey][choco] installed.</p>
+    <pre><code class="lang-bat">@powershell -NoProfile -ExecutionPolicy unrestricted -Command "iex ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1'))" && SET PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin
 
-  * [Chrome](https://www.google.com/chrome/browser/)
-  * [7-Zip](http://www.7-zip.org/)
-  * [QtTabBar](http://qttabbar.sourceforge.net/)
-  * [Sysinternals Suite](http://technet.microsoft.com/en-us/sysinternals/bb842062.aspx)
-  * [GOW](https://github.com/bmatzelle/gow/wiki)
-  * [GitHub](https://windows.github.com/)
-  * [Sublime Text](http://www.sublimetext.com/)
-  * [Light Table](http://www.lighttable.com/)
-  * [HxD Hex Editor](http://mh-nexus.de/en/hxd/)
-  * [AstroGrep](http://astrogrep.sourceforge.net/)
-  * [Console2](http://sourceforge.net/projects/console/)
-  * [Paint.NET](http://www.getpaint.net/)
-  * [Fiddler](http://www.telerik.com/fiddler)
-  * [WinMerge](http://winmerge.org/)
-  * [Chocolatey](https://chocolatey.org/)
-  * [AnyToISO](http://www.crystalidea.com/anytoiso)
-  * [PowerISO](http://www.poweriso.com/)
-  * [VLC Player](http://www.videolan.org/vlc/index.html)
-  * [foobar200](http://www.foobar2000.org/)
-  * [CutePDF](http://www.cutepdf.com/)
-  * [Foxit Reader](http://www.foxitsoftware.com/Secure_PDF_Reader/)
-  * [TeamViewer](http://www.teamviewer.com/en/index.aspx)
-  * [Skype](http://www.skype.com/)
-  * [KeePass](http://keepass.info/)
-  * [Microsoft Security Essentials](http://windows.microsoft.com/en-us/windows/security-essentials-download)
-  * [RedGate SQL Search](http://www.red-gate.com/products/sql-development/sql-search/)
+choco install git
+choco install 7zip
+choco install astrogrep
+choco install rdcman
+choco install gow
+choco install winmerge
+choco install keepass
+choco install qttabbar
+choco install cutepdf
+choco install foxitreader
+choco install sublimetext2
+choco install fiddler
+choco install hxd
+choco install spacesniffer</code></pre></div>
 
-### Chrome Plugins
+### Full List of Links
 
-  * [Chameleon](https://github.com/ghostwords/chameleon)
-  * Adblock
-  * Stylish
-  * Session Buddy
-  * Dictionary
+#### Web
 
-### Section 2: Other dev tools/libs/frameworks
+  * [Chrome](//www.google.com/chrome/browser/)
+  * [Fiddler](//www.telerik.com/fiddler)
 
-  * [NancyFX](http://nancyfx.org/)
-  * [ColorPicker](http://www.colorpicker.com/)
-  * [Leiningen](http://leiningen.org/)
-  * [Clojure Docs](http://clojure.github.io/clojure/clojure.core-api.html)
+##### Chrome Plugins
+
+  * [Chameleon](//github.com/ghostwords/chameleon)
+  * [Adblock](//chrome.google.com/webstore/detail/adblock/gighmmpiobklfepjocnamgkkbiglidom?hl=en)
+  * [Adblock Plus](//chrome.google.com/webstore/detail/adblock-plus/cfhdojbkjhnklbpkdaibdccddilifddb?hl=en)
+  * [Stylish](//chrome.google.com/webstore/detail/stylish/fjnbnpbmkenffdnngjfgmeleoegfcffe?hl=en)
+  * [Session Buddy](//chrome.google.com/webstore/detail/session-buddy/edacconmaakjimmfgnblocblbcdcpbko?hl=en)
+  * [Webpage Spell-Check](//chrome.google.com/webstore/detail/webpage-spell-check/mgdhaoimpabdhmacaclbbjddhngchjik)
+  * [TamperMonkey](//chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo?hl=en)
+
+#### Operating System Tools
+
+  * [KeePass](//keepass.info/)
+  * [QtTabBar](//qttabbar.sourceforge.net/)
+  * [7-Zip](//www.7-zip.org/)
+  * [Console2](//sourceforge.net/projects/console/)
+  * [GOW](//github.com/bmatzelle/gow/wiki)
+  * [Sysinternals Suite](//technet.microsoft.com/en-us/sysinternals/bb842062.aspx)
+  * [Space Sniffer](//www.uderzo.it/main_products/space_sniffer/)
+  * [Chocolatey][choco]
+
+#### Coding
+
+  * [Git](//git-scm.com)
+  * [GitHub for Windows](//windows.github.com/)
+  * [Sublime Text](//www.sublimetext.com/)
+  * [Light Table](//www.lighttable.com/)
+  * [HxD Hex Editor](//mh-nexus.de/en/hxd/)
+  * [AstroGrep](//astrogrep.sourceforge.net/)
+  * [WinMerge](//winmerge.org/)
+  * [Leiningen](//leiningen.org/)
+  * [Clojure Docs](//clojure.github.io/clojure/clojure.core-api.html)
+  * [RedGate SQL Search](//www.red-gate.com/products/sql-development/sql-search/)
+
+#### Multimedia
+
+  * [Foxit Reader](//www.foxitsoftware.com/Secure_PDF_Reader/)
+  * [CutePDF](//www.cutepdf.com/)
+  * [AnyToISO](//www.crystalidea.com/anytoiso)
+  * [PowerISO](//www.poweriso.com/)
+  * [VLC Player](//www.videolan.org/vlc/index.html)
+  * [foobar200](//www.foobar2000.org/)
+  * [Paint.NET](//www.getpaint.net/)
+  * [Inkscape](//inkscape.org/en/)
+
+#### Remoting
+
+  * [TeamViewer](//www.teamviewer.com/en/index.aspx)
+  * [Remote Desktop Connection Manager](//www.microsoft.com/en-us/download/details.aspx?id=44989)
+
+[choco]: //chocolatey.org/
