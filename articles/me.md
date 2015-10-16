@@ -2,9 +2,11 @@
 
 ## Software Developer / Consultant
 
-### Intro
+### Who I Am
 
-Do I want to do one of these?
+I am Robert Koeninger, a software developer from Cincinnati, OH. Here I give a bit of my background, my work experience and skill set.
+
+This is basically a resume, but with more pictures.
 
 ### Places I've Worked
 
@@ -25,8 +27,6 @@ He introduced improved testing practices including JavaScript unit tests with Ja
     RabbitMQ
 </div>
 
-<br style="clear:both" />
-
 ---
 
 <img src="/logos/cengage.svg" class="heading" />
@@ -43,8 +43,6 @@ Robert provided production support for an international e-commerce site, triagin
     Sterling E-Commerce
 </div>
 
-<br style="clear:both" />
-
 ---
 
 <img src="/logos/apexCovantage.svg" class="heading" />
@@ -59,8 +57,6 @@ Robert worked on the maintenance and customization of a web+mobile application. 
     <img src="/logos/jira_icon.svg" class="detail" />
     Windows CE 6.0
 </div>
-
-<br style="clear:both" />
 
 ---
 
@@ -78,14 +74,14 @@ Robert worked on designing and implementing new features for a data integration 
     MSMQ
 </div>
 
-<br style="clear:both" />
-
 ### Stuff I Know
 
 #### Environments
 
 <img src="/logos/eclipse_icon.svg" class="inset-left" />
 Like Java, Eclipse was the first IDE I used for any length of time. Also like Java, I started to appreciate it less once offered an alternative. I used it for both Java and Scala.
+
+<div style="clear:both" />
 
 <img src="/logos/vs.svg" class="inset-left" />
 Visual Studio has been my main IDE these past few years as most of my work has been in the .Net space. I tend to use it in concert with ReSharper from JetBrains.
@@ -95,20 +91,32 @@ Visual Studio has been my main IDE these past few years as most of my work has b
 <img src="/logos/csharp.svg" class="inset-left" />
 Another consequence of working in .Net for a while is that C# has become my main working language. I was resistant to some of the details at first coming from Java, but I have come to prefer it.
 
+<div style="clear:both" />
+
 <img src="/logos/vbnet.svg" class="inset-left" />
 I didn't think I knew much about VB until I was told that [I am a VB god][vbgod]. I'm not sure I'd want to work in it, but I could manage. Don't even ask about VB Classic.
+
+<div style="clear:both" />
 
 <img src="/logos/java.svg" class="inset-left" />
 Java was the first language I really got into. I started learning when it was on version 1.4.2 back in high school. Even though I haven't been using for work as recently, I've kept up on developments in the language, up through the introduction of lambdas in Java 8 and the proposed module system for Java 9+.
 
+<div style="clear:both" />
+
 <img src="/logos/clojure.svg" class="inset-left" />
 In my search to find new and better ways to work, I heard about Lisp-family languages like Scheme/Racket and ANSI CommonLisp. Despite my interest, I couldn't find a way to bridge the gap between my existing skills and these very foreign languages. Clojure gave me the opportunity to re-use my existing Java skills while also expanding into new worlds of programming.
+
+<div style="clear:both" />
 
 <img src="/logos/scala.svg" class="inset-left" />
 Scala is for Java coders who want a language that is more suitable for functional programming and object-oriented programming.
 
+<div style="clear:both" />
+
 <img src="/logos/fsharp.svg" class="inset-left" />
 If Scala is for Java coders who want to use Haskell, then F# is for C# coders who want to use O'Caml? I don't know, but similar to Scala, F# manages to excel the leading language on its platform in almost every way (except for usability in the debugger).
+
+<div style="clear:both" />
 
 <img src="/logos/haskell.svg" class="inset-left" />
 I went to learn Haskell after dabbling with Scala for a crash course in pure functional programming. I haven't written much code in Haskell, and maybe I never will, but the experience has been valuable nonetheless.
@@ -117,6 +125,8 @@ I went to learn Haskell after dabbling with Scala for a crash course in pure fun
 
 <img src="/logos/git.svg" class="inset-left" />
 In more than one circumstance, I have been the unoffical "Git Master" on a team. The first time, it was because I was the only one who knew how to `git clone`. The second was because I was the only one who had heard of `git rebase`.
+
+<div style="clear:both" />
 
 <img src="/logos/svn.svg" class="inset-left" />
 It has been a couple of years since I used Subversion, but I don't remember minding it much. I recall teams I worked on almost never branched because of the difficulty in doing so. Instead, we would do "code freezes" where no one was allowed to check in code until a release was finished. I'm sure there was a better way.
@@ -128,14 +138,22 @@ It has been a couple of years since I used Subversion, but I don't remember mind
 <img src="/logos/javascript.svg" class="inset-left" />
 The trifecta of web goodiness. I haven't gone out of my way to learn the ins and outs of these. Instead, I just pick up parts of them as I go along, and as the various browsers slowly implement parts of them.
 
+<div style="clear:both" />
+
 <img src="/logos/jquery_icon.svg" class="inset-left" />
 I have been using JQuery for a while. My experience is mostly with version 1.x, so there will be new functionality I'm not familiar with.
+
+<div style="clear:both" />
 
 <img src="/logos/jasmine.svg" class="inset-left" />
 I used Jasmine to test this very site. Check out [the spec runner page](/spec.html). I like how easy it was to get up and running. It took a bit longer to get it to work with Require.js, but it went better than one would expect from a handful independently developed open source projects.
 
+<div style="clear:both" />
+
 <img src="/logos/requirejs_icon.svg" class="inset-left" />
 The only project I've used Require.js in is this site. I had to mess around with multiple configurations - one for the `main` module and one for the Jasmine spec runner page - as well as shims for some libraries.
+
+<div style="clear:both" />
 
 <img src="/logos/nodejs.svg" class="inset-left" />
 <img src="/logos/npm.svg" class="inset-left" />
