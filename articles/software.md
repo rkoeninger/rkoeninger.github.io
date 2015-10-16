@@ -4,7 +4,7 @@
 
 <div class="no-mobile">
     <h3>Chocolatey Install Script</h3>
-    <p>It should be possible to drop this into a bat script and run it in a command window with Administrative privileges. It will retrieve all the basic tools a .Net developer might want.</p>
+    <p>It should be possible to drop this into a bat script and run it in a command window with Administrative privileges. It will retrieve some basic tools a .Net developer might want.</p>
     <p>You can omit the first line if you already have [Chocolatey][choco] installed.</p>
     <pre><code class="lang-bat">@powershell -NoProfile -ExecutionPolicy unrestricted -Command "iex ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1'))" && SET PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin
 
