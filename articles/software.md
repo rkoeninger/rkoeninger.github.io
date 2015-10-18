@@ -56,6 +56,7 @@ choco install spacesniffer</code></pre></div>
   * [Git](//git-scm.com)
   * [GitHub for Windows](//windows.github.com/)
   * [Sublime Text](//www.sublimetext.com/)
+  * [Sublime Package Control](//packagecontrol.io/installation)
   * [Light Table](//www.lighttable.com/)
   * [HxD Hex Editor](//mh-nexus.de/en/hxd/)
   * [AstroGrep](//astrogrep.sourceforge.net/)
