@@ -74,6 +74,18 @@ Robert worked on designing and implementing new features for a data integration 
     MSMQ
 </div>
 
+---
+
+<img src="/logos/siemens_logo.svg" class="heading" />
+**Programmer Intern**<br />**September 2008 - March 2009**
+
+I worked here Autumn-Winter quarter my junior year at UC. I spent most of the time implementing serialization of machine tool test data. This would allow diagnostics to be conducted remotely. Apparently, my code made it into production, but I never heard how useful it actually was.
+
+<div class="icon-set">
+    <img src="/logos/vs.svg" class="detail" />
+    <img src="/logos/xml.svg" class="detail" />
+</div>
+
 ### Stuff I Know
 
 #### Environments
