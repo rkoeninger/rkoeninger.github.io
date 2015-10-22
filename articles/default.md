@@ -21,6 +21,7 @@
   * [Hardcoding](/?hardcoding)
   * [Who Cares About Monads?](/?patterns)
   * [I Am a VB God!](/?vbgod)
+  * [Naming Things](/?namingThings)
   * [Software List](/?software)
 
 <div class="icon-set">
