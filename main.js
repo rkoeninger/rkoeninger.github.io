@@ -1,6 +1,6 @@
 'use strict';
 
-/*jslint browser: true, regexp: true, indent: 2*/
+/*jslint browser: true, regexp: true, nomen: true, indent: 2*/
 /*global define, MathJax*/
 
 define(["marked", "jquery", "mathjax", "hljs", "lodash"], function (marked, $, ignore, hljs, _) {
@@ -14,7 +14,7 @@ define(["marked", "jquery", "mathjax", "hljs", "lodash"], function (marked, $, i
       modifiedDates = {};
 
     function getQsValue(queryString, key) {
-      var qsParts, argAndVal, i;
+      var qsParts, argVal;
 
       if (queryString.length === 0) {
         return "";
@@ -26,7 +26,7 @@ define(["marked", "jquery", "mathjax", "hljs", "lodash"], function (marked, $, i
         return "";
       }
 
-      var argVal = _.find(qsParts, function (qsPart) {
+      argVal = _.find(qsParts, function (qsPart) {
         var argValSplit = qsPart.split("=");
         return argValSplit.length === 2 && argValSplit[0] === key;
       });
@@ -48,15 +48,10 @@ define(["marked", "jquery", "mathjax", "hljs", "lodash"], function (marked, $, i
       return str.indexOf(suffix, str.length - suffix.length) !== -1;
     }
 
-    function contains(list, item) {
-      var i;
-      for (i = 0; i < list.length; i++) {
-        if (endsWith(item, list[i])) {
-          return true;
-        }
-      }
-
-      return false;
+    function contains(list, target) {
+      return _.some(list, function (item) {
+        return endsWith(target, item);
+      });
     }
 
     function defaultExtension(articleName) {
@@ -200,7 +195,7 @@ define(["marked", "jquery", "mathjax", "hljs", "lodash"], function (marked, $, i
       getPageTitle: getPageTitle,
       init: init
     };
-  })();
+  }());
 
   return main;
 });

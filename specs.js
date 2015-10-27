@@ -44,8 +44,6 @@ page.open("http://localhost:8080/spec.html", function (status) {
       function () {
         var exitCode = page.evaluate(function () {
           var failures = document.body.querySelectorAll('.results > .failures > .spec-detail.failed'),
-            i,
-            failure,
             description,
             resultMessage,
             stackTrace,
@@ -55,8 +53,7 @@ page.open("http://localhost:8080/spec.html", function (status) {
           if (failures && failures.length > 0) {
             console.log('');
             console.log(failures.length + ' test(s) FAILED:');
-            for (i = 0; i < failures.length; ++i) {
-              failure = failures[i];
+            failures.forEach(function (failure) {
               description = failure.querySelector('.description');
               resultMessage = failure.querySelector('.messages > .result-message');
               stackTrace = failure.querySelector('.messages > .stack-trace');
@@ -65,7 +62,7 @@ page.open("http://localhost:8080/spec.html", function (status) {
               console.log(resultMessage.innerText);
               console.log(stackTrace.innerText); // TODO remove lines containing 'jasmine.js' or 'require.js'
               console.log("");
-            }
+            });
           }
 
           passedCount = document.body.querySelectorAll('.symbol-summary > li').length;
