@@ -48,5 +48,15 @@ define(["main"], function (main) {
             expect(main.getArticleFileName("?articleId=abc.md&def=tuv")).toEqual("abc.md");
             expect(main.getArticleFileName("?abc=xyz&articleId=abc.md&def=tuv")).toEqual("abc.md");
         });
+        it("should treat single a single query string arg with no '=value' as the articleId", function () {
+            expect(main.getArticleFileName("?whatever.md")).toEqual("whatever.md");
+        });
+        it("should add the .md extension if no other file extension", function () {
+            expect(main.getArticleFileName("?articleId=whatever")).toEqual("whatever.md");
+            expect(main.getArticleFileName("?whatever")).toEqual("whatever.md");
+        });
+        it("should not add the .md extension if articleId has some other extension", function () {
+            expect(main.getArticleFileName("?articleId=abc.html")).toEqual("abc.html");
+        });
     });
 });
