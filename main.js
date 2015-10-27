@@ -3,7 +3,8 @@
 /*jslint browser: true, regexp: true, indent: 4*/
 /*global define, MathJax*/
 
-define(["marked", "jquery", "mathjax", "hljs"], function (marked, $, ignore, hljs) {
+define(["marked", "jquery", "mathjax", "hljs", "lodash"],
+       function (marked, $, ignore, hljs, _) {
     var main = (function () {
         var defaultArticle = "default.md",
             disqusExcludedArticles = ["/default.md", "/status.md"],
@@ -26,13 +27,13 @@ define(["marked", "jquery", "mathjax", "hljs"], function (marked, $, ignore, hlj
                 return "";
             }
 
-            for (i = 0; i < qsParts.length; i++) {
-                argAndVal = qsParts[i].split("=");
+            var argVal = _.find(qsParts, function (qsPart) {
+                var argValSplit = qsPart.split("=");
+                return argValSplit.length === 2 && argValSplit[0] === key;
+            });
 
-                if (argAndVal.length === 2 && argAndVal[0] === key) {
-                    return decodeURIComponent(argAndVal[1].replace(/\+/g, " "));
-                }
-            }
+            if (argVal)
+                return decodeURIComponent(argVal.split("=")[1].replace(/\+/g, " "));
 
             return "";
         }
