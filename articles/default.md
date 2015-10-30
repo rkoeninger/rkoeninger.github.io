@@ -10,6 +10,7 @@
   * [Scheme vs. Javascript](/?schemeVsJavascript)
   * [Sorts and Searches](/?sortsAndSearches)
   * [Getting tired of NullReferenceExceptions in C#](/?sure)
+  * [C# Type System](/?cSharpTypeSystem)
   * [Arguing Semantics](/?semantics)
   * [Version Numbering](/?versioning)
   * [FP and OOP approaches to I/O](/?io)
