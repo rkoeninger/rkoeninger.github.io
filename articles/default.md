@@ -7,6 +7,7 @@
   * [Syntax Primer](/?primer)
   * [Doing the Impossible](/?impossible)
   * [All is One](/?one)
+  * [War on Syntax](/?warOnSyntax)
   * [Sorts and Searches](/?sortsAndSearches)
   * [Getting tired of NullReferenceExceptions in C#](/?sure)
   * [Arguing Semantics](/?semantics)
