@@ -57,3 +57,11 @@ There's also a difference between a type being assignable to another type and be
 ### Class and Type
 
 A class and a type are also not the same thing. The `String` class is a character array and an offset and some defined methods. The `String` type is either an instance of the `String` class or `null`. `null` strikes again.
+
+### Vestigial Concepts
+
+java, c# and of course C++ all have type systems with fundamental flaws that follow from the fact that they are inspired by C's type system. in C, a type is an alias for a memory layout primarily. in java and c#, types are all specializations of a most-general, all-inclusive type Object. java/csharp also conflate type with class, and implementation details with interface. until you start using interfaces, which provide the necessary separation. they're "object-oriented" languages that aren't very good at object-orientation becuase of their strong inspiration from C/C++.
+
+### Compared to Alternatives
+
+in MLs and Haskell, types are compositions of other types, it works somewhat in reverse. in these languages, types are much more easily used to specify things both to the machine and to the reader about code contracts.

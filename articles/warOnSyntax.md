@@ -2,6 +2,8 @@
 
 ## Red Herrings of Language Design
 
+> Typing semicolons is not the hardest part of the job.
+
 ### Multiline Strings
 
 A see multi-line strings are a common feature that coders really appreciate. But they've always bothered me. It seems like it could be done better.

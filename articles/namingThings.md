@@ -388,6 +388,20 @@ I don't think these are a great idea because they imply a fixed number of someth
 
 Flyweight, Decorator, Visitor, Factory, DAO - may be a good idea so people are more likely to know what they are. may be a bad idea if you have two related things named with that pattern e.g. ___VisitorVisitor.
 
+#### Requiring User to Become Familiar with Obscure Subject Matter
+
+Concepts imported from Category Theory are referred to by their original names, which don't make nearly as much sense in the context of programming.
+
+different, weird names for things that aren't that different
+
+```haskell
+(a -> b)   -> k a -> k b    -- Functor
+(a -> k b) -> k a -> k b    -- Monad
+k (a -> b) -> k a -> k b    -- Applicative Functor
+```
+
+Maybe these could just be called `Convertable`, `Chainable` and... I don't about the last one.
+
 #### Generic Words
 
 Field, Property, Function - avoid terms already used in language

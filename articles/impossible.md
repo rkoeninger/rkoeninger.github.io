@@ -76,6 +76,18 @@ A significant number of the problems in developing software isn't caused by tool
 
 People don't naturally think of color as something that is quantitative (formal). They think of colors as different entities with different connotations and meanings. This doesn't make sense to a computer. In a computer, colors are just numbers. Often, they are values of Red, Green and Blue, but Hue, Saturation and Brightness is also common.
 
+formal meaning:
+
+  * functions
+  * data structures
+  * types
+
+informal meaning:
+
+  * naming
+  * comments
+  * external documentation
+
 ### They Want The Impossible
 
 People have developed the expectation that technology do the impossible.

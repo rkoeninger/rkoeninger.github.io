@@ -1,0 +1,28 @@
+# Future of the Web
+
+### Language
+
+hydra/hype/jazz: a single language for the web
+	s-expr syntax, of course
+	prefer minimalism and small platform size over features
+	needs html-id namespaces
+	html/js property names need to be the same
+		camelCase/lisp-case/wHaT_3veR
+	needs module system
+		you could have something like requirejs/amd for styling and fonts
+	need to be able to pass args into javascript modules,
+		not just return html with links to js files
+	unified syntax
+		with customizable dom-building functions
+		and style-manipulation/application functions
+	needs element selector syntax that is basically a predicate in the same language
+		so instead of `"#id"`
+		it would be `(comp (= "id") get-id)` or `(with-id "id")`
+	interaction with DOM is functional-reactive like in react.js or om.cljs
+	uses customized jquery to limit implementation size
+	can interpret zen syntax on the fly
+	need to be able to avoid Flash-of-unformatted-text
+	keep minimization in mind
+	bundling content(html)/behavior(js)/styling(css) into a single package
+	support compiled and interpreted modes
+		compiled with a debug symbols file that can be fetched when error is encountered
