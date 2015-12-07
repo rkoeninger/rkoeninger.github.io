@@ -72,16 +72,8 @@ define(["marked", "jquery", "mathjax", "hljs", "lodash"], function (marked, $, i
       return commitsUrlBase + articleUrl;
     }
 
-    function getPageTitle(articleMarkdown) {
-      // find (#) elements in markdown
-      var titleMatches = articleMarkdown.match(/\x23\x20(.*)\x0D?\x0A/);
-
-      if (titleMatches) {
-        // strip markdown formatting from (#) element and make it the title
-        return $(marked(titleMatches[1]))[0].textContent;
-      }
-
-      return "Fear of a Blue Screen";
+    function getPageTitle(articleHtml) {
+      return $(_.find($(articleHtml), function (x) { return $(x).is("h1"); })).text() || "Fear of a Blue Screen";
     }
 
     function parseArticleId(url) {
@@ -91,8 +83,9 @@ define(["marked", "jquery", "mathjax", "hljs", "lodash"], function (marked, $, i
     }
 
     function popuplateArticle(articleDiv, articleMarkdown) {
-      articleDiv.html(marked(articleMarkdown));
-      document.title = getPageTitle(articleMarkdown);
+      var articleHtml = marked(articleMarkdown);
+      articleDiv.html(articleHtml);
+      document.title = getPageTitle(articleHtml);
 
       // Navigate within the site using PushState
       $("a").each(function () {
