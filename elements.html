@@ -1,0 +1,12 @@
+<link rel="import" href="/polymer-mini.html">
+<script>
+  function code(lang) {
+    Polymer({
+      is: lang + "-code",
+      created: function () {
+        this.textContent = this.textContent.trim();
+      }});
+  }
+</script>
+<dom-module name="csharp-code"><template><pre><code class="lang-csharp"><content></content></code></pre></template></dom-module>
+<script>code("csharp");</script>

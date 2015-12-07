@@ -9,6 +9,7 @@ define(["marked", "jquery", "mathjax", "hljs", "lodash"], function (marked, $, i
       disqusExcludedArticles = ["/default.md", "/status.md"],
       historyUrlBase = "//github.com/rkoeninger/rkoeninger.github.io/commits/master/articles/",
       commitsUrlBase = "//api.github.com/repos/rkoeninger/rkoeninger.github.io/commits?path=",
+      sourceUrlBase = "//cdn.rawgit.com/rkoeninger/rkoeninger.github.io/master/articles/",
       disqusScriptUrl = "//rkoeningergithubio.disqus.com/embed.js",
       rawMarkdowns = {},
       modifiedDates = {};
@@ -121,7 +122,7 @@ define(["marked", "jquery", "mathjax", "hljs", "lodash"], function (marked, $, i
         modifiedDate = modifiedDates[articleFile],
         rawMarkdown = rawMarkdowns[articleFile];
 
-      $("#source-link").attr("href", articleUrl);
+      $("#source-link").attr("href", sourceUrlBase + articleFile);
       $("#history-link").attr("href", historyUrlBase + articleFile);
 
       if (contains(disqusExcludedArticles, articleUrl)) {
