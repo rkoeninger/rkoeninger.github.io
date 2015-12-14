@@ -1,12 +1,18 @@
 # About Me
 
-## Software Developer / Consultant
+## Guy Who Writes Code
 
 ### Who I Am
 
-I am Robert Koeninger, a software developer from Cincinnati, OH. Here I give a bit of my background, my work experience and skill set.
+I am Robert Koeninger, a software developer from Cincinnati, Ohio, in the United States. Here I give a bit of my background, my work experience and skill set.
 
-This is basically a resume, but with more pictures.
+This is somewhere between a resume and a life story.
+
+### My Story
+
+My first experience programming was sophmore year in high school. We were coding in some variation of BASIC on decaying pre-OSX Macs. My final project for that class was an animated slot machine. When the user clicked on the end of the handle, an animation would begin that made it look like the arm was being rotated toward the viewer. This was done by having the ball on the end of the handle and the arm just got successively shorter each "frame" of animation. The machine was so slow that you could see the circle that represented the end of the handle slowly fill gold from top to bottom. I liked the idea of the animated slot machine arm, but the performance was so ambysmal on those old machines, it was almost embarassing.
+
+After the school got some decent machines, they started offering a Programming in Java class. This is the point where I really started to believe that software was for me. At home, I had an old machine upstairs with BlueJ and JCreator but no internet. If I needed to know something about the JDK, I would go down to the family computer, log onto America On-Line and print off some of the JavaDocs and take them back upstairs.
 
 ### Places I've Worked
 

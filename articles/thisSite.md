@@ -1,5 +1,7 @@
 # About This Site
 
+## Dumping My Brain
+
 ### Purpose and Content
 
 <img src="/images/robby.png" class="inset-right" />
@@ -49,6 +51,11 @@ Markdown definitely has its limitations. It has no syntax for specifying class n
 Despite all this, the fact that the renderer passes HTML elements through untouched allows for simple workarounds. I might have preferred a syntax that could represent more element type, but this seems to be as good as it gets while keeping it this simple.
 
 I use the [marked][marked] library for rendering Markdown to HTML.
+
+#### Polymer
+
+<img src="/logos/polymer_icon.svg" class="inset-right" />
+As my article content became more involved, I found myself writing out piles of HTML, getting no help from the Markdown renderer.
 
 #### Source Control
 

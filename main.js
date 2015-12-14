@@ -106,10 +106,12 @@ define(["marked", "jquery", "mathjax", "hljs", "lodash"], function (marked, $, i
         }
       });
 
-      hljs.initHighlighting.called = false;
-      hljs.initHighlighting();
+      setTimeout(function () {
+        hljs.initHighlighting.called = false;
+        hljs.initHighlighting();
 
-      MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+        MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+      }, 200);
     }
 
     function populateLastModifiedLabel(author, date) {
