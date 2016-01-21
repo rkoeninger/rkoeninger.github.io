@@ -108,14 +108,13 @@ DoWhatever(thing1 = true, thing2 = false, thing3 = true, thing4 = false, thing5 
 
 Looks like another use for a table representation:
 
-| DoWhatever() | | | | |
-| thing1 | thing2 | thing3 | thing4 | thing 5 |
-|-------|-------|-------|-------|-------|
-| false | true | true | false | true |
-| true | true | true | false | false |
-| false | true | true | false | true |
-| false | true | false | false | false |
-| true | false | true | false | true |
+| DoWhatever( | thing1 | thing2 | thing3 | thing4 | thing 5 | ) |
+|:-|:------|:------|:------|:------|:------|:-|
+| | false | true | true | false | true | |
+| | true | true | true | false | false | |
+| | false | true | true | false | true | |
+| | false | true | false | false | false | |
+| | true | false | true | false | true | |
 
 ### The Future
 
