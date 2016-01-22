@@ -10,9 +10,24 @@ This is somewhere between a resume and a life story.
 
 ### My Story
 
-My first experience programming was sophmore year in high school. We were coding in some variation of BASIC on decaying pre-OSX Macs. My final project for that class was an animated slot machine. When the user clicked on the end of the handle, an animation would begin that made it look like the arm was being rotated toward the viewer. This was done by having the ball on the end of the handle and the arm just got successively shorter each "frame" of animation. The machine was so slow that you could see the circle that represented the end of the handle slowly fill gold from top to bottom. I liked the idea of the animated slot machine arm, but the performance was so ambysmal on those old machines, it was almost embarassing.
+#### The Precambrian Eon
 
-After the school got some decent machines, they started offering a Programming in Java class. This is the point where I really started to believe that software was for me. At home, I had an old machine upstairs with BlueJ and JCreator but no internet. If I needed to know something about the JDK, I would go down to the family computer, log onto America On-Line and print off some of the JavaDocs and take them back upstairs.
+In high school, I took some courses on programming in BASIC and C++, but the first class that really caught my interest was programming in Java. Java stood out to me as much more interesting as there weren't any confounding pointers or pass-by-reference semantics or pairs of .h and .cpp files. It seemed simple and had a large standard library that I could browse and make immediate use of. I went down the list of packages on java.sun.com and checked out each one.
+
+The understanding of a few parts of Java elluded me for a while, like what `static` meant. I remember demanding the computer give me an explanation for "non-static method used in a static context", but it was unmoved. For those early programs, the habit was to just make every method static. Understanding Object-Oriented Programming took a few methods as I had also just started learning programming in general.
+
+Java remained my main language in college and I did most of my assignments in it. Once or twice, I had to write something in C. And one class was taught entirely in FRIL, which I never understood, but somehow passed the class anyway.
+
+Ah, yes, FRIL. Apparently no one cares about FRIL. Even its [creator's homepage][trevormartin] doesn't appear to mention it. Great choice for teaching a class to students who are likely to know one language at most.
+
+<img src="/logos/siemens_logo.svg" class="inset-right" />
+Looking back on my time at school, I feel like the co-op jobs I had were worth much more than the classes I took. I spent some time at ITI Transcendata in 2007/2008 and Siemens Energy and Automation in 2008/2009.
+
+#### The Cambrian Explosion
+
+My experience in commerical development spurred an interest in learning that school never did. I believe this is because having some practical experience showed me the value of finding a better way of doing things.
+
+...
 
 ### Places I've Worked
 
@@ -183,3 +198,4 @@ Used on a couple of projects. Ease of getting started is great, but I don't have
 Two former workplaces of mine used Jira. I'm familiar with it, but it feels kind of heavyweight for what you get out of it.
 
 [vbgod]: /?vbgod "I Am A VB God"
+[trevormartin]: http://seis.bristol.ac.uk/~entpm/ "Professor Trevor Martin"
