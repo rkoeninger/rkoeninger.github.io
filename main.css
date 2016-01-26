@@ -89,7 +89,7 @@ img.inset-left {
 img.heading {
     width: 10em;
     float: left;
-    margin-right: 2em;
+    margin-right: 1em;
     margin-bottom: 1em;
 }
 img.detail {
@@ -126,6 +126,12 @@ dl dd {
 }
 a {
     text-decoration: none;
+}
+p a {
+    border-bottom: 0.15em solid #d7d7ff;
+}
+p a:hover {
+    background-color: #d7d7ff;
 }
 nav {
     display: flex;
