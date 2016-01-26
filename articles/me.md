@@ -4,28 +4,28 @@
 
 ### Who I Am
 
-I am Robert Koeninger, a software developer from Cincinnati, Ohio, in the United States. Here I give a bit of my background, my work experience and skill set.
-
-This is somewhere between a resume and a life story.
+In the Software Development profession, there are a variety of schools of thought. The developers who wage the war between these divisions do so out of principle, irrational preference and frustration wrought by painful experience. One such developer is Robert Koeninger from Cincinnati, Ohio. This is his story.
 
 ### My Story
 
+The story of my career thus far is not an exceptional one, but could be representative of many developers.
+
 #### The Precambrian Eon
 
-In high school, I took some courses on programming in BASIC and C++, but the first class that really caught my interest was programming in Java. Java stood out to me as much more interesting as there weren't any confounding pointers or pass-by-reference semantics or pairs of .h and .cpp files. It seemed simple and had a large standard library that I could browse and make immediate use of. I went down the list of packages on java.sun.com and checked out each one.
+In high school, I took some courses on programming in BASIC and C++, but the first class that really caught my interest was programming in Java. Java stood out to me as much more interesting as there weren't any confounding pointers or pass-by-reference semantics or pairs of .h and .cpp files. It seemed simple and had a large standard library that I could browse and make immediate use of. I went down the list of packages on [java.sun.com][javadoc] and checked out each one.
 
 The understanding of a few parts of Java elluded me for a while, like what `static` meant. I remember demanding the computer give me an explanation for "non-static method used in a static context", but it was unmoved. For those early programs, the habit was to just make every method static. Understanding Object-Oriented Programming took a few methods as I had also just started learning programming in general.
 
-Java remained my main language in college and I did most of my assignments in it. Once or twice, I had to write something in C. And one class was taught entirely in FRIL, which I never understood, but somehow passed the class anyway.
+<img src="/logos/uc_icon.svg" class="heading" />
+Java remained my main language in college and I did most of my assignments in it. Once or twice, I had to write something in C. And one class was taught in [Fril][fril].
 
-Ah, yes, FRIL. Apparently no one cares about FRIL. Even its [creator's homepage][trevormartin] doesn't appear to mention it. Great choice for teaching a class to students who are likely to know one language at most.
-
-<img src="/logos/siemens_logo.svg" class="inset-right" />
 Looking back on my time at school, I feel like the co-op jobs I had were worth much more than the classes I took. I spent some time at ITI Transcendata in 2007/2008 and Siemens Energy and Automation in 2008/2009.
 
 #### The Cambrian Explosion
 
-My experience in commerical development spurred an interest in learning that school never did. I believe this is because having some practical experience showed me the value of finding a better way of doing things.
+My experience in commerical development spurred an interest in learning that school never did. I believe this is because having some practical experience showed me the value of finding a better way of doing things. After I saw my millionth `NullReferenceException`, I thought that [there had to be a better way][null].
+
+> When I get mad I put it down on a pad. Give ya something that cha never had.
 
 ...
 
@@ -38,31 +38,12 @@ Robert worked on an agile team that developed multiple internal and external web
 
 He introduced improved testing practices including JavaScript unit tests with Jasmine and using user scripts via the TamperMonkey plugin for Chrome to automate parts of interactive testing. Improved testing resulted in the discovery of bugs and style inconsistencies. He was part of an effort to synchronize data between the aforementioned applications and Microsoft Dynamics CRM using RabbitMQ for asynchronous communication.
 
-<div class="icon-set">
-    <img src="/logos/csharp.svg" class="detail" />
-    <img src="/logos/vs.svg" class="detail" />
-    <img src="/logos/razor.svg" class="detail" />
-    <img src="/logos/javascript.svg" class="detail" />
-    <img src="/logos/jquery_icon.svg" class="detail" />
-    <img src="/logos/git.svg" class="detail" />
-    RabbitMQ
-</div>
-
 ---
 
 <img src="/logos/cengage.svg" class="heading" />
 **Business Analyst**<br />**May 2014 - October 2014**
 
 Robert provided production support for an international e-commerce site, triaging and diagnosing issues as they came up. Helped organize and populate the team’s wiki and issue tracker. Maintained store catalog export applications.
-
-<div class="icon-set">
-    <img src="/logos/java.svg" class="detail" />
-    <img src="/logos/jira_icon.svg" class="detail" />
-    Oracle
-    SQL Developer
-    DynaTrace
-    Sterling E-Commerce
-</div>
 
 ---
 
@@ -71,29 +52,12 @@ Robert provided production support for an international e-commerce site, triagin
 
 Robert worked on the maintenance and customization of a web+mobile application. Performed major refactoring that greatly eased customization and deployment.
 
-<div class="icon-set">
-    <img src="/logos/csharp.svg" class="detail" />
-    <img src="/logos/vs.svg" class="detail" />
-    <img src="/logos/javascript.svg" class="detail" />
-    <img src="/logos/jira_icon.svg" class="detail" />
-    Windows CE 6.0
-</div>
-
 ---
 
 <img src="/logos/reyrey.svg" class="heading" />
 **Software Developer**<br />**February 2011 - September 2013**
 
 Robert worked on designing and implementing new features for a data integration system that orchestrated communication between other applications and 3rd party systems in a publish/subscribe model.
-
-<div class="icon-set">
-    <img src="/logos/csharp.svg" class="detail" />
-    <img src="/logos/vs.svg" class="detail" />
-    <img src="/logos/javascript.svg" class="detail" />
-    <img src="/logos/xml.svg" class="detail" />
-    <img src="/logos/svn.svg" class="detail" />
-    MSMQ
-</div>
 
 ---
 
@@ -197,5 +161,7 @@ Used on a couple of projects. Ease of getting started is great, but I don't have
 <img src="/logos/jira_icon.svg" class="inset-left" />
 Two former workplaces of mine used Jira. I'm familiar with it, but it feels kind of heavyweight for what you get out of it.
 
+[javadoc]: //docs.oracle.com/javase/8/docs/api/ "Java API Docs"
 [vbgod]: /?vbgod "I Am A VB God"
-[trevormartin]: http://seis.bristol.ac.uk/~entpm/ "Professor Trevor Martin"
+[null]: /?sure "Dealing with NullReferenceExceptions in C#"
+[fril]: //en.wikipedia.org/wiki/Fril "Fril Language"
