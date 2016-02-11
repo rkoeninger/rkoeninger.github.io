@@ -4,9 +4,9 @@ language: node_js
 version:
   - "0.12"
 before_script:
-  - npm install -g http-server
-  - npm install -g phantomjs
-  - npm install -g jslint
+  - npm install http-server
+  - npm install phantomjs-prebuilt
+  - npm install jslint
 script:
   - http-server&
   - NODE_SERVER_PID=$!
