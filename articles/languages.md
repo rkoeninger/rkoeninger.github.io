@@ -1,0 +1,3 @@
+Languages don't impose a lower limit on code quality, but they do impose an upper limit.
+
+Languages can't stop you from writing bad code, but they can stop you from writing good code.
