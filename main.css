@@ -336,10 +336,10 @@ code.lang-html::before {
         font-size: 20px;
     }
     h1 {
-        font-size: 3em;
+        font-size: 5em;
     }
     h2 {
-        font-size: 2em;
+        font-size: 3em;
     }
     pre code {
         font-size: 1.6em;
