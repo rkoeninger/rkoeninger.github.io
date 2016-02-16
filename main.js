@@ -93,6 +93,9 @@ define(["marked", "jquery", "mathjax", "hljs", "lodash"], function (marked, $, i
         $(this).hide();
       });
 
+      // Wrap tables in surrounding div
+      $("table").wrap("<div class=\"table-wrapper\"></div>");
+
       // Navigate within the site using PushState
       $("a").each(function () {
         if (this.host === window.location.host) {

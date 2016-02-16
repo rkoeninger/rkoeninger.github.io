@@ -107,6 +107,9 @@ table {
     border-collapse: collapse;
     margin: 0.6em auto;
 }
+.table-wrapper {
+    overflow-x: scroll;
+}
 td, th {
     border: 0.2em solid black;
     border-collapse: collapse;
