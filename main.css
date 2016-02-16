@@ -332,6 +332,12 @@ code.lang-html::before {
         margin: 0.25em;
         font-size: 20px;
     }
+    h1 {
+        font-size: 3em;
+    }
+    h2 {
+        font-size: 2em;
+    }
     pre code {
         font-size: 1.6em;
     }
