@@ -88,6 +88,11 @@ define(["marked", "jquery", "mathjax", "hljs", "lodash"], function (marked, $, i
       articleDiv.html(articleHtml);
       document.title = getPageTitle(articleHtml);
 
+      // Hide missing images
+      $("img").error(function () { 
+        $(this).hide();
+      });
+
       // Navigate within the site using PushState
       $("a").each(function () {
         if (this.host === window.location.host) {
@@ -106,6 +111,7 @@ define(["marked", "jquery", "mathjax", "hljs", "lodash"], function (marked, $, i
         }
       });
 
+      // Polymer introduces a delay in the rendering of the page
       setTimeout(function () {
         hljs.initHighlighting.called = false;
         hljs.initHighlighting();
