@@ -35,13 +35,14 @@ h1 {
     text-align: center;
     color: #444477;
     font-family: 'Arvo', serif;
+    font-size: 2.5em;
     margin: 1em auto 1em auto;
 }
 h2 {
     text-align: center;
     color: #444477;
     font-family: 'Arvo', serif;
-    font-size: 1.2em;
+    font-size: 1.5em;
     margin-top: 1em;
     margin-bottom: 2em;
 }
