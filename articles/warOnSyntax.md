@@ -4,6 +4,10 @@
 
 > Typing semicolons is not the hardest part of the job.
 
+### Programming Like Cavemen
+
+My biggest gripe about the text file approach to development that we still practice, is that it only gives you a single perspective on the code. This is incidentally related to the [Expression Problem](https://en.wikipedia.org/wiki/Expression_problem). I'm usually limited to seeing either a type and all its related functions (Object-Oriented), or some functions and how to apply to a collection of types (Functional). What if I want to switch between perspectives? Do I have to re-write all my code?
+
 ### Multiline Strings
 
 A see multi-line strings are a common feature that coders really appreciate. But they've always bothered me. It seems like it could be done better.
