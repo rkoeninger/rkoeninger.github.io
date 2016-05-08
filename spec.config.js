@@ -13,7 +13,7 @@ require.config({
     "webcomponents": "//cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/0.7.18/webcomponents-lite.min",
     "marked": "//cdnjs.cloudflare.com/ajax/libs/marked/0.3.2/marked.min",
     "mathjax": "//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML&amp;delayStartupUntil=configured",
-    "hljs": "//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.3/highlight.min",
+    "hljs": "//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/highlight.min",
     "main": "/main",
     "main-spec": "/spec/main.spec"
   },
