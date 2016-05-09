@@ -99,6 +99,14 @@ img.title-logo {
     width: 100%;
     max-width: 36em;
 }
+img.block {
+    float: none;
+    display: block;
+    text-align: center;
+    margin: 0 auto;
+    width: 80%;
+    max-width: 36em;
+}
 .icon-set * {
     float: left;
 }
