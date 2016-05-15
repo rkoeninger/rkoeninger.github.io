@@ -31,8 +31,7 @@
     <a href="//github.com/rkoeninger"><img src="/logos/github.svg" class="detail" /></a>
     <a href="//travis-ci.org/rkoeninger"><img src="/logos/travis_icon.svg" class="detail" /></a>
     <a href="//www.linkedin.com/in/robertkoeninger"><img src="/logos/linkedin_icon.svg" class="detail" /></a>
-    <a href="//www.elance.com/s/robertkoeninger"><img src="/logos/elance_icon.svg" class="detail" /></a>
-    <a href="//www.upwork.com/freelancers/~015abc115b8c8a1001"><img src="/logos/upwork_icon.svg" class="detail" /></a>
+    <a href="//www.upwork.com/o/profiles/users/_~015abc115b8c8a1001/"><img src="/logos/upwork_icon.svg" class="detail" /></a>
 </div>
 
 <div style="clear: both" />
