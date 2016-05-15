@@ -6,11 +6,12 @@
 define(["marked", "jquery", "mathjax", "hljs", "lodash"], function (marked, $, ignore, hljs, _) {
   var main = (function () {
     var defaultArticle = "default.md",
+      disqusEnabled = false,
       disqusExcludedArticles = ["/default.md", "/status.md", "/xmlTest.xml"],
+      disqusScriptUrl = "//rkoeningergithubio.disqus.com/embed.js",
       historyUrlBase = "//github.com/rkoeninger/rkoeninger.github.io/commits/master/articles/",
       commitsUrlBase = "//api.github.com/repos/rkoeninger/rkoeninger.github.io/commits?path=",
       sourceUrlBase = "//cdn.rawgit.com/rkoeninger/rkoeninger.github.io/master/articles/",
-      disqusScriptUrl = "//rkoeningergithubio.disqus.com/embed.js",
       rawMarkdowns = {},
       modifiedDates = {};
 
@@ -50,9 +51,7 @@ define(["marked", "jquery", "mathjax", "hljs", "lodash"], function (marked, $, i
     }
 
     function contains(list, target) {
-      return _.some(list, function (item) {
-        return endsWith(target, item);
-      });
+      return _.some(list, item => endsWith(target, item));
     }
 
     function defaultExtension(articleName) {
@@ -173,7 +172,7 @@ define(["marked", "jquery", "mathjax", "hljs", "lodash"], function (marked, $, i
 
       if (contains(disqusExcludedArticles, articleUrl)) {
         $("#disqus_thread, #disqus_script").remove();
-      } else if (window.matchMedia("screen and (min-width: 1000px)").matches) {
+      } else if (disqusEnabled && window.matchMedia("screen and (min-width: 1000px)").matches) {
         $("main").append($("<div />", {id: "disqus_thread", class: "disqus_thread"}));
         $("main").append($("<script />", {id: "disqus_script", src: disqusScriptUrl}));
       }
