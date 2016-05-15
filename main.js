@@ -6,7 +6,7 @@
 define(["marked", "jquery", "mathjax", "hljs", "lodash"], function (marked, $, ignore, hljs, _) {
   var main = (function () {
     var defaultArticle = "default.md",
-      disqusExcludedArticles = ["/default.md", "/status.md"],
+      disqusExcludedArticles = ["/default.md", "/status.md", "/xmlTest.xml"],
       historyUrlBase = "//github.com/rkoeninger/rkoeninger.github.io/commits/master/articles/",
       commitsUrlBase = "//api.github.com/repos/rkoeninger/rkoeninger.github.io/commits?path=",
       sourceUrlBase = "//cdn.rawgit.com/rkoeninger/rkoeninger.github.io/master/articles/",
@@ -83,8 +83,43 @@ define(["marked", "jquery", "mathjax", "hljs", "lodash"], function (marked, $, i
       return defaultExtension(getArticleFileName(parser.search));
     }
 
-    function popuplateArticle(articleDiv, articleMarkdown) {
-      var articleHtml = marked(articleMarkdown);
+    function newElement(name, children) {
+      var element = document.createElement(name);
+      _.forEach(children, function (child) {
+        element.appendChild(child);
+      });
+      return element;
+    }
+
+    function processXml(xml) {
+      if (xml.nodeType === xml.TEXT_NODE) {
+        return xml;
+      } else if (xml.nodeName === "c") {
+        return newElement("code", _.map(xml.childNodes, processXml));
+      } else if (xml.nodeName === "csharp") {
+        var codeElement = newElement("code", xml.childNodes);
+        var preElement = newElement("pre", [codeElement]);
+        codeElement.classList.add("lang-csharp");
+        return preElement;
+      } else if (xml.nodeName === "toc") {
+        return newElement("ul", _.map(xml.children, function (item) {
+          var a = newElement("a", [document.createTextNode(item.textContent)]);
+          a.setAttribute("href", "/?" + item.attributes.url.value);
+          return newElement("li", [a]);
+        }));
+      } else {
+        return newElement(xml.nodeName, _.map(xml.childNodes, processXml));
+      }
+    }
+
+    function processXmlContent(articleContent) {
+      var articleXml = $.parseXML("<div>" + articleContent.replace("&", "&amp;") + "</div>");
+      var html = processXml(articleXml.firstElementChild);
+      return html.innerHTML;
+    }
+
+    function populateArticle(articleDiv, articleFile, articleMarkdown) {
+      var articleHtml = endsWith(articleFile, ".xml") ? processXmlContent(articleMarkdown) : marked(articleMarkdown);
       articleDiv.html(articleHtml);
       document.title = getPageTitle(articleHtml);
 
@@ -144,7 +179,7 @@ define(["marked", "jquery", "mathjax", "hljs", "lodash"], function (marked, $, i
       }
 
       if (rawMarkdown) {
-        popuplateArticle(articleDiv, rawMarkdown);
+        populateArticle(articleDiv, articleFile, rawMarkdown);
       } else {
         $.ajax({
           type: "GET",
@@ -152,7 +187,7 @@ define(["marked", "jquery", "mathjax", "hljs", "lodash"], function (marked, $, i
           url: articleUrl,
           success: function (articleMarkdown) {
             rawMarkdowns[articleFile] = articleMarkdown;
-            popuplateArticle(articleDiv, articleMarkdown);
+            populateArticle(articleDiv, articleFile, articleMarkdown);
           },
           error: function (ignore, textStatus, errorThrown) {
             articleDiv.html("failed to load article content<br />" + textStatus + "<br />" + errorThrown);

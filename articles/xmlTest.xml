@@ -1,0 +1,28 @@
+<h1>XML Test Page</h1>
+
+<p>This is just a test page for Polymer custom elements and artcies built using them.</p>
+
+<p>Here's some inline code: <c>(defn factorial [& numbers] (reduce * numbers))</c>. That is all.</p>
+
+<csharp>
+public class Blah : Base
+{
+	public Blah(int x)
+	{
+		X = x;
+	}
+}
+</csharp>
+
+<toc>
+    <item url="thisSite">About This Site</item>
+    <item url="me">About Me</item>
+</toc>
+
+<p>
+paragraph.
+
+containing.
+
+linebreaks.
+</p>
