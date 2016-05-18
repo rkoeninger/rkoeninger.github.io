@@ -82,6 +82,16 @@ define(["marked", "jquery", "mathjax", "hljs", "lodash"], function (marked, $, i
       return defaultExtension(getArticleFileName(parser.search));
     }
 
+    function newClearFix() {
+      var fix = document.createElement("div");
+      fix.style.clear = "both";
+      return fix;
+    }
+
+    function newText(text) {
+      return document.createTextNode(text);
+    }
+
     function newElement(name, children) {
       var element = document.createElement(name);
       _.forEach(children, function (child) {
@@ -90,17 +100,50 @@ define(["marked", "jquery", "mathjax", "hljs", "lodash"], function (marked, $, i
       return element;
     }
 
+    var splitRegex = /\r?\n/;
+    var trivialCodeRegex = /[a-zA-Z0-9_]+/;
+
+    function codeHandler(lang, ext, name, xml) {
+      var text = _.trim(xml.textContent);
+      var codeElement = newElement("code", [newText(text)]);
+      var preElement = newElement("pre", [codeElement]);
+      codeElement.classList.add("lang-" + lang);
+      var langIcon = newElement("img", []);
+      langIcon.setAttribute("src", "/logos/" + lang + ".svg");
+      langIcon.classList.add("lang-icon");
+      var fileName = newElement("span", [newText("file." + ext)]);
+      fileName.classList.add("file-name");
+      var titleBar = newElement("div", [langIcon, fileName]);
+      titleBar.classList.add("title-bar");
+      var lines = text.split(splitRegex);
+      var loc = lines.length;
+      var sloc = lines.filter(x => trivialCodeRegex.test(x)).length;
+      var statsText = loc === sloc ? loc + " LOC" : loc + " LOC (" + sloc + " SLOC)";
+      var stats = newElement("span", [newText(statsText)]);
+      stats.classList.add("stats");
+      var langName = newElement("span", [newText(name)]);
+      langName.classList.add("lang-name");
+      var statsBar = newElement("div", [stats, langName, newClearFix()]);
+      statsBar.classList.add("stats-bar");
+      var wrapper = newElement("div", [titleBar, preElement, statsBar]);
+      wrapper.classList.add("snippet");
+      return wrapper;
+    }
+
     function processXml(xml) {
       if (xml.nodeType === xml.TEXT_NODE) {
         return xml;
-      } else if (xml.nodeName === "c") {
+      } else if (xml.nodeName === "C") {
         return newElement("code", _.map(xml.childNodes, processXml));
-      } else if (xml.nodeName === "csharp") {
-        var codeElement = newElement("code", xml.childNodes);
-        var preElement = newElement("pre", [codeElement]);
-        codeElement.classList.add("lang-csharp");
-        return preElement;
-      } else if (xml.nodeName === "toc") {
+      } else if (xml.nodeName === "HTML5") {
+        return codeHandler("html", "html", "HTML", xml);
+      } else if (xml.nodeName === "CSHARP") {
+        return codeHandler("csharp", "cs", "C#", xml);
+      } else if (xml.nodeName === "HASKELL") {
+        return codeHandler("haskell", "hs", "Haskell", xml);
+      } else if (xml.nodeName === "SCALA") {
+        return codeHandler("scala", "scala", "Scala", xml);
+      } else if (xml.nodeName === "TOC") {
         return newElement("ul", _.map(xml.children, function (item) {
           var a = newElement("a", [document.createTextNode(item.textContent)]);
           a.setAttribute("href", "/?" + item.attributes.url.value);
@@ -112,13 +155,13 @@ define(["marked", "jquery", "mathjax", "hljs", "lodash"], function (marked, $, i
     }
 
     function processXmlContent(articleContent) {
-      var articleXml = $.parseXML("<div>" + articleContent.replace("&", "&amp;") + "</div>");
-      var html = processXml(articleXml.firstElementChild);
+      var articleXml = $.parseHTML("<div>" + articleContent + "</div>");
+      var html = processXml(articleXml[0]);
       return html.innerHTML;
     }
 
     function populateArticle(articleDiv, articleFile, articleMarkdown) {
-      var articleHtml = endsWith(articleFile, ".xml") ? processXmlContent(articleMarkdown) : marked(articleMarkdown);
+      var articleHtml = endsWith(articleFile, ".html") ? processXmlContent(articleMarkdown) : marked(articleMarkdown);
       articleDiv.html(articleHtml);
       document.title = getPageTitle(articleHtml);
 

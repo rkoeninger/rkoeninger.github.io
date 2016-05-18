@@ -175,71 +175,45 @@ cite {
     padding-left: 0.5em;
     padding-right: 0.5em;
 }
-code.hljs {
-    position: relative;
+.snippet .title-bar .lang-icon {
+    vertical-align: middle;
+    height: 1.5em;
+    margin: 0.2em;
 }
-code.hljs::before {
-    position: absolute;
-    content: '';
-    top: 0.2em;
-    right: 0.2em;
-    width: 4em;
-    height: 80%;
-    background-size: 1.75em;
-    background-position: top right;
-    background-repeat: no-repeat;
-    opacity: 0.5;
+.snippet .title-bar .file-name {
+    text-align: center;
+    vertical-align: middle;
+    width: 100%;
+    margin-left: 0.25em;
+    margin-right: 0.25em;
 }
-code.lang-csharp::before {
-    background-image: url('/logos/csharp.svg');
+.snippet .title-bar {
+    background-color: #eeeeff;
+    padding: 0.2em;
+    margin: 0;
 }
-code.lang-fsharp::before {
-    background-image: url('/logos/fsharp.svg');
+.snippet .stats-bar .stats {
+    float: left;
+    text-align: left;
+    width: 50%;
 }
-code.lang-vbnet::before {
-    background-image: url('/logos/vbnet.svg');
+.snippet .stats-bar .lang-name {
+    float: right;
+    text-align: right;
+    width: 50%;
 }
-code.lang-razor::before {
-    background-image: url('/logos/razor.svg');
+.snippet .stats-bar {
+    background-color: #eeeeff;
+    padding: 0.2em;
+    margin: 0;
 }
-code.lang-java::before {
-    background-image: url('/logos/java.svg');
+.snippet pre {
+    margin-top: 0;
+    margin-bottom: 0;
 }
-code.lang-python::before {
-    background-image: url('/logos/python.svg');
-}
-code.lang-ruby::before {
-    background-image: url('/logos/ruby.svg');
-}
-code.lang-haskell::before {
-    background-image: url('/logos/haskell.svg');
-}
-code.lang-scala::before {
-    background-image: url('/logos/scala.svg');
-}
-code.lang-erlang::before {
-    background-image: url('/logos/erlang.svg');
-}
-code.lang-clojure::before {
-    background-image: url('/logos/clojure.svg');
-}
-code.lang-groovy::before {
-    background-image: url('/logos/groovy.svg');
-}
-code.lang-lua::before {
-    background-image: url('/logos/lua.svg');
-}
-code.lang-php::before {
-    background-image: url('/logos/php.svg');
-}
-code.lang-javascript::before {
-    background-image: url('/logos/javascript.svg');
-}
-code.lang-css::before {
-    background-image: url('/logos/css.svg');
-}
-code.lang-html::before {
-    background-image: url('/logos/html.svg');
+.snippet {
+    margin-top: 1em;
+    margin-bottom: 1em;
 }
 
 /* desktop/laptop */
@@ -257,66 +231,11 @@ code.lang-html::before {
     nav a {
         margin-bottom: 1em;
     }
-    code {
-        font-size: 14px;
+    .snippet {
+        font-size: 1em;
     }
-    code.hljs:hover::before {
-        background-image: none;
-        text-align: right;
-        padding-top: 0.2em;
-        padding-right: 0.2em;
-        opacity: 1;
-    }
-    code.lang-csharp:hover::before {
-        content: 'C#';
-    }
-    code.lang-fsharp:hover::before {
-        content: 'F#';
-    }
-    code.lang-vbnet:hover::before {
-        content: 'VB.Net';
-    }
-    code.lang-razor:hover::before {
-        content: 'Razor';
-    }
-    code.lang-java:hover::before {
-        content: 'Java';
-    }
-    code.lang-python:hover::before {
-        content: 'Python';
-    }
-    code.lang-ruby:hover::before {
-        content: 'Ruby';
-    }
-    code.lang-haskell:hover::before {
-        content: 'Haskell';
-    }
-    code.lang-scala:hover::before {
-        content: 'Scala';
-    }
-    code.lang-erlang:hover::before {
-        content: 'Erlang';
-    }
-    code.lang-clojure:hover::before {
-        content: 'Clojure';
-    }
-    code.lang-groovy:hover::before {
-        content: 'Groovy';
-    }
-    code.lang-lua:hover::before {
-        content: 'Lua';
-    }
-    code.lang-php:hover::before {
-        content: 'PHP';
-    }
-    code.lang-javascript:hover::before {
-        content: 'Javascript';
-    }
-    code.lang-css:hover::before {
-        content: 'CSS';
-    }
-    code.lang-html:hover::before {
-        content: 'HTML';
+    .snippet {
+        font-size: 0.75em;
     }
 }
 
@@ -349,7 +268,7 @@ code.lang-html::before {
     h2 {
         font-size: 3em;
     }
-    pre code {
+    .snippet {
         font-size: 1.6em;
     }
     ul {
