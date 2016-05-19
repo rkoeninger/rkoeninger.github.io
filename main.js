@@ -165,11 +165,6 @@ define(["marked", "jquery", "mathjax", "hljs", "lodash"], function (marked, $, i
       articleDiv.html(articleHtml);
       document.title = getPageTitle(articleHtml);
 
-      // Hide missing images
-      $("img").error(function () { 
-        $(this).hide();
-      });
-
       // Wrap tables in surrounding div
       $("table").wrap("<div class=\"table-wrapper\"></div>");
 
