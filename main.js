@@ -113,7 +113,7 @@ define(["marked", "jquery", "mathjax", "hljs", "lodash"], (marked, $, ignore, hl
     var splitRegex = /\r?\n/;
     var trivialCodeRegex = /[a-zA-Z0-9_]+/;
 
-    function codeHandler(lang, ext, name, xml) {
+    function codeHandler(lang, name, xml) {
       var text = _.trim(xml.textContent);
       var codeElement = newElement("code", [newText(text)], ["lang-" + lang]);
       var preElement = newElement("pre", [codeElement]);
@@ -128,7 +128,12 @@ define(["marked", "jquery", "mathjax", "hljs", "lodash"], (marked, $, ignore, hl
       var sloc = lines.filter(x => trivialCodeRegex.test(x)).length;
       var statsText = loc === sloc ? loc + " LOC" : loc + " LOC (" + sloc + " SLOC)";
       var stats = newElement("span", [newText(statsText)], ["stats"]);
-      var titleBar = newElement("div", [langIcon, fileName, stats, newClearFix()], ["title-bar"]);
+      var titleBar = newElement(
+        "div",
+        xml.attributes.filename
+          ? [langIcon, fileName, stats, newClearFix()]
+          : [langIcon, stats, newClearFix()],
+        ["title-bar"]);
       return newElement("div", [titleBar, preElement], ["snippet"]);
     }
 
@@ -146,13 +151,13 @@ define(["marked", "jquery", "mathjax", "hljs", "lodash"], (marked, $, ignore, hl
       } else if (xml.nodeName === "C") {
         return newElement("code", _.map(xml.childNodes, processXml));
       } else if (xml.nodeName === "HTML5") {
-        return codeHandler("html", "html", "HTML", xml);
+        return codeHandler("html", "HTML", xml);
       } else if (xml.nodeName === "CSHARP") {
-        return codeHandler("csharp", "cs", "C#", xml);
+        return codeHandler("csharp", "C#", xml);
       } else if (xml.nodeName === "HASKELL") {
-        return codeHandler("haskell", "hs", "Haskell", xml);
+        return codeHandler("haskell", "Haskell", xml);
       } else if (xml.nodeName === "SCALA") {
-        return codeHandler("scala", "scala", "Scala", xml);
+        return codeHandler("scala", "Scala", xml);
       } else if (xml.nodeName === "TOC") {
         return newElement("ul", _.map(xml.children, item => {
           var a = newElement("a", [document.createTextNode(item.textContent)]);
