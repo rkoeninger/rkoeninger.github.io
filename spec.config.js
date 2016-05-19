@@ -9,7 +9,7 @@ require.config({
     "jasmine-html": "//cdnjs.cloudflare.com/ajax/libs/jasmine/2.3.4/jasmine-html.min",
     "jasmine-boot": "//cdnjs.cloudflare.com/ajax/libs/jasmine/2.3.4/boot.min",
     "jquery": "//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min",
-    "lodash": "//cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.1/lodash.min",
+    "lodash": "//cdnjs.cloudflare.com/ajax/libs/lodash.js/4.12.0/lodash.min",
     "webcomponents": "//cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/0.7.18/webcomponents-lite.min",
     "marked": "//cdnjs.cloudflare.com/ajax/libs/marked/0.3.2/marked.min",
     "mathjax": "//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML&amp;delayStartupUntil=configured",
