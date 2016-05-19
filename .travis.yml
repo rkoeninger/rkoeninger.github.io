@@ -13,4 +13,4 @@ script:
   - sleep 10
   - phantomjs specs.js
   - kill -9 $NODE_SERVER_PID
-  - jslint '**/*.js' || true
+  - jslint main.js main.config.js spec/main.spec.js spec.config.js || true
