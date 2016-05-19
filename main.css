@@ -177,32 +177,24 @@ cite {
 }
 .snippet .title-bar .lang-icon {
     vertical-align: middle;
+    float: left;
+    margin-left: 0.2em;
+    margin-right: 0.25em;
     height: 1.5em;
-    margin: 0.2em;
 }
 .snippet .title-bar .file-name {
-    text-align: center;
     vertical-align: middle;
-    width: 100%;
+    float: left;
+    margin-left: 0.25em;
+    margin-right: 0.25em;
+}
+.snippet .title-bar .stats {
+    vertical-align: middle;
+    float: right;
     margin-left: 0.25em;
     margin-right: 0.25em;
 }
 .snippet .title-bar {
-    background-color: #eeeeff;
-    padding: 0.2em;
-    margin: 0;
-}
-.snippet .stats-bar .stats {
-    float: left;
-    text-align: left;
-    width: 50%;
-}
-.snippet .stats-bar .lang-name {
-    float: right;
-    text-align: right;
-    width: 50%;
-}
-.snippet .stats-bar {
     background-color: #eeeeff;
     padding: 0.2em;
     margin: 0;

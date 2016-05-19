@@ -110,22 +110,20 @@ define(["marked", "jquery", "mathjax", "hljs", "lodash"], function (marked, $, i
       codeElement.classList.add("lang-" + lang);
       var langIcon = newElement("img", []);
       langIcon.setAttribute("src", "/logos/" + lang + ".svg");
+      langIcon.setAttribute("title", name);
+      langIcon.setAttribute("alt", name);
       langIcon.classList.add("lang-icon");
       var fileName = newElement("span", [newText("file." + ext)]);
       fileName.classList.add("file-name");
-      var titleBar = newElement("div", [langIcon, fileName]);
-      titleBar.classList.add("title-bar");
       var lines = text.split(splitRegex);
       var loc = lines.length;
       var sloc = lines.filter(x => trivialCodeRegex.test(x)).length;
       var statsText = loc === sloc ? loc + " LOC" : loc + " LOC (" + sloc + " SLOC)";
       var stats = newElement("span", [newText(statsText)]);
       stats.classList.add("stats");
-      var langName = newElement("span", [newText(name)]);
-      langName.classList.add("lang-name");
-      var statsBar = newElement("div", [stats, langName, newClearFix()]);
-      statsBar.classList.add("stats-bar");
-      var wrapper = newElement("div", [titleBar, preElement, statsBar]);
+      var titleBar = newElement("div", [langIcon, fileName, stats, newClearFix()]);
+      titleBar.classList.add("title-bar");
+      var wrapper = newElement("div", [titleBar, preElement]);
       wrapper.classList.add("snippet");
       return wrapper;
     }
