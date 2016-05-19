@@ -122,7 +122,7 @@ define(["marked", "jquery", "mathjax", "hljs", "lodash"], (marked, $, ignore, hl
         "title": name,
         "alt": name
       });
-      var fileName = newElement("span", [newText("file." + ext)], ["file-name"]);
+      var fileName = newElement("span", [newText(xml.attributes.filename ? xml.attributes.filename.value : "")], ["file-name"]);
       var lines = text.split(splitRegex);
       var loc = lines.length;
       var sloc = lines.filter(x => trivialCodeRegex.test(x)).length;
