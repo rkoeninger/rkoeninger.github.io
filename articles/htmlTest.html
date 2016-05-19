@@ -2,11 +2,11 @@
 
 <p>This is just a test page for custom HTML and artcies built using it.</p>
 
-<nomobile>Here's a paragraph that should not be visible on mobile.</nomobile>
+<p><nomobile>Here's a paragraph that should not be visible on mobile.</nomobile></p>
 
 <onlymobile><p>Here's a paragraph that should only be visible on mobile.</p></onlymobile>
 
-<p>Here's another paragraph. <span class="no-mobile">Some of the words should not be visible on moble.</span><span class="only-mobile">Others should only be visible on mobile.</span> It should still look like a single paragraph.</p>
+<p>Here's another paragraph. <nomobile>Some of the words should not be visible on moble.</nomobile><onlymobile>Others should only be visible on mobile.</onlymobile> It should still look like a single paragraph.</p>
 
 <p>Here's some inline code: <c>(defn factorial [& numbers] (reduce * numbers))</c>. That is all.</p>
 

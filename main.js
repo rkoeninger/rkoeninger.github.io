@@ -88,7 +88,8 @@ define(["marked", "jquery", "mathjax", "hljs", "lodash"], (marked, $, ignore, hl
     }
 
     function isInlineElement(element) {
-      return getDisplayType(element) === "inline";
+      return getDisplayType(element.parentElement) === "inline"
+        || element.parentElement.nodeName === "P";
     }
 
     function newClearFix() {
@@ -135,11 +136,11 @@ define(["marked", "jquery", "mathjax", "hljs", "lodash"], (marked, $, ignore, hl
       if (xml.nodeType === xml.TEXT_NODE) {
         return xml;
       } else if (xml.nodeName === "NOMOBILE") {
-        var div = newElement("div", xml.childNodes);
+        var div = newElement(isInlineElement(xml) ? "span" : "div", xml.childNodes);
         div.classList.add("no-mobile");
         return div;
       } else if (xml.nodeName === "ONLYMOBILE") {
-        var div = newElement("div", xml.childNodes);
+        var div = newElement(isInlineElement(xml) ? "span" : "div", xml.childNodes);
         div.classList.add("only-mobile");
         return div;
       } else if (xml.nodeName === "C") {
