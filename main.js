@@ -87,7 +87,7 @@ define(["marked", "jquery", "mathjax", "hljs", "lodash"], function (marked, $, i
     }
 
     function getDisplayType(element) {
-      var cStyle = element.currentStyle || window.getComputedStyle(element, ""); 
+      var cStyle = element.currentStyle || window.getComputedStyle(element, "");
       return cStyle.display;
     }
 
