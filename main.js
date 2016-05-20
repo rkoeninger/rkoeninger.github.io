@@ -141,7 +141,7 @@ define(["marked", "jquery", "mathjax", "hljs", "lodash"], function (marked, $, i
 
     function processXml(xml) {
       var attrs;
-      if (xml.nodeType === xml.TEXT_NODE) {
+      if (xml.nodeType === document.TEXT_NODE) {
         return xml;
       }
       if (xml.nodeName === "NOMOBILE") {
@@ -201,8 +201,11 @@ define(["marked", "jquery", "mathjax", "hljs", "lodash"], function (marked, $, i
           return newElement("li", [a]);
         }));
       }
-      attrs = _.reduce(xml.attributes, function (acc, attr) { acc[attr.name] = attr.value; return acc; }, {});
-      return newElement(xml.nodeName, _.map(xml.childNodes, processXml), [], attrs);
+      if (xml.nodeType === document.ELEMENT_NODE) {
+        attrs = _.reduce(xml.attributes, function (acc, attr) { acc[attr.name] = attr.value; return acc; }, {});
+        return newElement(xml.nodeName, _.map(xml.childNodes, processXml), [], attrs);
+      }
+      return xml;
     }
 
     function processXmlContent(articleContent) {
