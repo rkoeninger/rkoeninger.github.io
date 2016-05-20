@@ -5,15 +5,19 @@
 
 define(["marked", "jquery", "mathjax", "hljs", "lodash"], (marked, $, ignore, hljs, _) => {
   var main = (() => {
-    var defaultArticle = "default.md",
+    var defaultArticle = "default.html",
+      defaultExt = ".html",
       disqusEnabled = false,
-      disqusExcludedArticles = ["/default.md", "/status.md", "/xmlTest.xml"],
+      disqusExcludedArticles = ["/default.html", "/status.html", "/htmlTest.html"],
       disqusScriptUrl = "//rkoeningergithubio.disqus.com/embed.js",
       historyUrlBase = "//github.com/rkoeninger/rkoeninger.github.io/commits/master/articles/",
       commitsUrlBase = "//api.github.com/repos/rkoeninger/rkoeninger.github.io/commits?path=",
       sourceUrlBase = "//cdn.rawgit.com/rkoeninger/rkoeninger.github.io/master/articles/",
       rawMarkdowns = {},
-      modifiedDates = {};
+      modifiedDates = {},
+      splitRegex = /\r?\n/,
+      trivialCodeRegex = /[a-zA-Z0-9_]+/,
+      plusGlobalRegex = /\+/g;
 
     function getQsValue(queryString, key) {
       var qsParts, argVal;
@@ -34,7 +38,7 @@ define(["marked", "jquery", "mathjax", "hljs", "lodash"], (marked, $, ignore, hl
       });
 
       if (argVal) {
-        return decodeURIComponent(argVal.split("=")[1].replace(/\+/g, " "));
+        return decodeURIComponent(argVal.split("=")[1].replace(plusGlobalRegex, " "));
       }
 
       return "";
@@ -55,7 +59,7 @@ define(["marked", "jquery", "mathjax", "hljs", "lodash"], (marked, $, ignore, hl
     }
 
     function defaultExtension(articleName) {
-      return articleName.indexOf(".") > 0 ? articleName : articleName + ".md";
+      return articleName.indexOf(".") > 0 ? articleName : articleName + defaultExt;
     }
 
     function getArticleFileName(queryString) {
@@ -109,9 +113,6 @@ define(["marked", "jquery", "mathjax", "hljs", "lodash"], (marked, $, ignore, hl
       _.forEach(attributes, (v, k) => element.setAttribute(k, v));
       return element;
     }
-
-    var splitRegex = /\r?\n/;
-    var trivialCodeRegex = /[a-zA-Z0-9_]+/;
 
     function codeHandler(lang, name, xml) {
       var text = _.trim(xml.textContent);

@@ -1,0 +1,108 @@
+<h1>All That Glitters Is Gold</h1>
+
+<h2>The Golden Ratio</h2>
+
+<p>I stumbled upon the derivation of the golden ratio one night. Here's the approach I took.</p>
+
+<h3>Derivation</h3>
+
+<p>The golden ratio is defined as: $a+b$ is to $a$ as $a$ is to $b$:</p>
+
+<p>$${a + b \over a} = {a \over b} \equiv \varphi$$</p>
+
+<p>when $b = 1$ then $a = \varphi$</p>
+
+<p>$${\varphi + 1 \over \varphi} = \varphi$$</p>
+
+<p>$$\varphi + 1 = \varphi^2$$</p>
+
+<p>$$\varphi^2 - \varphi - 1 = 0$$</p>
+
+<p>use the <a href="http://mathworld.wolfram.com/QuadraticFormula.html">quadratic forumla</a></p>
+
+<p>$$\varphi = {-(-1) \pm \sqrt{(-1)^2-4(1)(-1)} \over 2(1)}$$</p>
+
+<p>$$\varphi = {1 \pm \sqrt 5 \over 2}$$</p>
+
+<p>and since we know $a > b > 0$, then $\varphi > 0$ and the following is the positive value</p>
+
+<p>$$\varphi = {1 + \sqrt 5 \over 2} = {1 + {1 \over \varphi}}$$</p>
+
+<p>and the other value is the golden ratio compliment</p>
+
+<p>$$\phi = {1 - \sqrt 5 \over 2} = {-1 \over \varphi} = {1 - \varphi}$$</p>
+
+<p>and</p>
+
+<p>$$\varphi + \phi = 1$$</p>
+
+<h3>Recursive Definition</h3>
+
+<p>$$\varphi = {1 + {1 \over \varphi}}$$</p>
+
+<p>$$\varphi = {1 + {1 \over {1 + {1 \over \varphi}}}}$$</p>
+
+<p>$$\varphi = {1 + {1 \over {1 + {1 \over {1 + {1 \over \varphi}}}}}}$$</p>
+
+<p>Neat.</p>
+
+<p>This recursive definition might have some relation to a well-known recursive series maybe?</p>
+
+<h3>Fibonacci</h3>
+
+<p>Turns out there's a <a href="http://mathworld.wolfram.com/BinetsFibonacciNumberFormula.html">losed-form (non-iterative) function</a> for fibonacci based on the golden ratio:</p>
+
+<p>$$f(n) = {\varphi^n - \phi^n \over \sqrt 5}$$</p>
+
+<p>So if you get an interview question asking you to implement fibonacci, you get to be a smartass and write this:</p>
+
+<haskell>
+fib :: Int -> Integer
+fib n = round $ (gold ^ n - gold_ ^ n) / root5
+        where root5 = sqrt (fromIntegral 5)
+              gold  = (1 + root5) / 2
+              gold_ = (1 - root5) / 2
+</haskell>
+
+<p>Rounding is needed due to non-exact floating-point results. Without rounding, it should get almost exact values.</p>
+
+<pre>
+λ: map fib [0..40]
+[0,1,1,2,3,5,8,13,21,34,55,89,144,
+ 233,377,610,987,1597,2584,4181,
+ 6765,10946,17711,28657,46368,75025,
+ 121393,196418,317811,514229,832040,
+ 1346269,2178309,3524578,5702887,
+ 9227465,14930352,24157817,39088169,
+ 63245986,102334155]
+</pre>
+
+<p>Plus, it's in Haskell! Just because!</p>
+
+<h3>Fibonacci, Take 2</h3>
+
+<p>Then <a href="http://mathworld.wolfram.com/FibonacciNumber.html">I discovered</a> you can make it even simpler than that:</p>
+
+<p>$$f(n) = round( {\varphi^n \over \sqrt 5} )$$</p>
+
+<p>With code like this:</p>
+
+<haskell>
+fib :: Int -> Integer
+fib n = round $ gold ^ n / root5
+        where root5 = sqrt (fromIntegral 5)
+              gold  = (1 + root5) / 2
+</haskell>
+
+<p>And it gets the same results. Except rounding is really needed in this case.</p>
+
+<pre>
+λ: map fib [0..40]
+[0,1,1,2,3,5,8,13,21,34,55,89,144,
+ 233,377,610,987,1597,2584,4181,
+ 6765,10946,17711,28657,46368,75025,
+ 121393,196418,317811,514229,832040,
+ 1346269,2178309,3524578,5702887,
+ 9227465,14930352,24157817,39088169,
+ 63245986,102334155]
+</pre>
