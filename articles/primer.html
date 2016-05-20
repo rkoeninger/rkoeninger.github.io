@@ -1,0 +1,223 @@
+<h1>Syntax Primer</h1>
+
+<p>Hopefully C# is similiar enough to Java and C++ that most will understand this primer.</p>
+
+<h3>Comparison of the Basics</h3>
+
+<p>Note that since Clojure does not have a native type system, many of these will be blank.</p>
+
+<p>There is core.typed, but most Clojure will not use it.</p>
+
+<p>Cells are left empty if matching syntax does not exist in a given language or is simply not meaningful.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Syntax Form</th>
+      <th>C#</th>
+      <th>Haskell</th>
+      <th>Clojure</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Basic Types</th>
+      <td><c>string</c> <br/> <c>int</c> <br/> <c>bool</c></td>
+      <td><c>String</c> <br/> <c>Int</c> <br/> <c>Bool</c></td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>Unit</th>
+      <td></td>
+      <td><c>()</c></td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>Null</th>
+      <td><c>null</c></td>
+      <td></td>
+      <td><c>nil</c></td>
+    </tr>
+    <tr>
+      <th>Falseness</th>
+      <td><c>false</c></td>
+      <td><c>False</c></td>
+      <td>only <c>nil</c> or <c>false</c></td>
+    </tr>
+    <tr>
+      <th>Trueness</th>
+      <td><c>true</c></td>
+      <td><c>True</c></td>
+      <td>anything except <c>nil</c> or <c>false</c></td>
+    </tr>
+    <tr>
+      <th>List Type</th>
+      <td><c>List&lt;T&gt;</c></td>
+      <td><c>[t]</c></td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>Applied List Type</th>
+      <td><c>List&lt;string&gt;</c></td>
+      <td><c>[String]</c></td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>List/Array Creation</th>
+      <td><c>new List&lt;int&gt; {1, 2, 3}</c><br/><c>new [] {1, 2, 3}</c></td>
+      <td><c>[1, 2, 3]</c></td>
+      <td><c>[1 2 3]</c></td>
+    </tr>
+    <tr>
+      <th>Dictionary Creation</th>
+      <td><c>new Dictionary&lt;string, int&gt; {{"one", 1}, {"two", 2}, {"three", 3}}</c></td>
+      <td><c>fromList [("one", 1), ("two", 2), ("three", 3)]</c></td>
+      <td><c>{"one" 1 "two" 2 "three" 3}</c></td>
+    </tr>
+    <tr>
+      <th>Parameterized Type App</th>
+      <td><c>Set&lt;string&gt;</c></td>
+      <td><c>Set String</c></td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>Tuple Type</th>
+      <td><c>Tuple&lt;string, int&gt;</c></td>
+      <td><c>(String, Int)</c></td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>Function Type</th>
+      <td><c>Func&lt;int, string&gt;</c></td>
+      <td><c>Int -> String</c></td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>void Function</th>
+      <td><c>Action&lt;string&gt;</c></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>Type Label</th>
+      <td><c>string x</c></td>
+      <td><c>x :: String</c></td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>Function Type Signature</th>
+      <td><c>string F(int arg)</c></td>
+      <td><c>f :: Int -> String</c></td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>No-arg Application</th>
+      <td><c>F()</c></td>
+      <td></td>
+      <td><c>(f)</c></td>
+    </tr>
+    <tr>
+      <th>Application with args</th>
+      <td><c>F(x, y)</c></td>
+      <td><c>f x y</c></td>
+      <td><c>(f x y)</c></td>
+    </tr>
+    <tr>
+      <th>Lambdas</th>
+      <td><c>x => x + 1</c></td>
+      <td><c>\x -> x + 1</c></td>
+      <td><c>(fn [x] (+ 1 x))</c><br/><c>#(+ 1 %)</c></td>
+    </tr>
+    <tr>
+      <th>Partial Application</th>
+      <td></td>
+      <td><c>(+) 1</c></td>
+      <td><c>(partial + 1)</c></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>In Clojure, whitespace is all that is needed to separate pieces of syntax. Commas are optional and are interpreted as whitespace. Identation never affects the meaning of code.</p>
+
+<p>In Haskell, indentation can used to identify scope. A function can have backticks put around it to put it in infix position and an operator can have parens put around it to use it in prefix position or to pass it unapplied into another function.</p>
+
+<haskell>
+filter isPositive [1, -4, 2, 0, -5, 6]
+isPositive `filter` [1, -4, 2, 0, -5, 6]
+
+1 + 2
+(+) 1 2
+foldr (+) 0 [1..10]
+</haskell>
+
+<h3>Pure Functions</h3>
+
+<p>Pure functions are functions whose return value only varies with respect to its argument(s) and has no visible side-effects.</p>
+
+<p>By only varying with respect to it's arguments, I mean a function can't read non-constant globals (so accessing the value of PI is fine) or perform file system or network read operations to inform it's generation of a result value.</p>
+
+<p>This means that it wouldn't make sense to have a pure function with the type <c>() -> a</c>.</p>
+
+<h3>Side-effects</h3>
+
+<p>By side-effects, I mean it doesn't set any mutable references or perform I/O or anything of that sort.</p>
+
+<p>Naturally, all functions have side-effects like allocating memory or warming the CPU, but that's not what is being referred to in FP as "side-effects".</p>
+
+<h3>Currying</h3>
+
+<p>It is typical in Haskell and some other languages to curry function paramters. Instead of <c>(a, b, c) -> d</c>, functions would appear <c>a -> b -> c -> d</c>. Instead of a function that takes <c>(a, b, c)</c> and returns <c>d</c>, it's a function that takes <c>a</c> and returns a function that takes <c>b</c> and in turn returns a function that takes <c>c</c> and finally returns <c>d</c>. This allows for easy partially applications and easy re-use of functions.</p>
+
+<p>For instance, the addition operator in curried form has the type <c>Int -> Int -> Int</c>. This allows one to write <c>1 +</c> and get a function of type <c>Int -> Int</c> which will add <c>1</c> to its argument.</p>
+
+<h3>Persistent Data Structures</h3>
+
+<p>Working with immutable collections results in functions that don't modify an existing collection, they create a new one that differs in the specified way. So adding <c>6</c> to the head of <c>let xs = [5, 4, 3, 2, 1]</c> would result in a new list: <c>[6, 5, 4, 3, 2, 1]</c> and the existing list <c>xs</c> would remain unchanged.</p>
+
+<p>In Haskell and Clojure, these kind of data structures and operations are pervasive.</p>
+
+<h3>Recursion and Tail Call Optimization</h3>
+
+<p>Immutability implies that a data structure cannot be changed and that variables cannot be re-bound in the same scope. Once a variable <c>x</c> has been assigned, it cannot be changed.</p>
+
+<p>These means that a construct like a <c>while</c> loop can't be useful anymore. Either the loop condition is true when we get to the loop, and since the condition can't change (all of the symbols that make up it's condition can't be changed), the loop will run forever. Or it could be false initially and the loop won't run at all. So loops would be limited to running never or forever. Neither is a common preference.</p>
+
+<p>So if we wanted to do something common like get all the phone numbers from a list of people, we wouldn't write code like this without side-effects:</p>
+
+<csharp>
+List&lt;PhoneNumber&gt; GetPhoneNumbers(List&lt;Person&gt; people)
+{
+	var phoneNumbers = new List&lt;PhoneNumber&gt;();
+
+	foreach (var person in people)
+	{
+		phoneNumbers.Add(person.PhoneNumber);
+	}
+
+	return phoneNumbers;
+}
+</csharp>
+
+<p>Instead, we would define it recursively like this:</p>
+
+<haskell>
+getPhoneNumbers :: [Person] -> [PhoneNumber]
+getPhoneNumbers [] = []
+getPhoneNumbers (person : others) = (phoneNumber person) : (getPhoneNumbers others)
+</haskell>
+
+<p>But if we have a very long list, we risk a stack overflow as each element will cause the function to recurse an additional level deeper.</p>
+
+<p>Some languages have Tail Call Optimization which can turn a properly designed recursive function back into a loop under the hood (during compilation).</p>
+
+<p>TCO can be done when the recursive call is the last thing we do in the loop. For instance:</p>
+
+<haskell>
+getPhoneNumbers :: [Person] -> [PhoneNumbers] -> [PhoneNumbers]
+getPhoneNumbers [] = id -- just return the accumulated phone numbers when no people left
+getPhoneNumbers (person : others) numbers = getPhoneNumbers others (phoneNumber person : numbers)
+</haskell>
+
+<p>That would get really annoying to have to implement every time we want to loop. One might ask "isn't FP supposed to make the code simpler and more expressive, not less?".</p>
+
+<p>Thankfully, we have plenty of provided functions that already implement this pattern, so we can just write <c>map phoneNumber people</c>.</p>

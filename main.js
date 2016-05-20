@@ -163,6 +163,8 @@ define(["marked", "jquery", "mathjax", "hljs", "lodash"], (marked, $, ignore, hl
         return codeHandler("scala", "Scala", xml);
       } else if (xml.nodeName === "DOS") {
         return codeHandler("dos", "Windows Batch", xml);
+      } else if (xml.nodeName === "RUBY") {
+        return codeHandler("ruby", "Ruby", xml);
       } else if (xml.nodeName === "TOC") {
         return newElement("ul", _.map(xml.children, item => {
           var a = newElement("a", [document.createTextNode(item.textContent)]);

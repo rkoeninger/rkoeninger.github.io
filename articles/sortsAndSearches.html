@@ -1,0 +1,80 @@
+<h1>Sorts and Searches</h1>
+
+<h2>...Searches and Sorts</h2>
+
+<h3>First Thing's First</h3>
+
+<p>In school, the first algorithms they teach you are are searches and sorts. While there are several sorting algorithms - insertion sort, selection sort, merge sort, quick sort, there are only two common searching algorithms: linear and binary.</p>
+
+<dl>
+  <dt>Linear Search</dt>
+  <dd>Go down the list, checking each item until the target item is found.</dd>
+</dl>
+
+<ruby filename="linear_search.rb">
+def linear_search(list, val)
+  for i in 0..list.length
+    return i if list[i] == val
+  end
+  nil
+end
+</ruby>
+
+<p>The linear search runs in $O(n)$ time, meaning the average time it takes to run is propotional to the length of the list.</p>
+
+<table>
+  <thead>
+    <tr><th>List Length</th><th>Average Algorithm Time</th></tr>
+  </thead>
+  <tbody style="text-align: right">
+    <tr><td>10</td><td>5</td></tr>
+    <tr><td>100</td><td>50</td></tr>
+    <tr><td>1,000</td><td>500</td></tr>
+    <tr><td>1,000,000</td><td>500,000</td></tr>
+    <tr><td>1,000,000,000</td><td>500,000,000</td></tr>
+  </tbody>
+</table>
+
+<dl>
+  <dt>Binary Search</dt>
+  <dd>Considering the whole list, compare the item in the middle of the list. If the middle item is greater than the target item, then repeat this process considering only the first half of the list. If the middle item is lesser than the target item, then repeat this process considering only the second half of the list.</dd>
+</dl>
+
+<ruby filename="binary_search.rb">
+def binary_search(list, val, low = 0, high = (list.length - 1))
+  return nil if high < low
+  mid = low + (low - high) / 2
+  case
+    when list[mid] > val then binary_search(list, val, low, mid - 1)
+    when list[mid] < val then binary_search(list, val, mid + 1, high)
+    else mid
+  end
+end
+</ruby>
+
+<small><a href="http://googleresearch.blogspot.no/2006/06/extra-extra-read-all-about-it-nearly.html">Line 3 corrected per finding by Joshua Bloch</a></small>
+
+<p>The binary search runs in $O(\log n)$ time, meaning it's average run time is proportional to the _logarithm_ of the length of the list.</p>
+
+<table>
+  <thead>
+    <tr><th>List Length</th><th>Average Algorithm Time</th></tr>
+  </thead>
+  <tbody style="text-align: right">
+    <tr><td>10</td><td>3</td></tr>
+    <tr><td>100</td><td>7</td></tr>
+    <tr><td>1,000</td><td>10</td></tr>
+    <tr><td>1,000,000</td><td>20</td></tr>
+    <tr><td>1,000,000,000</td><td>30</td></tr>
+  </tbody>
+</table>
+
+<p>You might notice that one is much faster than the other.</p>
+
+<p>It would seem that the use of one entirely follows from the use of the other.</p>
+ 
+<p>What makes searching a whole lot easier? Having a sorted collection.</p>
+
+<p>Why sort? So you can search.</p>
+
+<p>Why else would you sort?</p>
