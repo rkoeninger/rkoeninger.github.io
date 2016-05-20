@@ -1,0 +1,67 @@
+<h1>C# Type System</h1>
+
+<h3>NULL!!!!!!</h3>
+
+<p>I already wrote about this in the <a href="/?sure">Surely</a> article about how nulls cannot be worked around in C#. Expect just to whip anyone who uses them.</p>
+
+<em>TODO move that article here</em>
+
+<h3>Still not unified</h3>
+
+<p>"Unified type system" usually refers to the idea that every type fits into the same hierarchy.</p>
+
+<p>Java's type system definitely is not unified because of how the primitive types are treated differently from object types. So <c>int</c>s cannot be assigned to <c>Object</c> variables and generic functions are overbearing to write and work with:</p>
+
+<java>
+map
+mapToInt
+mapToShort
+mapToBoolean
+mapToDouble
+// etc, omg
+</java>
+
+<p>In C#, <c>int</c> is just an alias for <c>System.Int32</c> which is a subtype of <c>System.Object</c>. The primitive types are subtypes of `Object`, and this makes it a whole lot easier to write type-generic code.</p>
+
+<p>But if the type system was truly unified, you should be able to write and use a function like this:</p>
+
+<csharp>
+/// &lt;summary&gt;Returns a function that always returns the given value.&lt;/summary&gt;
+public static Func&lt;Object, A&gt; Const&lt;A&gt;(A x)
+{
+	return _ => x;
+}
+</csharp>
+
+<p>The reasoning for having the returned function take <c>Object</c> is that it should be able to take anything and then return the constant value.</p>
+
+<p>But it doesn't work in some contexts.</p>
+
+<csharp>
+public static A Something&lt;A, B&gt;(A x, B y)
+{
+	return Const(x)(y);
+}
+</csharp>
+
+<p>This is a really contrived example, but it should work.</p>
+
+<p>The reason why it doesn't is because the unconstrained type parameter <c>A</c> can be some things that are not assignable to <c>Object</c>. In particular, it could be a pointer.</p>
+
+<p>This causes problems with some edge cases of generic functions.</p>
+
+<h3>Assignable and Subtype</h3>
+
+<p>There's also a difference between a type being assignable to another type and being a subtype of that other type. It's not proper to imply that these are the same. Like I did above.</p>
+
+<h3>Class and Type</h3>
+
+<p>A class and a type are also not the same thing. The <c>String</c> class is a character array and an offset and some defined methods. The <c>String</c> type is either an instance of the <c>String</c> class or <c>null</c>. <c>null</c> strikes again!</p>
+
+<h3>Vestigial Concepts</h3>
+
+<p>java, c# and of course C++ all have type systems with fundamental flaws that follow from the fact that they are inspired by C's type system. in C, a type is an alias for a memory layout primarily. in java and c#, types are all specializations of a most-general, all-inclusive type Object. java/csharp also conflate type with class, and implementation details with interface. until you start using interfaces, which provide the necessary separation. they're "object-oriented" languages that aren't very good at object-orientation becuase of their strong inspiration from C/C++.</p>
+
+<h3>Compared to Alternatives</h3>
+
+<p>in MLs and Haskell, types are compositions of other types, it works somewhat in reverse. in these languages, types are much more easily used to specify things both to the machine and to the reader about code contracts.</p>

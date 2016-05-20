@@ -156,6 +156,8 @@ define(["marked", "jquery", "mathjax", "hljs", "lodash"], (marked, $, ignore, hl
         return codeHandler("csharp", "C#", xml);
       } else if (xml.nodeName === "HASKELL") {
         return codeHandler("haskell", "Haskell", xml);
+      } else if (xml.nodeName === "JAVA") {
+        return codeHandler("java", "Java", xml);
       } else if (xml.nodeName === "SCALA") {
         return codeHandler("scala", "Scala", xml);
       } else if (xml.nodeName === "DOS") {
@@ -167,7 +169,8 @@ define(["marked", "jquery", "mathjax", "hljs", "lodash"], (marked, $, ignore, hl
           return newElement("li", [a]);
         }));
       } else {
-        return newElement(xml.nodeName, _.map(xml.childNodes, processXml));
+        var attrs = _.reduce(xml.attributes, (acc, attr) => { acc[attr.name] = attr.value; return acc; }, {});
+        return newElement(xml.nodeName, _.map(xml.childNodes, processXml), [], attrs);
       }
     }
 
