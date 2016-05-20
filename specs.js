@@ -4,7 +4,7 @@
 /*global phantom*/
 
 function waitFor(testFx, onReady, timeOutMillis) {
-  var maxtimeOutMillis = timeOutMillis || 10000,
+  var maxtimeOutMillis = timeOutMillis || 30000,
     start = new Date().getTime(),
     condition = false,
     interval = setInterval(function () {
