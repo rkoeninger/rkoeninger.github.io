@@ -55,7 +55,7 @@ define(["marked", "jquery", "mathjax", "hljs", "lodash"], function (marked, $, i
     }
 
     function contains(list, target) {
-      return _.some(list, function (item) { return endsWith(target, item) });
+      return _.some(list, function (item) { return endsWith(target, item); });
     }
 
     function defaultExtension(articleName) {
