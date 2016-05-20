@@ -3,8 +3,8 @@
 /*jslint browser: true, regexp: true, nomen: true, indent: 2*/
 /*global define, MathJax*/
 
-define(["marked", "jquery", "mathjax", "hljs", "lodash"], (marked, $, ignore, hljs, _) => {
-  var main = (() => {
+define(["marked", "jquery", "mathjax", "hljs", "lodash"], function (marked, $, ignore, hljs, _) {
+  var main = (function () {
     var defaultArticle = "default.html",
       defaultExt = ".html",
       disqusEnabled = false,
@@ -32,7 +32,7 @@ define(["marked", "jquery", "mathjax", "hljs", "lodash"], (marked, $, ignore, hl
         return "";
       }
 
-      argVal = _.find(qsParts, qsPart => {
+      argVal = _.find(qsParts, function (qsPart) {
         var argValSplit = qsPart.split("=");
         return argValSplit.length === 2 && argValSplit[0] === key;
       });
@@ -55,7 +55,7 @@ define(["marked", "jquery", "mathjax", "hljs", "lodash"], (marked, $, ignore, hl
     }
 
     function contains(list, target) {
-      return _.some(list, item => endsWith(target, item));
+      return _.some(list, function (item) { return endsWith(target, item) });
     }
 
     function defaultExtension(articleName) {
@@ -77,7 +77,7 @@ define(["marked", "jquery", "mathjax", "hljs", "lodash"], (marked, $, ignore, hl
     }
 
     function getPageTitle(articleHtml) {
-      return $(_.find($(articleHtml), x => $(x).is("h1"))).text() || "Fear of a Blue Screen";
+      return $(_.find($(articleHtml), function (x) { return $(x).is("h1"); })).text() || "Fear of a Blue Screen";
     }
 
     function parseArticleId(url) {
@@ -108,9 +108,9 @@ define(["marked", "jquery", "mathjax", "hljs", "lodash"], (marked, $, ignore, hl
 
     function newElement(name, children, classes, attributes) {
       var element = document.createElement(name);
-      _.forEach(children, x => element.appendChild(x));
-      _.forEach(classes, x => element.classList.add(x));
-      _.forEach(attributes, (v, k) => element.setAttribute(k, v));
+      _.forEach(children, function (x) { return element.appendChild(x) });
+      _.forEach(classes, function (x) { return element.classList.add(x) });
+      _.forEach(attributes, function (v, k) { return element.setAttribute(k, v) });
       return element;
     }
 
@@ -126,7 +126,7 @@ define(["marked", "jquery", "mathjax", "hljs", "lodash"], (marked, $, ignore, hl
       var fileName = newElement("span", [newText(xml.attributes.filename ? xml.attributes.filename.value : "")], ["file-name"]);
       var lines = text.split(splitRegex);
       var loc = lines.length;
-      var sloc = lines.filter(x => trivialCodeRegex.test(x)).length;
+      var sloc = lines.filter(function (x) { return trivialCodeRegex.test(x); }).length;
       var statsText = loc === sloc ? loc + " LOC" : loc + " LOC (" + sloc + " SLOC)";
       var stats = newElement("span", [newText(statsText)], ["stats"]);
       var titleBar = newElement(
@@ -166,7 +166,7 @@ define(["marked", "jquery", "mathjax", "hljs", "lodash"], (marked, $, ignore, hl
       } else if (xml.nodeName === "RUBY") {
         return codeHandler("ruby", "Ruby", xml);
       } else if (xml.nodeName === "ICONSET") {
-        return newElement("div", _.map(xml.children, item => {
+        return newElement("div", _.map(xml.children, function (item) {
           var name = item.attributes.name.value;
           var a = newElement("a", [newElement("img", [], ["detail"], {
             "src": item.attributes.icon.value,
@@ -178,13 +178,13 @@ define(["marked", "jquery", "mathjax", "hljs", "lodash"], (marked, $, ignore, hl
         }), ["icon-set"]);
         // TODO: add a clearfix after this
       } else if (xml.nodeName === "TOC") {
-        return newElement("ul", _.map(xml.children, item => {
+        return newElement("ul", _.map(xml.children, function (item) {
           var a = newElement("a", [document.createTextNode(item.textContent)]);
           a.setAttribute("href", "/?" + item.attributes.url.value);
           return newElement("li", [a]);
         }));
       } else {
-        var attrs = _.reduce(xml.attributes, (acc, attr) => { acc[attr.name] = attr.value; return acc; }, {});
+        var attrs = _.reduce(xml.attributes, function (acc, attr) { acc[attr.name] = attr.value; return acc; }, {});
         return newElement(xml.nodeName, _.map(xml.childNodes, processXml), [], attrs);
       }
     }
@@ -204,9 +204,9 @@ define(["marked", "jquery", "mathjax", "hljs", "lodash"], (marked, $, ignore, hl
       $("table").wrap("<div class=\"table-wrapper\"></div>");
 
       // Navigate within the site using PushState
-      $("a").each(a => {
+      $("a").each(function (a) {
         if (a.host === window.location.host) {
-          $(a).click(e => {
+          $(a).click(function (e) {
             if (e.which !== 1) {
               return true;
             }
@@ -222,7 +222,7 @@ define(["marked", "jquery", "mathjax", "hljs", "lodash"], (marked, $, ignore, hl
       });
 
       // Polymer introduces a delay in the rendering of the page
-      setTimeout(() => {
+      setTimeout(function () {
         hljs.initHighlighting.called = false;
         hljs.initHighlighting();
 
@@ -257,11 +257,11 @@ define(["marked", "jquery", "mathjax", "hljs", "lodash"], (marked, $, ignore, hl
           type: "GET",
           dataType: "text",
           url: articleUrl,
-          success: articleMarkdown => {
+          success: function (articleMarkdown) {
             rawMarkdowns[articleFile] = articleMarkdown;
             populateArticle(articleDiv, articleFile, articleMarkdown);
           },
-          error: (ignore, textStatus, errorThrown) => {
+          error: function (ignore, textStatus, errorThrown) {
             articleDiv.html("failed to load article content<br />" + textStatus + "<br />" + errorThrown);
           }
         });
@@ -272,7 +272,7 @@ define(["marked", "jquery", "mathjax", "hljs", "lodash"], (marked, $, ignore, hl
       } else {
         $.getJSON(
           getCommitHistoryUrl(articleUrl),
-          data => {
+          function (data) {
             var author, date;
 
             if (data.length > 0) {
@@ -287,7 +287,7 @@ define(["marked", "jquery", "mathjax", "hljs", "lodash"], (marked, $, ignore, hl
     }
 
     function init() {
-      $(window).on("popstate", event => {
+      $(window).on("popstate", function (event) {
         var articleId = event.originalEvent.state
           ? event.originalEvent.state.articleId
           : defaultArticle;
@@ -307,7 +307,7 @@ define(["marked", "jquery", "mathjax", "hljs", "lodash"], (marked, $, ignore, hl
       getPageTitle: getPageTitle,
       init: init
     };
-  })();
+  }());
 
   return main;
 });
