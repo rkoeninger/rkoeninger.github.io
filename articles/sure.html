@@ -1,0 +1,131 @@
+<h1>C#: Don't Call Me Surely</h1>
+
+<h3>Where There Is a Will</h3>
+
+<p>One day, I decided I had seen enough <c>NullReferenceException</c>s for one lifetime and sought to abolish them from all of my future code.</p>
+
+<p>C#, in addition to classes, has structs. Structs differ from classes in a few ways, but the difference that was important to me was that references to structs cannot be null.</p>
+
+<p>So code like this would be illegal:</p>
+
+<csharp>
+DateTime dt = null;
+</csharp>
+
+<p>So I thought: wouldn't it be great if String were a struct instead of a class? Then	we wouldn't have to worry about null references to Strings. A string can be either null or empty or non-empty and frequently, null and empty would have the same meaning, thus the need for: <c>String.IsNullOrEmpty</c>.</p>
+
+<p>And you wouldn't have to worry about keeping track of whether a given String has been checked for non-null-ness or not. You could be <strong>sure</strong> that the reference has a value.</p>
+
+<p>We could make something like:</p>
+
+<csharp>
+public struct SureString
+{
+    public SureString(char[] array, int start, int stop)
+    {
+        // validate arguments
+        // save arguments
+    }
+
+    // all the string functions...
+
+    public override String ToString()
+    {
+        return new String(Array, Start, Stop);
+    }
+}
+</csharp>
+
+<p>But I don't want to have to re-make every class just so it can be non-null in some cases. So let's do something more generic:</p>
+
+<csharp>
+public struct Sure&lt;A&gt;
+{
+    public Sure(A value)
+    {
+        if (value == null)
+            throw new ArgumentNullException();
+
+        Value = value;
+    }
+
+    public A Value { get; private set; }
+
+    public static implicit operator A(Sure&lt;A&gt; sure)
+}
+</csharp>
+
+<p>So, supposedly, you can put <c>Sure&lt;Whatever&gt;</c>, and be sure you won't have a null reference to a <c>Whatever</c>.</p>
+
+<p>And when you see that the method or class you're working in takes a <c>Sure&lt;String&gt;</c>, you know you don't have to worry about whether that string will be null or not. Whoever provides that data can have the responsibility of making sure it's not null. Instead of everyone, everywhere in the program potentially having to worry about it.</p>
+
+<csharp>
+public void NoWorries(Sure&lt;String&gt; sure)
+{
+    // Do whatever with sure.Value, it won't be null
+}
+</csharp>
+
+<h3>Why?!</h3>
+
+<p>So this all seemed wonderful and I sunk time adding a <c>Sure&lt;A&gt;</c> class to my <a href="http://github.com/rkoeninger/zed-sharp">zed-sharp</a> project and all, only to eventually notice that this code compiles:</p>
+
+<csharp>
+var ss = new Sure&lt;String&gt;();
+</csharp>
+
+<p>And not only does it work, but it returns a <c>Sure&lt;String&gt;</c> with a null value!</p>
+
+<p><strong>NOOOoooooOOO00000ooooO!!!1111`!!q!!!@!</strong></p>
+
+<p>As it turns out, in C#, all struct types have a built-in zero-parameter constructor that returns an instance of that struct type with all its fields assigned a default value for their type.</p>
+
+<p>For <c>String</c>, it's null.</p>
+
+<p>The first thought that came to mind was: Just override the zero-parameter constructor to throw an exception, and then we can again be sure we'll never have a <c>Sure</c> with a null <c>Value</c>.</p>
+
+<p>So I tried this:</p>
+
+<csharp>
+public struct Sure&lt;A&gt;
+{
+    public Sure()
+    {
+        throw new ApplicationException("Don't do that!");
+    }
+
+    // everything else stays the same
+}
+</csharp>
+
+<p>But of course: <strong>Structs cannot contain parameterless constructors.</strong></p>
+
+<p>So there's this facility built into the language that ruins my life and there's no way to override it.</p>
+
+<p>Even if one could use the parameterless constructor above, it still wouldn't completely fix the problem, considering:</p>
+
+<csharp>
+default(Sure<String>).Value == null
+</csharp>
+
+<p>For class types, <c>default()</c> returns null, and for struct types, <c>default()</c> returns an instance with all members initialized to their <c>default()</c>, which is null/0/false/all-members-default.</p>
+
+<h3>The Nightmare Continues</h3>
+
+<p>For a while, I thought this was a really solid idea. It would require people to go through their programs and type <c>Sure&lt;&gt;</c> and <c>.Value</c> all over the place, but if they were being plagued by <c>NullReferenceException</c>s, as in every C# applcation I've ever seen, it could be worth it. But alas...</p>
+
+<p>The other thing that's really annoying about all this is the C# designers took the time to implement a type system for the language. And then they defeat the purpose in large part but giving almost every type an additional null value with vague semantics (does it mean the value is not applicable, or we just don't know it or what?) that also behaves very differently from every other value in that it blows up your program when you least suspect it.</p>
+
+<p>Instead of just having references to values be of type A, it's like they are all implicitly of type <c>Ref&lt;A&gt;</c> and all methods are <c>Func&lt;A, Ref&lt;B&gt;&gt;</c> instead of <c>Func&lt;A, B&gt;</c>, but you don't have <c>A</c>'s, you have <c>Ref&lt;A&gt;</c>'s, like this:</p>
+
+<haskell>
+type Ref a = Pointer a | Null
+
+invoke :: (a -> Ref b) -> Ref a -> Ref b
+invoke f (Pointer x) = f x
+invoke _ Null = error "NullPointerException"
+</haskell>
+
+<p>From the perspective of another Why do that? Why make using the language so complicated? This is normal to most people, I think, but from a more distanced perspective, it's just bizarre.</p>
+
+<p>I guess we can just make like Scala and idiomatically avoid null by way of the <c>Maybe&lt;A&gt;</c> type. And if someone forgets to initialize a reference or sets it to null, throw them in the pit of despair.</p>

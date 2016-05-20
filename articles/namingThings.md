@@ -1,27 +1,29 @@
-# Naming Things
+<h1>Naming Things</h1>
 
-## The only thing harder than cache invalidation
-
-I found a [list of words][name-list] compiled by Brian Frank, one of the creators of [the Fantom language][fantom], that can used to help pick names for classes and other concepts in code.
+<p>I found a <a href="//www.fantom.org/forum/topic/1489">list of words</a> compiled by Brian Frank, one of the creators of <a href="//www.fantom.org/">the Fantom language</a>, that can used to help pick names for classes and other concepts in code.</p>
 
 I've tried to divide the list into sections of related meaning. This page can serve as a programmer's thesaurus.
 
-### By Purpose
+<h3>By Purpose</h3>
 
-#### Coordination/Discovery
+<h4>Coordination/Discovery</h4>
 
-  * Directory
-  * Registry
-  * Locator
-  * Compass
-  * Path[way]
+<ul>
+  <li>Directory</li>
+  <li>Registry</li>
+  <li>Locator</li>
+  <li>Compass</li>
+  <li>Path[way]</li>
+</ul>
 
-#### Storage
+<h4>Storage</h4>
 
-  * Cache
-  * Bank
-  * Repository
-  * Depot (write-mainly)
+<ul>
+  <li>Cache</li>
+  <li>Bank</li>
+  <li>Repository</li>
+  <li>Depot (write-mainly)</li>
+</ul>
 
 #### Indirection
 

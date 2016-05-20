@@ -1,0 +1,100 @@
+<h1>Software List</h1>
+
+<h2>Install List for a New Windows Machine</h2>
+
+<nomobile>
+    <h3>Chocolatey Install Script</h3>
+
+    <p>It should be possible to drop this into a bat script and run it in a command window with Administrative privileges. It will retrieve some basic tools a .Net developer might want.</p>
+
+    <p>You can omit the first line if you already have <a href="//chocolatey.org/">Chocolatey</a> installed.</p>
+
+    <dos filename="install_standard_programs.bat">
+@powershell -NoProfile -ExecutionPolicy unrestricted -Command "iex ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1'))" && SET PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin
+
+choco install git
+choco install 7zip
+choco install astrogrep
+choco install rdcman
+choco install gow
+choco install winmerge
+choco install keepass
+choco install qttabbar
+choco install cutepdf
+choco install foxitreader
+choco install sublimetext2
+choco install fiddler
+choco install hxd
+choco install spacesniffer
+    </dos>
+</nomobile>
+
+<h3>Full List of Links</h3>
+
+<h4>Web</h4>
+
+<ul>
+  <li><a href="//www.google.com/chrome/browser/">Chrome</a></li>
+  <li><a href="//www.telerik.com/fiddler">Fiddler</a></li>
+</ul>
+
+<h5>Chrome Plugins</h5>
+
+<ul>
+  <li><a href="//github.com/ghostwords/chameleon">Chameleon</a></li>
+  <li><a href="//chrome.google.com/webstore/detail/adblock/gighmmpiobklfepjocnamgkkbiglidom?hl=en">Adblock</a></li>
+  <li><a href="//chrome.google.com/webstore/detail/adblock-plus/cfhdojbkjhnklbpkdaibdccddilifddb?hl=en">Adblock Plus</a></li>
+  <li><a href="//chrome.google.com/webstore/detail/stylish/fjnbnpbmkenffdnngjfgmeleoegfcffe?hl=en">Stylish</a></li>
+  <li><a href="//chrome.google.com/webstore/detail/session-buddy/edacconmaakjimmfgnblocblbcdcpbko?hl=en">Session Buddy</a></li>
+  <li><a href="//chrome.google.com/webstore/detail/webpage-spell-check/mgdhaoimpabdhmacaclbbjddhngchjik">Webpage Spell-Check</a></li>
+  <li><a href="//chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo?hl=en">TamperMonkey</a></li>
+</ul>
+
+<h4>Operating System Tools</h4>
+
+<ul>
+  <li><a href="//keepass.info/">KeePass</a></li>
+  <li><a href="//qttabbar.sourceforge.net/">QtTabBar</a></li>
+  <li><a href="//www.7-zip.org/">7-Zip</a></li>
+  <li><a href="//sourceforge.net/projects/console/">Console2</a></li>
+  <li><a href="//github.com/bmatzelle/gow/wiki">GOW</a></li>
+  <li><a href="//technet.microsoft.com/en-us/sysinternals/bb842062.aspx">Sysinternals Suite</a></li>
+  <li><a href="//www.uderzo.it/main_products/space_sniffer/">Space Sniffer</a></li>
+  <li><a href="//chocolatey.org/">Chocolatey</a></li>
+</ul>
+
+<h4>Coding</h4>
+
+<ul>
+  <li><a href="//git-scm.com">Git</a></li>
+  <li><a href="//windows.github.com/">GitHub for Windows</a></li>
+  <li><a href="//www.sublimetext.com/">Sublime Text</a></li>
+  <li><a href="//packagecontrol.io/installation">Sublime Package Control</a></li>
+  <li><a href="//www.lighttable.com/">Light Table</a></li>
+  <li><a href="//mh-nexus.de/en/hxd/">HxD Hex Editor</a></li>
+  <li><a href="//astrogrep.sourceforge.net/">AstroGrep</a></li>
+  <li><a href="//winmerge.org/">WinMerge</a></li>
+  <li><a href="//leiningen.org/">Leiningen</a></li>
+  <li><a href="//clojure.github.io/clojure/clojure.core-api.html">Clojure Docs</a></li>
+  <li><a href="//www.red-gate.com/products/sql-development/sql-search/">RedGate SQL Search</a></li>
+</ul>
+
+<h4>Multimedia</h4>
+
+<ul>
+  <li><a href="//www.foxitsoftware.com/Secure_PDF_Reader/">Foxit Reader</a></li>
+  <li><a href="//www.cutepdf.com/">CutePDF</a></li>
+  <li><a href="//www.crystalidea.com/anytoiso">AnyToISO</a></li>
+  <li><a href="//www.poweriso.com/">PowerISO</a></li>
+  <li><a href="//www.videolan.org/vlc/index.html">VLC Player</a></li>
+  <li><a href="//www.foobar2000.org/">foobar200</a></li>
+  <li><a href="//www.getpaint.net/">Paint.NET</a></li>
+  <li><a href="//inkscape.org/en/">Inkscape</a></li>
+</ul>
+
+<h4>Remoting</h4>
+
+<ul>
+  <li><a href="//www.teamviewer.com/en/index.aspx">TeamViewer</a></li>
+  <li><a href="//www.microsoft.com/en-us/download/details.aspx?id=44989">Remote Desktop Connection Manager</a></li>
+</ul>

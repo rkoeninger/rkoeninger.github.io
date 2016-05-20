@@ -142,11 +142,11 @@ define(["marked", "jquery", "mathjax", "hljs", "lodash"], (marked, $, ignore, hl
       if (xml.nodeType === xml.TEXT_NODE) {
         return xml;
       } else if (xml.nodeName === "NOMOBILE") {
-        var div = newElement(isInlineElement(xml) ? "span" : "div", xml.childNodes);
+        var div = newElement(isInlineElement(xml) ? "span" : "div", _.map(xml.childNodes, processXml));
         div.classList.add("no-mobile");
         return div;
       } else if (xml.nodeName === "ONLYMOBILE") {
-        var div = newElement(isInlineElement(xml) ? "span" : "div", xml.childNodes);
+        var div = newElement(isInlineElement(xml) ? "span" : "div", _.map(xml.childNodes, processXml));
         div.classList.add("only-mobile");
         return div;
       } else if (xml.nodeName === "C") {
