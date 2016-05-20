@@ -1,0 +1,33 @@
+<h1>Command Aliases in Windows</h1>
+
+<p>Here's a cool trick I found (can't remember where...) for managing the command PATH in Windows. It can be hard to maintain a crazy-long list of paths in the PATH environment variable. Oracle might even complain if your PATH is too long.</p>
+
+<p>So instead, you might prefer add <c>C:\commands</c> and then put <c>.cmd</c> files there which redirect your command and arguments to the relevant binary.</p>
+
+<p>This can be helpful due to differences in file system layout between Windows and Linux. On Linux, most of your commands will be in <c>/bin</c>, <c>/usr/bin</c>, etc. Either the binaries themselves are in those directories or aliases to them. Either way, you won't end up with a very long value in your PATH variable. On Windows, each program gets installed in its own directory. So every couple of binaries or scripts you might want to execute from the command line will require an additional directory to be appended to the PATH variable.</p>
+
+<p>Using a <c>C:\commands</c> directory is a kind of emulation of the Linux pattern.</p>
+
+<p>This also helps when your command window or some other program doesn't update its environment variables when they are updated under System Properties. If <c>C:\commands</c> is in the path from the beginning, you won't have to restart these programs to be able to run new commands.</p>
+
+<p>A simple alias looks like this:</p>
+
+<dos>
+@echo off
+
+start "" /i "C:\Program Files\Sublime Text 3\sublime_text.exe" %*
+</dos>
+
+<p>This is saved in a file named <c>subl.cmd</c>. It starts Sublime Text in a new process, passes along command line arguments and returns immediately.</p>
+
+<p>Writing these middle-man scripts also allows one to do things like manipulating arguments before passing them along. This script accepts the name of a file and a line number to jump to and opens Sublime with that file at that line:</p>
+
+<dos>
+@echo off
+
+start "" /i "C:\Program Files\Sublime Text 3\sublime_text.exe" %1:%2
+</dos>
+
+<p>This script was written for compatibility with another program that wanted to pass in the two arguments like this: <c>%1 %2</c>, but Sublime wants them passed in like this: <c>%1:%2</c>.</p>
+
+<p>For other programs, you might want to be able to change directories before or after running a program, or between two different programs. This approach allows you to do that, where just using symlinks would not.</p>
