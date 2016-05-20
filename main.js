@@ -108,90 +108,100 @@ define(["marked", "jquery", "mathjax", "hljs", "lodash"], function (marked, $, i
 
     function newElement(name, children, classes, attributes) {
       var element = document.createElement(name);
-      _.forEach(children, function (x) { return element.appendChild(x) });
-      _.forEach(classes, function (x) { return element.classList.add(x) });
-      _.forEach(attributes, function (v, k) { return element.setAttribute(k, v) });
+      _.forEach(children, function (x) { return element.appendChild(x); });
+      _.forEach(classes, function (x) { return element.classList.add(x); });
+      _.forEach(attributes, function (v, k) { return element.setAttribute(k, v); });
       return element;
     }
 
     function codeHandler(lang, name, xml) {
-      var text = _.trim(xml.textContent);
-      var codeElement = newElement("code", [newText(text)], ["lang-" + lang]);
-      var preElement = newElement("pre", [codeElement]);
-      var langIcon = newElement("img", [], ["lang-icon"], {
-        "src": "/logos/" + lang + ".svg",
-        "title": name,
-        "alt": name
-      });
-      var fileName = newElement("span", [newText(xml.attributes.filename ? xml.attributes.filename.value : "")], ["file-name"]);
-      var lines = text.split(splitRegex);
-      var loc = lines.length;
-      var sloc = lines.filter(function (x) { return trivialCodeRegex.test(x); }).length;
-      var statsText = loc === sloc ? loc + " LOC" : loc + " LOC (" + sloc + " SLOC)";
-      var stats = newElement("span", [newText(statsText)], ["stats"]);
-      var titleBar = newElement(
-        "div",
-        xml.attributes.filename
-          ? [langIcon, fileName, stats, newClearFix()]
-          : [langIcon, stats, newClearFix()],
-        ["title-bar"]);
+      var text = _.trim(xml.textContent),
+        codeElement = newElement("code", [newText(text)], ["lang-" + lang]),
+        preElement = newElement("pre", [codeElement]),
+        langIcon = newElement("img", [], ["lang-icon"], {
+          "src": "/logos/" + lang + ".svg",
+          "title": name,
+          "alt": name
+        }),
+        fileName = newElement("span", [newText(xml.attributes.filename ? xml.attributes.filename.value : "")], ["file-name"]),
+        lines = text.split(splitRegex),
+        loc = lines.length,
+        sloc = lines.filter(function (x) { return trivialCodeRegex.test(x); }).length,
+        statsText = loc === sloc ? loc + " LOC" : loc + " LOC (" + sloc + " SLOC)",
+        stats = newElement("span", [newText(statsText)], ["stats"]),
+        titleBar = newElement(
+          "div",
+          xml.attributes.filename
+            ? [langIcon, fileName, stats, newClearFix()]
+            : [langIcon, stats, newClearFix()],
+          ["title-bar"]
+        );
       return newElement("div", [titleBar, preElement], ["snippet"]);
     }
 
     function processXml(xml) {
+      var attrs;
       if (xml.nodeType === xml.TEXT_NODE) {
         return xml;
-      } else if (xml.nodeName === "NOMOBILE") {
-        var div = newElement(isInlineElement(xml) ? "span" : "div", _.map(xml.childNodes, processXml));
-        div.classList.add("no-mobile");
-        return div;
-      } else if (xml.nodeName === "ONLYMOBILE") {
-        var div = newElement(isInlineElement(xml) ? "span" : "div", _.map(xml.childNodes, processXml));
-        div.classList.add("only-mobile");
-        return div;
-      } else if (xml.nodeName === "C") {
+      }
+      if (xml.nodeName === "NOMOBILE") {
+        return newElement(isInlineElement(xml) ? "span" : "div", _.map(xml.childNodes, processXml), ["no-mobile"]);
+      }
+      if (xml.nodeName === "ONLYMOBILE") {
+        return newElement(isInlineElement(xml) ? "span" : "div", _.map(xml.childNodes, processXml), ["only-mobile"]);
+      }
+      if (xml.nodeName === "C") {
         return newElement("code", _.map(xml.childNodes, processXml));
-      } else if (xml.nodeName === "HTML5") {
+      }
+      if (xml.nodeName === "HTML5") {
         return codeHandler("html", "HTML", xml);
-      } else if (xml.nodeName === "CSHARP") {
+      }
+      if (xml.nodeName === "CSHARP") {
         return codeHandler("csharp", "C#", xml);
-      } else if (xml.nodeName === "HASKELL") {
+      }
+      if (xml.nodeName === "HASKELL") {
         return codeHandler("haskell", "Haskell", xml);
-      } else if (xml.nodeName === "JAVA") {
+      }
+      if (xml.nodeName === "JAVA") {
         return codeHandler("java", "Java", xml);
-      } else if (xml.nodeName === "SCALA") {
+      }
+      if (xml.nodeName === "SCALA") {
         return codeHandler("scala", "Scala", xml);
-      } else if (xml.nodeName === "DOS") {
+      }
+      if (xml.nodeName === "DOS") {
         return codeHandler("dos", "Windows Batch", xml);
-      } else if (xml.nodeName === "RUBY") {
+      }
+      if (xml.nodeName === "RUBY") {
         return codeHandler("ruby", "Ruby", xml);
-      } else if (xml.nodeName === "ICONSET") {
+      }
+      if (xml.nodeName === "ICONSET") {
         return newElement("div", _.map(xml.children, function (item) {
           var name = item.attributes.name.value;
-          var a = newElement("a", [newElement("img", [], ["detail"], {
+          return newElement("a", [newElement("img", [], ["detail"], {
             "src": item.attributes.icon.value,
             "title": name,
             "alt": name
-          })]);
-          a.setAttribute("href", item.attributes.externalUrl.value);
-          return a;
+          })], [], {
+            "href": item.attributes.externalUrl.value
+          });
         }), ["icon-set"]);
         // TODO: add a clearfix after this
-      } else if (xml.nodeName === "TOC") {
+      }
+      if (xml.nodeName === "TOC") {
         return newElement("ul", _.map(xml.children, function (item) {
-          var a = newElement("a", [document.createTextNode(item.textContent)]);
-          a.setAttribute("href", "/?" + item.attributes.url.value);
+          var a = newElement("a", [document.createTextNode(item.textContent)], [], {
+            "href": "/?" + item.attributes.url.value
+          });
           return newElement("li", [a]);
         }));
-      } else {
-        var attrs = _.reduce(xml.attributes, function (acc, attr) { acc[attr.name] = attr.value; return acc; }, {});
-        return newElement(xml.nodeName, _.map(xml.childNodes, processXml), [], attrs);
       }
+      attrs = _.reduce(xml.attributes, function (acc, attr) { acc[attr.name] = attr.value; return acc; }, {});
+      return newElement(xml.nodeName, _.map(xml.childNodes, processXml), [], attrs);
     }
 
     function processXmlContent(articleContent) {
-      var articleXml = $.parseHTML("<div>" + articleContent + "</div>");
-      var html = processXml(articleXml[0]);
+      var articleXml = $.parseHTML("<div>" + articleContent + "</div>"),
+        html = processXml(articleXml[0]);
       return html.innerHTML;
     }
 
