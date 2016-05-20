@@ -1,0 +1,33 @@
+<h1>Combining Variadic Functions and Currying/Partial Applications</h1>
+
+<p>In ML-family languages, it's common for functions to be curried so that they can be easily partially applied. A curried, binary <c>+</c> operator would have a type like <c>Number -> (Number -> Number)</c>. So you can write <c>(+) 1</c> and get a function that takes another number and adds <c>1</c> to it.</p>
+
+<p>In LISP-family languages, it's common for some functions to be variadic so they take a variable number of arguments and make it easier to combine calls to that function or provide optional arguments. So you can write <c>(+ 1 2 3 4 5)</c> and get <c>15</c>.</p>
+
+<p>Both of these are cool in their own ways. They both make it a little easier to express code you might find yourself writing often.</p>
+
+<p>But they're hard to combine. ML-style functions can be partially applied because they have a known arity. LISP-style functions can be variadic because they need to have a specific type.</p>
+
+<p>What would the type of a variadic function that can also be easily partially applied look like?</p>
+
+<p>My first attempt looks like <c>(+) : Number | (Number -> @(+))</c> where <c>@</c> means "type-of". So <c>+</c>, weirdly, has a recursive type.</p>
+
+<p>The application of arguments to a curried function can be visualized like this:</p>
+
+<img alt="Curried Function" src="/diagrams/curriedFunctionType.svg" class="block" />
+
+<p>Start with <c>Number -> Number -> Number</c>. Apply a <c>Number</c> and you get <c>Number -> Number</c>. Apply another <c>Number</c>, and you get a <c>Number</c>.</p>
+
+<p>Notice this resembles a deterministic finite automaton (DFA).</p>
+
+<p>The partially applicable/variadic can be visualized like this:</p>
+
+<img alt="Non-Deterministic Type" src="/diagrams/nonDeterministicType.svg" class="block" />
+
+<p>Start with <c>Number | (Number -> @)</c>. Apply a <c>Number</c> and you get the same thing. Apply a <c>Number</c> as many times as you want, and you'll still get the same type. But it can also become a simple <c>Number</c> without being applied to anything.</p>
+
+<p>Notice this resembles a non-deterministic finite automaton (NFA).</p>
+
+<p>It's not known whether we need a number or a function until the result of the function is used. This can be determined dynamically by accumulating arguments or computing a running sum as they are applied, and then computing the sum or returning the running sum, when a number is needed. It could also work with a type system where the conversion to a <c>Number</c> is made when a <c>Number</c> is expected and it remains a function where a function is expected.</p>
+
+<p>I was thinking this was a new idea (new to me, anyway), but I realized I've already done something like this. In my project <a href="//github.com/rkoeninger/hyjinks">hyjinks</a>, the <c>Tag</c> object implements the <c>IFn</c> interface so while it is a record representing an HTML tag, it is also a function that can be applied to further attributes and child tags.</p>

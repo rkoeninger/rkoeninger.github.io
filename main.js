@@ -159,6 +159,12 @@ define(["marked", "jquery", "mathjax", "hljs", "lodash"], function (marked, $, i
       if (xml.nodeName === "CSHARP") {
         return codeHandler("csharp", "C#", xml);
       }
+      if (xml.nodeName === "FSHARP") {
+        return codeHandler("fsharp", "F#", xml);
+      }
+      if (xml.nodeName === "PYTHON") {
+        return codeHandler("python", "Python", xml);
+      }
       if (xml.nodeName === "HASKELL") {
         return codeHandler("haskell", "Haskell", xml);
       }

@@ -1,0 +1,47 @@
+<h1>Functional and Object-Oriented approaches to I/O</h1>
+
+<h2>There are a few right ways to solve a problem, and a million wrong ways</h2>
+
+<h3>Holy False Dichotomy, Batman!</h3>
+
+<blockquote>
+OO makes code understandable by encapsulating moving parts.
+FP makes code understandable by minimizing moving parts.
+<cite>Michael Feathers</cite>
+</blockquote>
+
+<p>There's a misconception that FP promotes totally side-effectless programming. The reaction is that programs can't do anything useful without side-effects so FP must be useless.</p>
+
+<p>That's not the idea. The hype confuses the idea, and makes FP sound stupid while trying to promote it, but it's a sound idea. It's an old idea.</p>
+
+<p>FP is not about writing programs that have no side effects. It's about isolating side-effecting code from non-side-effecting code. In particular, isolating I/O operations from "business logic". That's simply what is called "separation of concerns", a classic software design tenet.</p>
+
+<h3>Hello, Goodbye</h3>
+
+<p>So if a pure function can only vary with respect to its arguments, how would a <c>getLine</c> function that read a line of input from the console work? Its type would have to be something like <c>() => String</c> and that wouldn't make sense. If it takes no arguments, it must always return the same value effectively making it a constant.</p>
+
+<p>Well, in Haskell, <c>getLine</c> is indeed a constant.</p>
+
+<p>I'll let that sink in.</p>
+
+<p>Well, to clarify, it's not a constant of type <c>String</c>, it's a constant of type <c>IO String</c>. <em>TODO haskell syntax primer</em> And <c>IO a</c> is really a function that takes input from the outside world to produce an <c>a</c>, or in this case, a <c>String</c>.</p>
+
+<p>So <c>getLine</c> is a constant not because it always produces the same <c>String</c> but because it always produces a <c>String</c> in the same way.</p>
+
+<p>For a function like <c>putLine</c>, you'd expect it to have a type like <c>String => ()</c>. You give it a string to print and it prints it and doesn't give you anything back. Printing would be a side-effect. <c>putLine</c>'s type is actually <c>String -> IO ()</c>. So <c>putLine</c> is not a constant, that's interesting.</p>
+
+<p><c>putLine</c> returns a different <c>IO</c> action depending on what string it's given. That makes sense, doesn't it? <c>putLine "Hello!"</c> is a different operation from <c>putLine "Goodbye!"</c>.</p>
+
+<h3>A Tale of Two Types</h3>
+
+<p>So we can divide code in our program into pure and side-effecting operations.</p>
+
+<p>In Haskell, the type <c>IO a</c> is really <c>RealWorld -> (RealWorld, a)</c>, or basically a function that you're not supposed to run yourself.</p>
+
+<h3>The IO Monad</h3>
+
+<p>Represents an IO action to be run at some point later. In Haskell, the whole program becomes one giant IO action.</p>
+
+<h3>IO by Dependency Injection</h3>
+
+<p>Not mutually exclusive with the functional IO.</p>
