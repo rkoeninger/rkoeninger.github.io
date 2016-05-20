@@ -165,6 +165,18 @@ define(["marked", "jquery", "mathjax", "hljs", "lodash"], (marked, $, ignore, hl
         return codeHandler("dos", "Windows Batch", xml);
       } else if (xml.nodeName === "RUBY") {
         return codeHandler("ruby", "Ruby", xml);
+      } else if (xml.nodeName === "ICONSET") {
+        return newElement("div", _.map(xml.children, item => {
+          var name = item.attributes.name.value;
+          var a = newElement("a", [newElement("img", [], ["detail"], {
+            "src": item.attributes.icon.value,
+            "title": name,
+            "alt": name
+          })]);
+          a.setAttribute("href", item.attributes.externalUrl.value);
+          return a;
+        }), ["icon-set"]);
+        // TODO: add a clearfix after this
       } else if (xml.nodeName === "TOC") {
         return newElement("ul", _.map(xml.children, item => {
           var a = newElement("a", [document.createTextNode(item.textContent)]);
