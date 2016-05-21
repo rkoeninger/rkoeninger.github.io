@@ -1,0 +1,159 @@
+<h1>Who Cares About Monads?</h1>
+
+<h2>...well, who cares about Iterables?</h2>
+
+<h3>Abstract Nonsense</h3>
+
+<p>A while ago, I remember seeing an interview of sorts with Gilad Bracha and Erik Meijer. Bracha has never seemed to be a fan of functional programming. He's made some good points about how evangelists are kidding themselves about the exagerated possibilites they suggest FP offers (as is the nature of evangelists).</p>
+
+<p>But I remember a conversation that went something like this:</p>
+
+<blockquote>
+I know all these things are Monads - Lists, Continuations,
+IO - but I don't understand what you get by idenifying them as such.
+What does it buy you?
+<cite>Gilad Bracha</cite>
+</blockquote>
+
+<p>It's a good question. Meijer didn't offer much of a response as it wasn't his role to debate, just to interview.</p>
+
+<p>It might help if we re-phrased the question:</p>
+
+<blockquote>
+I know all these things are Iterables - Lists, HashMaps, Arrays
+... What does it buy you to identify them as such?
+<cite>Socrates</cite>
+</blockquote>
+
+<p>Well, it buys you the ability to generalize functions over <em>all</em> Iterables so you don't have to implement a function for every collection type. You can just implement a function that deals with an Iterable and be done with it. Look at .NET's <c>System.Linq.Enumerable</c> class. Future collection classes can also just implement Iterable and inherit all of that functionality.</p>
+
+<p>Also, the language can have specialized syntax for dealing with Iterables, like the <c>for-each</c> loop.</p>
+
+<h3>You Must Learn to Love the Dreaded M-Word</h3>
+
+<p>So let's get back to the original question, which now has a predictable response:</p>
+
+<blockquote>
+I know all these things are Monads - Lists, Continuations, IO -
+but I don't understand what you get by idenifying them as such.
+What does it buy you?
+<cite>Gilad Bracha</cite>
+</blockquote>
+
+<p>Well, it buys you the ability to generalize functions over <em>all</em> Monads so you don't have to implement a function for every monadic type. You can just implement a function that deals with an Monad and be done with it. Look at Haskell's <c>Control.Monad</c> module. Future monadic types can also just declare a Monad instance and inherit all of that functionality.</p>
+
+<p>Also, the language can have specialized syntax for dealing with Monads, like <c>do</c> notation.</p>
+
+<p>Explaining what a monad actually is task to no one has been completely successful at. The definition of the pattern in code can at least give some impression as to how it might be used.</p>
+
+<haskell>
+class Monad m where
+    return :: a -> m a
+    bind :: (a -> m b) -> m a -> m b
+</haskell>
+
+<p>So it implements a chaining pattern. A function that takes <c>a</c> and returns <c>m b</c> can be turned into a function that takes <c>m a</c> and returns <c>m b</c>. So if there are a series of operations that each introduce some complication, like nullablility or IO or one might raise an exception, those operations can be chained easily.</p>
+
+<blockquote>
+Monads are return types that guide you through the happy path.
+<cite>Erik Meijer</cite>
+</blockquote>
+
+<p>That's a great explanation of the blather I wrote above. A series of monadic operations allows one to focus on the path of execution that doesn't involve hairy things like the possibility of missing data, raised exceptions, multiple values, no values, side-effects and anything else that matches the pattern.</p>
+
+<h3>The Happy Path</h3>
+
+<p>Some people really object <em>TODO Tony Morris link</em> to the idea of explaining something using examples instead of starting with general principles, but the abstractness of a concept like monads is a little too far out for the reader to grasp their purpose or receive any motivation from their mathematical definition alone.</p>
+
+<p>So let's start with the (second) simpliest one first: The <c>Maybe</c> monad. Also sometimes called the <c>Option</c> monad. <c>Maybe</c> is a fairly simple type that we could represent with this made-up syntax:</p>
+
+<em>TODO use haskell syntax instead and refer to haskell syntax primer</em>
+
+<csharp>
+Maybe<A> = Some<A> | None
+</csharp>
+
+<p>So a <c>Maybe</c> either has a value or it doesn't. It's almost like making type A nullable.</p>
+
+<p>The happy path here is having a value, <c>Some</c>, and the exceptional case that we might want to gloss over is <c>None</c>. The monadic binding operation for <c>Maybe</c> is defined like this:</p>
+
+<csharp>
+Maybe&lt;B&gt; Bind&lt;A, B&gt;(Maybe&lt;A&gt; m, Func&lt;A, Maybe&lt;B&gt;&gt; f)
+{
+    return m is None ? None : f(m.Value);
+}
+</csharp>
+
+<p>So if we start with <c>None</c>, we ignore the operation and we just get <c>None</c>. If we have a value, we apply the function to the value. This is sort of like the "elvis operator" <em>TODO link</em> with respect to nullable types.</p>
+
+<csharp>
+Maybe&lt;double&gt; GetNumberMaybe();
+Maybe&lt;double&gt; DivMaybe(this double, double);
+A OrElse(this Maybe<A>, A);
+
+Bind(GetNumberMaybe(), 1.DivMaybe).OrElse(0)
+// results in zero if either value was not read or was zero
+</csharp>
+
+<p>The hidden complexity for Maybe is that the value might be missing.
+The hidden complexity for List is that there might be multiple (or zero) values.
+The hidden complexity for <c>r -> </c> is that the value is being generated given some value of type <c>r</c>.
+The hidden complexity for <c>IO</c> is that the value will be the result of a side-effecting operation. <em>TODO glossary for side-effects?</em></p>
+
+<h3>One Dev's Wisdom is Another Dev's Nonsense</h3>
+
+<c>As functional programming gains popularity, many people are encountering new terminology for the first time:</c>
+
+<ul>
+  <li>Functor</li>
+  <li>Monad</li>
+  <li>Lens</li>
+  <li>Typeclass</li>
+  <li>Referential Transparency</li>
+</ul>
+
+<p>And some terms that carry a very negative connotation:</p>
+
+<ul>
+  <li>Impure</li>
+  <li>Imperative</li>
+  <li>Non-compositional</li>
+</ul>
+
+<p>It is disconcerting to find yourself so confused. <em>What does it all mean?</em></p>
+
+<pre>
+Do you remember the last time you felt this way? What were people saying then?
+
+  * Factory
+  * Decorator
+  * Visitor
+  * Singleton
+  * Polymorphism
+
+And words that became the new profanities:
+
+  * Static
+  * Procedural
+  * Spaghetti
+
+I think that OOP and OO Patterns were a big step past what people were doing before. Not just giving devs a common language, also a set of tools for building programs where they might not have had much to work with.
+
+I also think that about these FP design patterns. And just like OOP, it is quickly becoming oversold and obscured. In both cases, these new patterns aren't as foreign or as complicated as they seems at first glance.
+
+### What does it buy you?
+
+Looking down the list of patterns, both object-oriented and functional, there seems to be a consistent theme. They all seem to try and take previous design patterns and design principles and realize them in a new language or new paradigm.
+
+Separation of concerns is one classic design principle many of these patterns and language features revolve around.
+
+  * The Factory pattern separates creation of object from use.
+
+  * The Decorator pattern separates two levels of functionality.
+
+  * Dynamic Dispatch (Subtype Polymorphism) separates implementation details from usage context.
+
+  * The IO Monad in Haskell strongly separates I/O from data manipulation.
+
+These are about avoiding spurious or hazardous dependencies between parts of a program, sometimes referred to as [complecting](http://www.infoq.com/presentations/Simple-Made-Easy).
+</pre>
