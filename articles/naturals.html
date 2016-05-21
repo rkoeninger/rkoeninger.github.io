@@ -1,0 +1,89 @@
+<h1>Natural Subtraction</h1>
+
+<h2>Arithmetic Operation I Found In My Couch</h2>
+
+<h3>Some Definitions</h3>
+
+<dl>
+    <dt>Natural Number</dt>
+    <dd>1. A non-negative integer.</dd>
+    <dd>2. An <c>unsigned int</c>.</dd>
+    <dd>3. <c>type Natural = Zero | Successor Natural</c></dd>
+    <dt>Operation Closure</dt>
+    <dd>Operation <c>f</c> is said to be closed over set <c>a</c> if for all values <c>x</c>, <c>y</c> that are members of <c>a</c>, then the result of <c>f(x, y)</c> is also a member of <c>a</c>.</dd>
+</dl>
+
+<p>So addition is closed over integers because adding any two integers always results in an integer. Subtraction and multiplication are also closed over integers.</p>
+
+<p>But division is not. For instance, <c>2 / 3</c> is division of two integers that does not result in an integer. In many programming languages, there is an integer division operation available that truncates the fractional part of the result, giving us a sort-of-division operator that is closed over integers.</p>
+
+<p><em>TODO: needs some use cases for naturals</em></p>
+
+<p>Notice that all four elementary operations (<c>+</c>, <c>-</c>, <c>*</c>, <c>%</c>) are closed over rational numbers.</p>
+
+<p>Also notice that while addition and multiplication are closed over natural numbers, division is not, just like for integers, but neither is subtraction. 3 and 5 are both natural numbers, but <c>3 - 5</c> does not result in a natural.</p>
+
+<p>So if we want to work with naturals, we might want a sort-of-subtraction operator that is closed over naturals. Just like with integer division, there will be some information loss when subtracting a larger number from a smaller number.</p>
+
+<p>How would such an operator be defined?</p>
+
+<p>Well, for integer division, we cut off the part of the result that integers intristically lack - the fractional part. This is like taking the <c>floor</c> of the result of real division.</p>
+
+<p>If we did something similar for natural subtraction, that would mean dropping the negative sign, or basically taking the <c>abs</c> of the result of real subtraction.</p>
+
+<p>Another approach might be to just return 0 if the result of real subtraction would be negative.</p>
+
+<p>Some examples:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>x</th>
+      <th>y</th>
+      <th>x -- y</th>
+      <th>x --- y</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>5</td>
+      <td>2</td>
+      <td>3</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>7</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>5</td>
+      <td>2</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The absolute difference between the two could be useful.</p>
+
+<p>Being able to decrement a number that naturall can only be reduced to 0 could also be helpful.</p>
+
+<p><em>TODO: needs some use cases for natural subtraction</em></p>
+
+<h3>A More-General Pattern?</h3>
+
+<p>So to keep division closed over integers, we have to redefine it. Then we have to redefine subtraction to keep it closed over naturals.</p>
+
+<p>Is there a more general pattern here?</p>
+
+<p>Notice also that division and subtraction are like the reverse of the other two operations: addition and multiplication. Addition and multiplication stay closed over all number sets.</p>
+
+<p>We can say that when <c>x * y = z</c>, that <c>x</c> and <c>y</c> being integers implies that <c>z</c> is an integer. But we can't say that when <c>a / b = c</c> and <c>a</c> and <c>b</c> are integers, that <c>c</c> must be an integer.</p>
+
+<p>Like wise for subtraction.</p>
+
+<p>It's like commiting to a smaller number set prevents certain pieces of information from being persisted - fractions and signs. That means that some operations would no longer be reversible.</p>
+
+<p><em>TODO: need to figure out if I'm on to something or not</em></p>

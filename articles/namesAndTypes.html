@@ -1,0 +1,61 @@
+<h1>Names and Types</h1>
+
+<h2>More Closely Related Than You Think</h2>
+
+<p>I have this idea that when you name a piece of data, you also give it a type. Whether you're using a language with or without a type system.</p>
+
+<p>Consider a simple type like this:</p>
+
+<java>
+class Person {
+    String givenName;
+    String emailAddress;
+}
+</java>
+
+<p><c>givenName</c> and <c>email</c> aren't just any strings. They are two different things that are rarely interchangeable. There may be no complete, formal way of verifying whether a particular character sequence is a valid given name. Even verifying emails isn't easy. But what would you think of code that did this: <c>p.emailAddress = p.givenName;</c>? You wouldn't write <c>p.emailAddress = p.birthDate</c>. Why would you write <c>p.emailAddress = p.givenName</c>.</p>
+
+<p>And that code would pass the type-checker. But the type-checker is supposed to prevent type errors. I'm thinking it should also be a type error to assign a given name to an email address, just as it would be a type error to assign a birth date to a street address.</p>
+
+<p>This can be done, even in Java. But it's not easy.</p>
+
+<java>
+abstract class NewType<T> {
+    T value;
+    NewType(T value) {
+        this.value = value;
+    }
+}
+
+class GivenName extends NewType<String> {
+    GivenName(String name) {
+        super(name);
+    }
+}
+
+class EmailAddress extends NewType<String> {
+    EmailAddress(String email) {
+        super(email);
+    }
+}
+
+class Person {
+    GivenName givenName;
+    EmailAddress emailAddress;
+}
+</java>
+
+<p>Now code like <c>p.emailAddress = p.givenName;</c> will cause the appropriate type error.</p>
+
+<pre>
+error: incompatible types: GivenName cannot be converted to EmailAddress
+        p.emailAddress = p.givenName;
+                          ^
+1 error
+</pre>
+
+<p>Type-checking isn't the whole point, though. I've always thought that type-checking was only a part of the potential benefits of a type system. If names-as-types is going to have any practical benefit, it would have to enable more effective code completion.</p>
+
+<h3>Name as Subtype</h3>
+
+<p>When you're reading code and you see something like <c>int customerId</c>, that value is not just any <c>int</c>, it's a <c>customerId</c>. <c>customerId</c> is a specific case of an <c>int</c>. Further than that, that fact that a customerId is an int is an implementation detail. It happens to be the case that customerId is currently an int, but that could change. And if the codebase has <c>int customerId</c> spread throughout it, it would be really hard to change customerIds to be a Guid instead.</p>
