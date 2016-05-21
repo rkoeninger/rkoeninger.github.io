@@ -139,19 +139,24 @@ define(["marked", "jquery", "mathjax", "hljs", "lodash"], function (marked, $, i
       return newElement("div", [titleBar, preElement], ["snippet"]);
     }
 
-    function processXml(xml) {
-      var attrs;
+    function processHtml(xml) {
+      var attrs, renderedHtmlString, parsedHtml;
       if (xml.nodeType === document.TEXT_NODE) {
         return xml;
       }
+      if (xml.nodeName === "MARKDOWN") {
+        renderedHtmlString = marked(xml.innerHTML);
+        parsedHtml = $.parseHTML(renderedHtmlString);
+        return newElement(isInlineElement(xml) ? "span" : "div", _.map(parsedHtml, processHtml));
+      }
       if (xml.nodeName === "NOMOBILE") {
-        return newElement(isInlineElement(xml) ? "span" : "div", _.map(xml.childNodes, processXml), ["no-mobile"]);
+        return newElement(isInlineElement(xml) ? "span" : "div", _.map(xml.childNodes, processHtml), ["no-mobile"]);
       }
       if (xml.nodeName === "ONLYMOBILE") {
-        return newElement(isInlineElement(xml) ? "span" : "div", _.map(xml.childNodes, processXml), ["only-mobile"]);
+        return newElement(isInlineElement(xml) ? "span" : "div", _.map(xml.childNodes, processHtml), ["only-mobile"]);
       }
       if (xml.nodeName === "C") {
-        return newElement("code", _.map(xml.childNodes, processXml));
+        return newElement("code", _.map(xml.childNodes, processHtml));
       }
       if (xml.nodeName === "HTML5") {
         return codeHandler("html", "HTML", xml);
@@ -203,19 +208,19 @@ define(["marked", "jquery", "mathjax", "hljs", "lodash"], function (marked, $, i
       }
       if (xml.nodeType === document.ELEMENT_NODE) {
         attrs = _.reduce(xml.attributes, function (acc, attr) { acc[attr.name] = attr.value; return acc; }, {});
-        return newElement(xml.nodeName, _.map(xml.childNodes, processXml), [], attrs);
+        return newElement(xml.nodeName, _.map(xml.childNodes, processHtml), [], attrs);
       }
       return xml;
     }
 
-    function processXmlContent(articleContent) {
+    function processHtmlContent(articleContent) {
       var articleXml = $.parseHTML("<div>" + articleContent + "</div>"),
-        html = processXml(articleXml[0]);
+        html = processHtml(articleXml[0]);
       return html.innerHTML;
     }
 
-    function populateArticle(articleDiv, articleFile, articleMarkdown) {
-      var articleHtml = endsWith(articleFile, ".html") ? processXmlContent(articleMarkdown) : marked(articleMarkdown);
+    function populateArticle(articleDiv, articleMarkdown) {
+      var articleHtml = processHtmlContent(articleMarkdown);
       articleDiv.html(articleHtml);
       document.title = getPageTitle(articleHtml);
 
@@ -270,7 +275,7 @@ define(["marked", "jquery", "mathjax", "hljs", "lodash"], function (marked, $, i
       }
 
       if (rawMarkdown) {
-        populateArticle(articleDiv, articleFile, rawMarkdown);
+        populateArticle(articleDiv, rawMarkdown);
       } else {
         $.ajax({
           type: "GET",
@@ -278,7 +283,7 @@ define(["marked", "jquery", "mathjax", "hljs", "lodash"], function (marked, $, i
           url: articleUrl,
           success: function (articleMarkdown) {
             rawMarkdowns[articleFile] = articleMarkdown;
-            populateArticle(articleDiv, articleFile, articleMarkdown);
+            populateArticle(articleDiv, articleMarkdown);
           },
           error: function (ignore, textStatus, errorThrown) {
             articleDiv.html("failed to load article content<br />" + textStatus + "<br />" + errorThrown);
