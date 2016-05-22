@@ -12,4 +12,11 @@ script:
   - sleep 10
   - phantomjs specs.js
   - kill -9 $NODE_SERVER_PID
-  - jslint main.js preprocessor.js main.config.js spec/main.spec.js spec.config.js || true
+  - jslint main.js \
+    scripts/preprocessor.js \
+    scripts/cache.js \
+    scripts/queryString.js \
+    scripts/pushState.js \
+    main.config.js \
+    spec.config.js \
+    spec/main.spec.js || true

@@ -3,7 +3,7 @@
 /*jslint browser: true, regexp: true, nomen: true, unparam: true, indent: 2*/
 /*global define, MathJax*/
 
-define(["jquery", "mathjax", "hljs", "lodash", "preprocessor", "cache", "queryString"], function ($, ignore, hljs, _, preprocessor, cache, queryString) {
+define(["jquery", "mathjax", "hljs", "lodash", "preprocessor", "cache", "queryString", "pushState"], function ($, ignore, hljs, _, preprocessor, cache, queryString, pushState) {
   var main = (function () {
     var defaultArticle = "default.html",
       defaultExt = ".html",
@@ -42,37 +42,17 @@ define(["jquery", "mathjax", "hljs", "lodash", "preprocessor", "cache", "querySt
       articleDiv.html(articleHtml);
       document.title = getPageTitle(articleHtml);
 
-      // Wrap tables in surrounding div
+      // Wrap tables for styling
       $("table").wrap("<div class=\"table-wrapper\"></div>");
 
-      // Navigate within the site using PushState
-      $("a").each(function (i, a) {
-        if (a.host === window.location.host) {
-          $(a).click(function (e) {
-            if (e.which !== 1) {
-              return true;
-            }
-
-            var url = $(a).attr("href"),
-              articleId = parseArticleId(url);
-            history.pushState({articleId: articleId}, "", url);
-            loadArticle(articleId);
-            $("html, body").animate({scrollTop: 0}, "fast");
-            return false;
-          });
-        }
-      });
+      pushState.install(loadArticle, parseArticleId);
 
       setTimeout(function () {
         hljs.initHighlighting.called = false;
         hljs.initHighlighting();
 
         MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
-      }, 200);
-    }
-
-    function populateLastModifiedLabel(author, date) {
-      $("#last-modified").text("Last modified by " + author + " on " + date);
+      }, 100);
     }
 
     function loadArticle(articleFile) {
@@ -100,19 +80,13 @@ define(["jquery", "mathjax", "hljs", "lodash", "preprocessor", "cache", "querySt
         function (data) {
           var author = data[0].commit.author.name,
             date = new Date(data[0].commit.author.date).toLocaleDateString();
-          populateLastModifiedLabel(author, date);
+          $("#last-modified").text("Last modified by " + author + " on " + date);
         }
       );
     }
 
     function init() {
-      $(window).on("popstate", function (event) {
-        var articleId = event.originalEvent.state
-          ? event.originalEvent.state.articleId
-          : defaultArticle;
-        loadArticle(articleId);
-      });
-
+      pushState.init(loadArticle, defaultArticle);
       loadArticle(getArticleFileName(window.location.search));
     }
 

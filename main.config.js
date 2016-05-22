@@ -13,6 +13,7 @@ require.config({
     "preprocessor": "/scripts/preprocessor",
     "cache": "/scripts/cache",
     "queryString": "/scripts/queryString",
+    "pushState": "/scripts/pushState",
     "main": "/main"
   },
   shim: {
