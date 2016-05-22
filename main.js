@@ -1,9 +1,9 @@
 'use strict';
 
-/*jslint browser: true, regexp: true, nomen: true, indent: 2*/
+/*jslint browser: true, regexp: true, nomen: true, unparam: true, indent: 2*/
 /*global define, MathJax*/
 
-define(["jquery", "mathjax", "hljs", "lodash", "preprocessor"], function ($, ignore, hljs, _, preprocessor) {
+define(["jquery", "mathjax", "hljs", "lodash", "preprocessor", "cache"], function ($, ignore, hljs, _, preprocessor, cache) {
   var main = (function () {
     var defaultArticle = "default.html",
       defaultExt = ".html",

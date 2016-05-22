@@ -11,7 +11,8 @@ require.config({
     "mathjax": "//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML&amp;delayStartupUntil=configured",
     "hljs": "/highlight.pack",
     "main": "/main",
-    "preprocessor": "/preprocessor"
+    "preprocessor": "/preprocessor",
+    "cache": "/cache"
   },
   shim: {
     "mathjax": {

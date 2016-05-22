@@ -1,6 +1,6 @@
 'use strict';
 
-/*jslint browser: true, regexp: true, nomen: true, indent: 2*/
+/*jslint browser: true, regexp: true, nomen: true, unparam: true, indent: 2*/
 /*global define*/
 
 define(["marked", "jquery", "lodash"], function (marked, $, _) {
