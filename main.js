@@ -44,8 +44,8 @@ define(["jquery", "mathjax", "hljs", "lodash", "preprocessor", "cache", "querySt
       return defaultExtension(getArticleFileName(queryString.fromUrl(url)));
     }
 
-    function populateArticle(articleDiv, articleMarkdown) {
-      var articleHtml = preprocessor.processHtmlContent(articleMarkdown);
+    function populateArticle(articleDiv, content) {
+      var articleHtml = preprocessor.processHtmlContent(content);
       articleDiv.html(articleHtml);
       document.title = getPageTitle(articleHtml);
 
