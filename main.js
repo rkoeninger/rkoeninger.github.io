@@ -48,12 +48,8 @@ define(["jquery", "mathjax", "hljs", "lodash", "preprocessor", "cache"], functio
         : s.substring(1);
     }
 
-    function endsWith(str, suffix) {
-      return str.indexOf(suffix, str.length - suffix.length) !== -1;
-    }
-
     function contains(list, target) {
-      return _.some(list, function (item) { return endsWith(target, item); });
+      return _.some(list, function (item) { return _.endsWith(target, item); });
     }
 
     function defaultExtension(articleName) {
@@ -187,7 +183,6 @@ define(["jquery", "mathjax", "hljs", "lodash", "preprocessor", "cache"], functio
 
     return {
       getQsValue: getQsValue,
-      endsWith: endsWith,
       contains: contains,
       getArticleFileName: getArticleFileName,
       getArticleUrl: getArticleUrl,

@@ -4,15 +4,6 @@
 /*global define, describe, it, expect*/
 
 define(["main"], function (main) {
-  describe("endsWith", function () {
-    it("endsWith(x + y, y) should always be true", function () {
-      expect(main.endsWith("abc" + "xyz", "xyz")).toBe(true);
-    });
-    it("should always be true when suffix is the empty string", function () {
-      expect(main.endsWith("abc", "")).toBe(true);
-      expect(main.endsWith("", "")).toBe(true);
-    });
-  });
   describe("contains", function () {
     it("should never be true when list is empty", function () {
       expect(main.contains([], "abc")).toBe(false);
