@@ -9,11 +9,11 @@ require.config({
     "lodash": "//cdnjs.cloudflare.com/ajax/libs/lodash.js/4.12.0/lodash.min",
     "marked": "//cdnjs.cloudflare.com/ajax/libs/marked/0.3.5/marked.min",
     "mathjax": "//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML&amp;delayStartupUntil=configured",
-    "hljs": "/highlight.pack",
-    "main": "/main",
+    "hljs": "/scripts/highlight.pack",
     "preprocessor": "/scripts/preprocessor",
     "cache": "/scripts/cache",
-    "queryString": "/scripts/queryString"
+    "queryString": "/scripts/queryString",
+    "main": "/main"
   },
   shim: {
     "mathjax": {
