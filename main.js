@@ -3,8 +3,9 @@
 /*jslint browser: true, regexp: true, nomen: true, unparam: true, indent: 2*/
 /*global define, MathJax*/
 
-define(["jquery", "mathjax", "hljs", "lodash", "preprocessor", "cache", "queryString", "pushState"], function ($, ignore, hljs, _, preprocessor, cache, queryString, pushState) {
-  var main = (function () {
+define(
+  ["jquery", "mathjax", "hljs", "lodash", "preprocessor", "cache", "queryString", "pushState"],
+  function ($, ignore, hljs, _, preprocessor, cache, queryString, pushState) {
     var defaultArticle = "default.html",
       defaultExt = ".html",
       defaultPageTitle = "Fear of a Blue Screen",
@@ -96,7 +97,5 @@ define(["jquery", "mathjax", "hljs", "lodash", "preprocessor", "cache", "querySt
       getPageTitle: getPageTitle,
       init: init
     };
-  }());
-
-  return main;
-});
+  }
+);
