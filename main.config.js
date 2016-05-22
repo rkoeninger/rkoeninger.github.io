@@ -10,7 +10,8 @@ require.config({
     "marked": "//cdnjs.cloudflare.com/ajax/libs/marked/0.3.5/marked.min",
     "mathjax": "//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML&amp;delayStartupUntil=configured",
     "hljs": "/highlight.pack",
-    "main": "/main"
+    "main": "/main",
+    "preprocessor": "/preprocessor"
   },
   shim: {
     "mathjax": {
