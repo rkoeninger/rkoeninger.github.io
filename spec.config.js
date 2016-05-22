@@ -14,9 +14,9 @@ require.config({
     "mathjax": "//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML&amp;delayStartupUntil=configured",
     "hljs": "/highlight.pack",
     "main": "/main",
-    "preprocessor": "/preprocessor",
-    "cache": "/cache",
-    "queryString": "/queryString",
+    "preprocessor": "/scripts/preprocessor",
+    "cache": "/scripts/cache",
+    "queryString": "/scripts/queryString",
     "main-spec": "/spec/main.spec"
   },
   shim: {
