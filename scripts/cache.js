@@ -7,19 +7,33 @@ define(["jquery", "lodash"], function ($, _) {
   var main = (function () {
     var store = {};
 
-    function getOrElse(id, load) {
-      var value;
-      if (store.hasOwnProperty(id)) {
-        return store[id];
+    function loadText(url, success, error) {
+      if (store.hasOwnProperty(url)) {
+        success(store[url]);
+      } else {
+        $.ajax({
+          type: "GET",
+          dataType: "text",
+          url: url,
+          success: success,
+          error: function (ignore, message) {
+            error(message);
+          }
+        });
       }
+    }
 
-      value = load(id);
-      store[id] = value;
-      return value;
+    function loadJSON(url, success) {
+      if (store.hasOwnProperty(url)) {
+        success(store[url]);
+      } else {
+        $.getJSON(url, success);
+      }
     }
 
     return {
-      getOrElse: getOrElse
+      loadText: loadText,
+      loadJSON: loadJSON
     };
   }());
 

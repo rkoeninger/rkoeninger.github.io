@@ -12,9 +12,7 @@ define(["jquery", "mathjax", "hljs", "lodash", "preprocessor", "cache", "querySt
       disqusScriptUrl = "//rkoeningergithubio.disqus.com/embed.js",
       historyUrlBase = "//github.com/rkoeninger/rkoeninger.github.io/commits/master/articles/",
       commitsUrlBase = "//api.github.com/repos/rkoeninger/rkoeninger.github.io/commits?path=",
-      sourceUrlBase = "//cdn.rawgit.com/rkoeninger/rkoeninger.github.io/master/articles/",
-      rawMarkdowns = {},
-      modifiedDates = {};
+      sourceUrlBase = "//cdn.rawgit.com/rkoeninger/rkoeninger.github.io/master/articles/";
 
     function contains(list, target) {
       return _.some(list, function (item) { return _.endsWith(target, item); });
@@ -66,7 +64,7 @@ define(["jquery", "mathjax", "hljs", "lodash", "preprocessor", "cache", "querySt
               articleId = parseArticleId(url);
             history.pushState({articleId: articleId}, "", url);
             loadArticle(articleId);
-            $("html, body").animate({ scrollTop: 0 }, "fast");
+            $("html, body").animate({scrollTop: 0}, "fast");
             return false;
           });
         }
@@ -86,9 +84,7 @@ define(["jquery", "mathjax", "hljs", "lodash", "preprocessor", "cache", "querySt
 
     function loadArticle(articleFile) {
       var articleUrl = getArticleUrl(articleFile),
-        articleDiv = $("#main-article"),
-        modifiedDate = modifiedDates[articleFile],
-        rawMarkdown = rawMarkdowns[articleFile];
+        articleDiv = $("#main-article");
 
       $("#source-link").attr("href", sourceUrlBase + articleFile);
       $("#history-link").attr("href", historyUrlBase + articleFile);
@@ -100,40 +96,20 @@ define(["jquery", "mathjax", "hljs", "lodash", "preprocessor", "cache", "querySt
         $("main").append($("<script />", {id: "disqus_script", src: disqusScriptUrl}));
       }
 
-      if (rawMarkdown) {
-        populateArticle(articleDiv, rawMarkdown);
-      } else {
-        $.ajax({
-          type: "GET",
-          dataType: "text",
-          url: articleUrl,
-          success: function (articleMarkdown) {
-            rawMarkdowns[articleFile] = articleMarkdown;
-            populateArticle(articleDiv, articleMarkdown);
-          },
-          error: function (ignore, textStatus, errorThrown) {
-            articleDiv.html("failed to load article content<br />" + textStatus + "<br />" + errorThrown);
-          }
-        });
-      }
+      cache.loadText(
+        articleUrl,
+        function (content) { populateArticle(articleDiv, content); },
+        function (message) { articleDiv.html("failed to load article content<br />" + message); }
+      );
 
-      if (modifiedDate) {
-        populateLastModifiedLabel(modifiedDate.author, modifiedDate.date);
-      } else {
-        $.getJSON(
-          getCommitHistoryUrl(articleUrl),
-          function (data) {
-            var author, date;
-
-            if (data.length > 0) {
-              author = data[0].commit.author.name;
-              date = new Date(data[0].commit.author.date).toLocaleDateString();
-              modifiedDates[articleFile] = {author: author, date: date};
-              populateLastModifiedLabel(author, date);
-            }
-          }
-        );
-      }
+      cache.loadJSON(
+        getCommitHistoryUrl(articleUrl),
+        function (data) {
+          var author = data[0].commit.author.name,
+            date = new Date(data[0].commit.author.date).toLocaleDateString();
+          populateLastModifiedLabel(author, date);
+        }
+      );
     }
 
     function init() {
