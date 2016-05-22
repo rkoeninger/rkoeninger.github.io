@@ -107,7 +107,7 @@ define(["marked", "jquery", "lodash"], function (marked, $, _) {
       return codeHandler("ruby", "Ruby", xml);
     }
     if (xml.nodeName === "ICONSET") {
-      return newElement("div", _.map(xml.children, function (item) {
+      var div = newElement("div", _.map(xml.children, function (item) {
         var name = item.attributes.name.value;
         return newElement("a", [newElement("img", [], ["detail"], {
           "src": item.attributes.icon.value,
@@ -117,7 +117,7 @@ define(["marked", "jquery", "lodash"], function (marked, $, _) {
           "href": item.attributes.externalUrl.value
         });
       }), ["icon-set"]);
-      // TODO: add a clearfix after this
+      return newElement("div", [div, newClearFix()]);
     }
     if (xml.nodeName === "TOC") {
       return newElement("ul", _.map(xml.children, function (item) {
