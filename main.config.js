@@ -12,7 +12,8 @@ require.config({
     "hljs": "/highlight.pack",
     "main": "/main",
     "preprocessor": "/preprocessor",
-    "cache": "/cache"
+    "cache": "/cache",
+    "queryString": "/queryString"
   },
   shim: {
     "mathjax": {

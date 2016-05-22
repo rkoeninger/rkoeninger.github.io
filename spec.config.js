@@ -16,6 +16,7 @@ require.config({
     "main": "/main",
     "preprocessor": "/preprocessor",
     "cache": "/cache",
+    "queryString": "/queryString",
     "main-spec": "/spec/main.spec"
   },
   shim: {

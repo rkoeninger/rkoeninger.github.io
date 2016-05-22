@@ -3,7 +3,7 @@
 /*jslint browser: true, regexp: true, nomen: true, unparam: true, indent: 2*/
 /*global define, MathJax*/
 
-define(["jquery", "mathjax", "hljs", "lodash", "preprocessor", "cache"], function ($, ignore, hljs, _, preprocessor, cache) {
+define(["jquery", "mathjax", "hljs", "lodash", "preprocessor", "cache", "queryString"], function ($, ignore, hljs, _, preprocessor, cache, queryString) {
   var main = (function () {
     var defaultArticle = "default.html",
       defaultExt = ".html",
@@ -14,39 +14,7 @@ define(["jquery", "mathjax", "hljs", "lodash", "preprocessor", "cache"], functio
       commitsUrlBase = "//api.github.com/repos/rkoeninger/rkoeninger.github.io/commits?path=",
       sourceUrlBase = "//cdn.rawgit.com/rkoeninger/rkoeninger.github.io/master/articles/",
       rawMarkdowns = {},
-      modifiedDates = {},
-      plusGlobalRegex = /\+/g;
-
-    function getQsValue(queryString, key) {
-      var qsParts, argVal;
-
-      if (queryString.length === 0) {
-        return "";
-      }
-
-      qsParts = queryString.substr(1).split("&");
-
-      if (!(qsParts || key)) {
-        return "";
-      }
-
-      argVal = _.find(qsParts, function (qsPart) {
-        var argValSplit = qsPart.split("=");
-        return argValSplit.length === 2 && argValSplit[0] === key;
-      });
-
-      if (argVal) {
-        return decodeURIComponent(argVal.split("=")[1].replace(plusGlobalRegex, " "));
-      }
-
-      return "";
-    }
-
-    function wholeQs(s) {
-      return s.length < 2 || s[0] !== "?" || s.indexOf("&") !== -1 || s.indexOf("=") !== -1
-        ? null
-        : s.substring(1);
-    }
+      modifiedDates = {};
 
     function contains(list, target) {
       return _.some(list, function (item) { return _.endsWith(target, item); });
@@ -56,9 +24,9 @@ define(["jquery", "mathjax", "hljs", "lodash", "preprocessor", "cache"], functio
       return articleName.indexOf(".") > 0 ? articleName : articleName + defaultExt;
     }
 
-    function getArticleFileName(queryString) {
-      return defaultExtension(getQsValue(queryString, "articleId")
-        || wholeQs(queryString)
+    function getArticleFileName(qs) {
+      return defaultExtension(queryString.get(qs, "articleId")
+        || queryString.all(qs)
         || defaultArticle);
     }
 
@@ -75,9 +43,7 @@ define(["jquery", "mathjax", "hljs", "lodash", "preprocessor", "cache"], functio
     }
 
     function parseArticleId(url) {
-      var parser = document.createElement("a");
-      parser.href = url;
-      return defaultExtension(getArticleFileName(parser.search));
+      return defaultExtension(getArticleFileName(queryString.fromUrl(url)));
     }
 
     function populateArticle(articleDiv, articleMarkdown) {
@@ -182,7 +148,6 @@ define(["jquery", "mathjax", "hljs", "lodash", "preprocessor", "cache"], functio
     }
 
     return {
-      getQsValue: getQsValue,
       contains: contains,
       getArticleFileName: getArticleFileName,
       getArticleUrl: getArticleUrl,
