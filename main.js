@@ -7,6 +7,7 @@ define(["jquery", "mathjax", "hljs", "lodash", "preprocessor", "cache", "querySt
   var main = (function () {
     var defaultArticle = "default.html",
       defaultExt = ".html",
+      defaultPageTitle = "Fear of a Blue Screen",
       disqusEnabled = false,
       disqusExcludedArticles = ["/default.html", "/status.html", "/htmlTest.html"],
       disqusScriptUrl = "//rkoeningergithubio.disqus.com/embed.js",
@@ -28,16 +29,8 @@ define(["jquery", "mathjax", "hljs", "lodash", "preprocessor", "cache", "querySt
         || defaultArticle);
     }
 
-    function getArticleUrl(articleFile) {
-      return "/articles/" + articleFile;
-    }
-
-    function getCommitHistoryUrl(articleUrl) {
-      return commitsUrlBase + articleUrl;
-    }
-
     function getPageTitle(articleHtml) {
-      return $(_.find($(articleHtml), function (x) { return $(x).is("h1"); })).text() || "Fear of a Blue Screen";
+      return $(_.find($(articleHtml), function (x) { return $(x).is("h1"); })).text() || defaultPageTitle;
     }
 
     function parseArticleId(url) {
@@ -83,7 +76,7 @@ define(["jquery", "mathjax", "hljs", "lodash", "preprocessor", "cache", "querySt
     }
 
     function loadArticle(articleFile) {
-      var articleUrl = getArticleUrl(articleFile),
+      var articleUrl = "/articles/" + articleFile,
         articleDiv = $("#main-article");
 
       $("#source-link").attr("href", sourceUrlBase + articleFile);
@@ -103,7 +96,7 @@ define(["jquery", "mathjax", "hljs", "lodash", "preprocessor", "cache", "querySt
       );
 
       cache.loadJSON(
-        getCommitHistoryUrl(articleUrl),
+        commitsUrlBase + articleUrl,
         function (data) {
           var author = data[0].commit.author.name,
             date = new Date(data[0].commit.author.date).toLocaleDateString();
@@ -126,8 +119,6 @@ define(["jquery", "mathjax", "hljs", "lodash", "preprocessor", "cache", "querySt
     return {
       contains: contains,
       getArticleFileName: getArticleFileName,
-      getArticleUrl: getArticleUrl,
-      getCommitHistoryUrl: getCommitHistoryUrl,
       getPageTitle: getPageTitle,
       init: init
     };
