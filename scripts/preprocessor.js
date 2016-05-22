@@ -5,7 +5,44 @@
 
 define(["marked", "jquery", "lodash"], function (marked, $, _) {
   var splitRegex = /\r?\n/,
-    trivialCodeRegex = /[a-zA-Z0-9_]+/;
+    trivialCodeRegex = /[a-zA-Z0-9_]+/,
+    langs = [{
+      tag: "HTML5",
+      name: "HTML",
+      class: "html"
+    }, {
+      tag: "CSHARP",
+      name: "C#",
+      class: "csharp"
+    }, {
+      tag: "FSHARP",
+      name: "F#",
+      class: "fsharp"
+    }, {
+      tag: "PYTHON",
+      name: "Python",
+      class: "python"
+    }, {
+      tag: "RUBY",
+      name: "Ruby",
+      class: "ruby"
+    }, {
+      tag: "HASKELL",
+      name: "Haskell",
+      class: "haskell"
+    }, {
+      tag: "JAVA",
+      name: "Java",
+      class: "java"
+    }, {
+      tag: "SCALA",
+      name: "Scala",
+      class: "scala"
+    }, {
+      tag: "DOS",
+      name: "Windows Batch",
+      class: "dos"
+    }];
 
   function getDisplayType(element) {
     var cStyle = element.currentStyle || window.getComputedStyle(element, "");
@@ -61,7 +98,7 @@ define(["marked", "jquery", "lodash"], function (marked, $, _) {
   }
 
   function processHtml(xml) {
-    var attrs, renderedHtmlString, parsedHtml;
+    var attrs, renderedHtmlString, parsedHtml, lang, div;
     if (xml.nodeType === document.TEXT_NODE) {
       return xml;
     }
@@ -79,35 +116,12 @@ define(["marked", "jquery", "lodash"], function (marked, $, _) {
     if (xml.nodeName === "C") {
       return newElement("code", _.map(xml.childNodes, processHtml));
     }
-    if (xml.nodeName === "HTML5") {
-      return codeHandler("html", "HTML", xml);
-    }
-    if (xml.nodeName === "CSHARP") {
-      return codeHandler("csharp", "C#", xml);
-    }
-    if (xml.nodeName === "FSHARP") {
-      return codeHandler("fsharp", "F#", xml);
-    }
-    if (xml.nodeName === "PYTHON") {
-      return codeHandler("python", "Python", xml);
-    }
-    if (xml.nodeName === "HASKELL") {
-      return codeHandler("haskell", "Haskell", xml);
-    }
-    if (xml.nodeName === "JAVA") {
-      return codeHandler("java", "Java", xml);
-    }
-    if (xml.nodeName === "SCALA") {
-      return codeHandler("scala", "Scala", xml);
-    }
-    if (xml.nodeName === "DOS") {
-      return codeHandler("dos", "Windows Batch", xml);
-    }
-    if (xml.nodeName === "RUBY") {
-      return codeHandler("ruby", "Ruby", xml);
+    lang = _.find(langs, function (x) { return x.tag === xml.nodeName; });
+    if (lang) {
+      return codeHandler(lang.class, lang.name, xml);
     }
     if (xml.nodeName === "ICONSET") {
-      var div = newElement("div", _.map(xml.children, function (item) {
+      div = newElement("div", _.map(xml.children, function (item) {
         var name = item.attributes.name.value;
         return newElement("a", [newElement("img", [], ["detail"], {
           "src": item.attributes.icon.value,
