@@ -93,7 +93,7 @@ define(["jquery", "mathjax", "hljs", "lodash", "preprocessor"], function ($, ign
       $("table").wrap("<div class=\"table-wrapper\"></div>");
 
       // Navigate within the site using PushState
-      $("a").each(function (a) {
+      $("a").each(function (i, a) {
         if (a.host === window.location.host) {
           $(a).click(function (e) {
             if (e.which !== 1) {
