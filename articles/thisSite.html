@@ -89,19 +89,35 @@
   </thead>
   <tbody>
     <tr>
-      <td><span style="font-family: 'PT Sans'"><a href="//www.google.com/fonts/specimen/PT+Sans">PT Sans</a></span></td>
+      <td>
+        <span style="font-family: 'PT Sans'">
+          <a href="//www.google.com/fonts/specimen/PT+Sans">PT Sans</a>
+        </span>
+      </td>
       <td>Body text</td>
     </tr>
     <tr>
-      <td><span style="font-family: 'Arvo'"><a href="//www.google.com/fonts/specimen/Arvo">Arvo</a></span></td>
+      <td>
+        <span style="font-family: 'Arvo'">
+          <a href="//www.google.com/fonts/specimen/Arvo">Arvo</a>
+        </span>
+      </td>
       <td>Headings, Titles</td>
     </tr>
     <tr>
-      <td><span style="font-family: 'Architects Daughter'"><a href="//www.google.com/fonts/specimen/Architects+Daughter">Architect's Daughter</a></span></td>
+      <td>
+        <span style="font-family: 'Architects Daughter'">
+          <a href="//www.google.com/fonts/specimen/Architects+Daughter">Architect's Daughter</a>
+        </span>
+      </td>
       <td>Quotes</td>
     </tr>
     <tr>
-      <td><span style="font-family: 'Rock Salt'"><a href="//www.google.com/fonts/specimen/Rock+Salt">Rock Salt</a></span></td>
+      <td>
+        <span style="font-family: 'Rock Salt'">
+          <a href="//www.google.com/fonts/specimen/Rock+Salt">Rock Salt</a>
+        </span>
+      </td>
       <td>Cites</td>
     </tr>
   </tbody>
@@ -178,6 +194,10 @@
 <h4>PhantomJS</h4>
 
 <p>The Jasmine spec page is great for manually running the tests, but for automated testing, like in this site's <a href="//travis-ci.org/rkoeninger/rkoeninger.github.io">Travis CI</a> build, there needs to be a way to run the tests without human intervention.</p>
+
+<p>Here's one thing that drove me nuts: When you give Phantom a script that contains malformed syntax, something amazing happens. It doesn't try to run the script anyway. It doesn't report a detailed error message, specifying the error, line and column number. It doesn't crash. It doesn't do anything. It just hangs there. Printing nothing. It doesn't exit. It took a while to figure this out, and until I did, it pissed me off. And when I figured out what the issue was, it pissed me off even more.</p>
+
+<p>Just a pain point to be aware of.</p>
 
 <h3>Metadata</h3>
 
