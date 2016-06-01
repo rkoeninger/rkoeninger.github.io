@@ -73,7 +73,7 @@ define(
       cache.loadText(
         articleUrl,
         function (content) { populateArticle(articleDiv, content); },
-        function (message) { articleDiv.html("failed to load article content<br />" + message); }
+        function (message) { articleDiv.html("failed to load article content<br />" + message).focus(); }
       );
 
       cache.loadJSON(
