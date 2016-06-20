@@ -65,3 +65,69 @@ public static A Something&lt;A, B&gt;(A x, B y)
 <h3>Compared to Alternatives</h3>
 
 <p>in MLs and Haskell, types are compositions of other types, it works somewhat in reverse. in these languages, types are much more easily used to specify things both to the machine and to the reader about code contracts.</p>
+
+<h3>New Members Are Rarely A Good Idea</h3>
+
+<p>Declaring members as <c>new</c> results in some very counter-intuitive behavior where a method or property implementation depends on calling context and not the object's identity.</p>
+
+<csharp>
+class A
+{
+    public String Message
+    {
+        get { return "Hi"; }
+    }
+}
+
+class B : A
+{
+    public new String Message
+    {
+        get { return "Bye"; }
+    }
+}
+
+class C
+{
+    public virtual String Message
+    {
+        get { return "Hi"; }
+    }
+}
+
+class D : C
+{
+    public override String Message
+    {
+        get { return "Bye"; }
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        // With the new keyword,
+        // What matters is how the
+        // object of the derived class
+        // is casted
+        A x0 = new A();
+        Assert.AreEqual("Hi", x0.Message);
+        A x1 = new B();
+        Assert.AreEqual("Hi", x1.Message);
+        B x2 = new B();
+        Assert.AreEqual("Bye", x2.Message);
+
+        // With virtual/override,
+        // what matters is which type
+        // the object is, not how it's
+        // casted
+        C x3 = new C();
+        Assert.AreEqual("Hi", x3.Message);
+        C x4 = new D();
+        Assert.AreEqual("Bye", x4.Message);
+        D x5 = new D();
+        Assert.AreEqual("Bye", x5.Message);
+    }
+}
+</csharp>
