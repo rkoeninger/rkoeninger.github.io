@@ -83,10 +83,8 @@ define(["marked", "jquery", "lodash"], function (marked, $, _) {
       }),
       fileName = newElement("span", [newText(xml.attributes.filename ? xml.attributes.filename.value : "")], ["file-name"]),
       lines = text.split(splitRegex),
-      loc = lines.length,
-      sloc = lines.filter(function (x) { return trivialCodeRegex.test(x); }).length,
-      statsText = loc === sloc ? loc + " LOC" : loc + " LOC (" + sloc + " SLOC)",
-      stats = newElement("span", [newText(statsText)], ["stats"]),
+      loc = lines.filter(function (x) { return trivialCodeRegex.test(x); }).length,
+      stats = newElement("span", [newText(loc + " LOC")], ["stats"]),
       titleBar = newElement(
         "div",
         xml.attributes.filename
