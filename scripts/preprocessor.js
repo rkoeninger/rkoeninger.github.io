@@ -73,7 +73,7 @@ define(["marked", "jquery", "lodash"], function (marked, $, _) {
   }
 
   function codeHandler(lang, name, xml) {
-    var text = _.trim(xml.textContent),
+    var text = _.trim(xml.innerHTML),
       codeElement = newElement("code", [newText(text)], ["lang-" + lang]),
       preElement = newElement("pre", [codeElement]),
       langIcon = newElement("img", [], ["lang-icon"], {
