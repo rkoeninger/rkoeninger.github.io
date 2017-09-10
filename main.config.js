@@ -1,14 +1,13 @@
 'use strict';
 
 /*jslint browser: true, regexp: true, indent: 2*/
-/*global require, MathJax*/
+/*global require*/
 
 require.config({
   paths: {
     "jquery": "//cdnjs.cloudflare.com/ajax/libs/jquery/1.12.3/jquery.min",
     "lodash": "//cdnjs.cloudflare.com/ajax/libs/lodash.js/4.12.0/lodash.min",
     "marked": "//cdnjs.cloudflare.com/ajax/libs/marked/0.3.5/marked.min",
-    "mathjax": "//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML&amp;delayStartupUntil=configured",
     "hljs": "/scripts/highlight.pack",
     "preprocessor": "/scripts/preprocessor",
     "cache": "/scripts/cache",
@@ -17,16 +16,6 @@ require.config({
     "main": "/main"
   },
   shim: {
-    "mathjax": {
-      exports: "MathJax",
-      init: function () {
-        MathJax.Hub.Config({
-          tex2jax: {inlineMath: [["$", "$"]]},
-          skipStartupTypeset: true
-        });
-        return MathJax;
-      }
-    },
     "hljs": {
       exports: "hljs"
     }

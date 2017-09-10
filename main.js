@@ -1,11 +1,11 @@
 'use strict';
 
 /*jslint browser: true, regexp: true, nomen: true, unparam: true, indent: 2*/
-/*global define, MathJax*/
+/*global define, renderMathInElement*/
 
 define(
-  ["jquery", "mathjax", "hljs", "lodash", "preprocessor", "cache", "queryString", "pushState"],
-  function ($, ignore, hljs, _, preprocessor, cache, queryString, pushState) {
+  ["jquery", "hljs", "lodash", "preprocessor", "cache", "queryString", "pushState"],
+  function ($, hljs, _, preprocessor, cache, queryString, pushState) {
     var defaultArticle = "default.html",
       defaultExt = ".html",
       defaultPageTitle = "Fear of a Blue Screen",
@@ -52,7 +52,16 @@ define(
         hljs.initHighlighting.called = false;
         hljs.initHighlighting();
 
-        MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+        if (renderMathInElement) {
+          renderMathInElement(
+            document.body, {
+              delimiters: [
+                {left: "$$", right: "$$", display: true},
+                {left: "$", right: "$", display: false},
+              ]
+            }
+          );
+        }
       }, 100);
     }
 
