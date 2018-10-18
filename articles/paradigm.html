@@ -1,0 +1,36 @@
+
+<h3>Imperative</h3>
+<h3>Functional</h3>
+<h3>Logic</h3>
+
+<p>Logic programming differs from functional programming, in that LP doesn't transform inputs to outputs, but it maps "relations".</p>
+
+<p>The Prolog `reverse/2` goal appears to take 2 arguments, but it's really mapping the relationship between a list and its reverse.</p>
+
+<code>
+is_palindrome(X) :- reverse(X, X).
+
+isPalindrome :: Eq a => [a] -> Bool
+isPalindrome xs = xs == reverse xs
+
+(defn palindrome? [xs] (= xs (reverse xs)))
+
+let isPalindrome xs = xs = List.reverse xs
+
+static bool IsPalindrome<T>(List<T> xs)
+{
+	for (var i = 0; i < xs.Count / 2; ++i)
+	{
+		if (!Equals(xs[i], xs[xs.Count - 1 - i]))
+		{
+			return false;
+		}
+	}
+
+	return true;
+}
+
+static bool IsPalindrome<T>(List<T> xs) =>
+	Enumerable.Range(0, xs.Count / 2)
+		.All(i => Equals(xs[i], xs[xs.Count - 1 - i]));
+</code>
