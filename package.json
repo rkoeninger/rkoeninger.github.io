@@ -1,0 +1,26 @@
+{
+  "name": "rkoeninger.github.io",
+  "version": "0.0.1",
+  "description": "Fear of a Blue Screen",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rkoeninger/rkoeninger.github.io.git"
+  },
+  "keywords": [
+    "blog"
+  ],
+  "author": "Robert Koeninger",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rkoeninger/rkoeninger.github.io/issues"
+  },
+  "homepage": "https://github.com/rkoeninger/rkoeninger.github.io#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-gh-pages": "^0.5.4"
+  }
+}
